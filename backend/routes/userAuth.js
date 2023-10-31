@@ -2,17 +2,18 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+require('dotenv').config();
 const saltRounds = Number(process.env.saltRounds);
 
-
 // Hash the users password and send the hashed password to the database
-router.post("/", async (req, res, next) => {
+ router.post("/", async (req, res, next) => {
   const { name, email, password } = req.body;
   const hashedPassword = await hashPassword(req.body.password, saltRounds);
   const result = db.query(
     "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
     [name, email, hashedPassword]
   );
+console.log(hashPassword);
   return res.send(result);
 });
 

@@ -2,20 +2,15 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const userAuthRoutes = require("./routes/userAuth");
-<<<<<<< HEAD
 const userloginRoutes = require("./routes/userlogin")
 
-=======
->>>>>>> 350a8e09a0fd77cfae82001d182b0f31652e574a
+
 
 // Add routes and middleware to server
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use("/auth", userAuthRoutes);
-<<<<<<< HEAD
 app.use("/login", userloginRoutes);
-=======
->>>>>>> 350a8e09a0fd77cfae82001d182b0f31652e574a
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
