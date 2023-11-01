@@ -1,7 +1,7 @@
 const { Client } = require("pg");
 require("dotenv").config();
 const client = new Client({
-  user: "marnin_a",
+  user: "user",
   host: "localhost",
   database: "savanna-showcase",
   password: process.env.password,
