@@ -4,10 +4,12 @@ const morgan = require("morgan");
 const userAuthRoutes = require("./routes/userAuth");
 require("dotenv").config();
 
+
 // Add routes and middleware to server
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use("/auth", userAuthRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
