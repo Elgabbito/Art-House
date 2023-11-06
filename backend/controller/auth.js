@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 require("dotenv").config();
 
 const saltRounds = Number(process.env.saltRounds);
-const secretKey = "TopSecret";
+const secretKey = process.env.secretKey;
 
 async function signup(req, res, next) {
     const { name, email, password } = req.body;

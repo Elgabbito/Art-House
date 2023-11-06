@@ -1,6 +1,5 @@
 const letter = document.getElementById("letter");
 const capital = document.getElementById("capital");
-const userrole = document.getElementByName("role");
 const number = document.getElementById("number");
 const length = document.getElementById("length");
 const specialChar = document.getElementById("special_char");
@@ -15,7 +14,7 @@ const AllChecks = {
   hasSpecialChar: false,
   isLongEnough: false,
 };
-console.log(userrole);
+
 // Username validation
 function ValidateName() {
   console.log(username.value.length);
