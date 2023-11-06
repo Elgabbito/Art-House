@@ -18,6 +18,5 @@
     "morgan": "^1.10.0",
     "pg": "^8.11.3"
   },
-  "devDependencies": {},
   "description": ""
 }
