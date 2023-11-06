@@ -1,12 +1,20 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
 const userAuthRoutes = require("./routes/userAuth");
+
+const corsOptions = {
+  origin: "http://localhost:5500",
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+};
 
 // Add routes and middleware to server
 app.use(morgan("tiny"));
 app.use(express.json());
-app.use("/auth", userAuthRoutes);
+app.use(cors(corsOptions));
+app.use("/auth", cors(), userAuthRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
