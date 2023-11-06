@@ -3,12 +3,163 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <link
       rel="shortcut icon"
-      href="./images/savannah-favicon.svg"
+      href="./public/savannah-favicon.svg"
       type="image/x-icon"
     />
-    <title>Savanna Showcase</title>
+    <script defer src="script.js"></script>
+    <script src="./scripts/carousel.js"></script>
+    <title>Savanna Showcase🖼️</title>
   </head>
-  <body></body>
+  <body>
+    <nav class="navbar">
+      <div class="logo-container">
+        <!-- <div class="logo">
+          <img src="./images/savannah-favicon.svg" alt="Logo" />
+        </div> -->
+        <a href="./index.html" class="logo-text">Savanna Showcase</a>
+      </div>
+      <div class="nav-links">
+        <div class="nav-link-container">
+          <a class="nav-link" href="#about">About<span></span></a>
+        </div>
+        <div class="nav-link-container">
+          <a class="nav-link"  id="explore-link">Explore <span></span></a>
+        </div>
+        <div class="nav-link-container">
+          <a class="nav-link" href="#gallery">Gallery <span></span></a>
+        </div>
+      </div>
+      <div class="nav-btns">
+        <button class="nav-btn" id="login-btn">Login</button>
+        <button class="nav-btn" id="signup-btn">Sign up</button>
+      </div>
+    </nav>
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>
+          Experience the future of Nigerian Art
+          <div></div>
+        </h1>
+        <p>Buy, Sell, and Commision Local Nigerian Art</p>
+      </div>
+      <div class="carousel">
+        <div class="carousel-img-container" id="img-1">
+          <img src="./images/Art-1.jpg" alt="" />
+        </div>
+        <div class="carousel-img-container" id="img-2">
+          <img src="./images/Art-2.jpg" alt="" />
+        </div>
+        <div class="carousel-img-container" id="img-3">
+          <img src="./images/Art-4.jpg" alt="" />
+        </div>
+        <div class="carousel-img-container" id="img-4">
+          <img src="./images/Art-3.jpg" alt="" />
+        </div>
+        <div class="carousel-img-container" id="img-5">
+          <img src="./images/Art-5.png" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="gallery" id="gallery">
+      <div class="hero-text">
+        <h1>
+          Gallery
+          <div></div>
+        </h1>
+      </div>
+      <div class="art-container">
+        <h3>Top art this week</h3>
+        <div class="top-art">
+          <a href="https://theartling.com/en/artwork/adrienn-krahl-time-travel-3/" class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </a>
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="art-container">
+        <h3>Categories</h3>
+        <div class="top-art">
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+          <div class="card">
+            <div class="image">
+              <img src="./images/African-Landscape.jpg" alt="" />
+            </div>
+            <span class="title">The River's Witness</span>
+            <span class="price">N 100,000</span>
+          </div>
+        </div>
+        <div class="submit-btn">
+          <a onclick="">
+            Find more
+            <span></span>
+          </a>
+        </div>
+    </section>
+    <footer>
+      <div class="footer-left">
+        <h3 class="footer-heading">Join the Art Revolution</h3>
+        <p>Become a part of something bigger. Connect, create, and collect with us. Unleash the artist within and experience the heart and soul of Nigeria's artistic renaissance.</p>
+      </div>
+      <div class="footer-center">
+        <div>
+          <h3 class="footer-heading">About</h3>
+          <a href="#">Our Story</a>
+          <a href="#">Our Community</a>
+        </div>
+        <div class="footer-heading">
+          <h3>Legal</h3>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+      
+    </footer>
+  </body>
 </html>
