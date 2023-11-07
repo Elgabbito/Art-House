@@ -1,4 +1,4 @@
-const db = require("../db/index.example")
+const db = require("../db/index")
 
 async function createUser(name, email, hashedPassword) {
     const query = "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *";

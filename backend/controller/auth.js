@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const db = require("../db/index.example")
+const db = require("../db/index")
 const jwt = require("jsonwebtoken")
 const usermodel = require("../models/usermodel")
 require("dotenv").config();
@@ -10,9 +10,7 @@ const secretKey = process.env.secretKey;
 async function signup(req, res, next) {
     const { name, email, password } = req.body;
     const hashedPassword = await hashPassword(password, saltRounds);
-  
     const result = await usermodel.createUser(name, email, hashedPassword)
-    console.log(hashedPassword);
     return res.send(result);
   };
 
