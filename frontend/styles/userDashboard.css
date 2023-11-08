@@ -1,0 +1,328 @@
+@font-face {
+  font-family: Gebril;
+  src: url("../fonts/Gerbil-Font/gerbil.otf");
+}
+* {
+  font-family: Gebril;
+  margin: 0%;
+}
+body {
+  color: #fae6c7;
+  background-color: #1c1c1c;
+  overflow: hidden;
+}
+/* Navbar Styles */
+.navbar {
+  width: 94%;
+  padding: 0% 3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #302c1b;
+  height: 14.8dvh;
+}
+.logo-container {
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+.logo {
+  min-width: 50%;
+}
+.logo-text {
+  color: #fae6c7;
+  text-decoration: none;
+}
+.logo-text {
+  width: 100%;
+  font-size: 1rem;
+}
+.nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  letter-spacing: 2px;
+}
+.profileimage {
+  background-color: transparent;
+  border: none;
+  border-radius: 50px;
+  width: 50px;
+  height: 50px;
+}
+.profileimage:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
+    0 0 10px #fae6c7;
+}
+.nav-btn {
+  background: none;
+  background-color: transparent;
+  border: 1px solid #fae6c7;
+  padding: 10px 20px;
+  color: #fae6c7;
+}
+.nav-btn:hover {
+  box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
+    0 0 10px #fae6c7;
+}
+.profile {
+  height: 85dvh;
+  display: flex;
+}
+.profile-nav {
+  width: 30%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
+  /* background-color: #302c1b; */
+}
+.userprofileimage {
+  background-color: transparent;
+  border: none;
+  border-radius: 50px;
+  width: 50%;
+  margin-bottom: 5%;
+}
+.profile-info {
+  background-color: rgb(225, 223, 223);
+  width: 70%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.menu {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  justify-content: space-between;
+}
+.menu-btn {
+  background-color: transparent;
+  color: white;
+  width: max-content;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: none;
+  position: relative;
+  padding-bottom: 5px;
+}
+.menu-btn:before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  background: currentColor;
+  transition: transform 0.25s ease-out;
+}
+.menu-btn:hover:before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+#delete-account {
+  color: #ff7700;
+}
+.profile-info {
+  color: #1c1c1c;
+  padding: 5%;
+}
+/* Input field styles */
+.form-control {
+  position: relative;
+  margin: 20px 0 20px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px #fff solid;
+  flex-grow: 1;
+  /* padding-top: 15px;
+  padding-bottom: 5px; */
+  font-size: 18px;
+  color: #fff;
+}
+
+.form-control input:focus {
+  outline: 0;
+  border-bottom-color: #1c1c1c;
+}
+
+.signup-el {
+  font-size: 15px !important;
+}
+.submit-btn {
+  position: relative;
+  margin: 0% auto;
+  width: max-content;
+  padding: 2% 0;
+}
+
+.submit-btn a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #000;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  letter-spacing: 4px;
+}
+.submit-btn a:hover {
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: #1c1c1c;
+  cursor: pointer;
+}
+/* Signin and Login Form styling */
+.sign-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* My Art Section */
+#my-art-header {
+  margin-bottom: 3%;
+}
+.my-art {
+  padding-bottom: 5%;
+}
+.art-scroll-view {
+  margin-bottom: 5%;
+  width: 100%;
+  padding-bottom: 2px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.art-scroll-view::-webkit-scrollbar {
+  width: 1em;
+}
+
+.art-scroll-view::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.art-scroll-view::-webkit-scrollbar-thumb {
+  background-color: #302c1b;
+}
+.art-container h3 {
+  margin-bottom: 2%;
+  color: #302c1b;
+}
+.art-carousel {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+}
+.card {
+  position: relative;
+  width: 20%;
+  min-width: 20%;
+  height: auto;
+  max-height: 16.5em;
+  box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 120ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 0.5em;
+  padding-bottom: 3.4em;
+}
+
+.card::after {
+  content: "Details";
+  padding-top: 1.25em;
+  padding-left: 1.25em;
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  background: #302c1b;
+  color: #fff;
+  height: 2.5em;
+  width: 90%;
+  transition: all 80ms;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.card .title {
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 1.875em;
+  font-weight: 400;
+  color: #000;
+}
+
+.card .price {
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 0.625em;
+  color: #000;
+}
+
+.card:hover::after {
+  bottom: 0;
+  opacity: 1;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card:active::after {
+  height: 3.125em;
+}
+
+.image {
+  background: rgb(241, 241, 241);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.image img {
+  width: 100%;
+}
+/* Delete account Styles */
+.delete-container {
+  padding-top: 5%;
+}
+.delete-container p {
+  padding-bottom: 5%;
+}
+.delete-btns button {
+  padding: 10px 15px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.delete-btns button:nth-child(1) {
+  background-color: #fae6c7;
+}
+.delete-btns button:nth-child(2) {
+  color: #fae6c7;
+  background-color: #302c1b;
+}

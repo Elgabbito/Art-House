@@ -190,6 +190,7 @@ async function handleLogin() {
   };
   console.log(userData);
   const result = await login(userData);
+  localStorage.setItem("token", result.token);
   console.log(result);
 }
 
