@@ -17,10 +17,9 @@ signupBtn.addEventListener("click", () => {
   window.open("./pages/signup.html", "_self");
 });
 // Check if the user is already logged in
-// window.onload = () => {
-//   const token = localStorage.getItem("token");
-//   if (!token) {
-//     window.location.href =
-//       "hhttp://localhost:5500/frontend/pages/loginAndSignup/login.html";
-//   }
-// };
+window.addEventListener("load", () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.open("hhttp://localhost:5500/frontend/pages/login.html", "_self");
+  }
+});
