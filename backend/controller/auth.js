@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const db = require("../db/index");
 const jwt = require("jsonwebtoken");
-const usermodel = require("../models/usermodel");
+const usermodel = require("../models/userModel");
 require("dotenv").config();
 
 const saltRounds = Number(process.env.saltRounds);
@@ -59,9 +59,6 @@ async function login(req, res, next) {
     console.error("error in loing route:", error);
     return res.status(500).json({ message: "Internal Server Error", error });
   }
-}
-async function name(params) {
-  
 }
 
 
