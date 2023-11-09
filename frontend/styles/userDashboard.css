@@ -171,6 +171,7 @@ body {
 }
 .submit-btn {
   position: relative;
+  cursor: pointer;
   margin: 0% auto;
   width: max-content;
   padding: 2% 0;
@@ -191,6 +192,7 @@ body {
 .submit-btn a:hover {
   color: #fff;
   border-radius: 5px;
+  cursor: pointer;
   border: 1px solid #000;
   background-color: #1c1c1c;
   cursor: pointer;

@@ -235,6 +235,7 @@ body {
 
 .submit-btn {
   position: relative;
+  cursor: pointer;
 }
 
 .submit-btn a {
@@ -254,6 +255,7 @@ body {
   background: #fae6c7;
   color: #000;
   border-radius: 5px;
+  cursor: pointer;
   box-shadow: 0 0 5px #fae6c7, 0 0 25px #fae6c7, 0 0 50px #fae6c7,
     0 0 100px #fae6c7;
 }

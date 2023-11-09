@@ -14,7 +14,9 @@ signupBtn.addEventListener("click", () => {
 });
 // Check if the user is logged in
 window.addEventListener("load", () => {
-  const profileBtns = `<button class="nav-btn" id="commision-btn">Commision Art</button>
+  const firstBtn =
+    localStorage.getItem("role") == "artist" ? "Post Art" : "Commision Art";
+  const profileBtns = `<button class="nav-btn" id="commision-btn">${firstBtn}</button>
         <div class="profileimage">
           <a href="./pages/userDashboard.html">
             <img
