@@ -1,4 +1,4 @@
-const db = require("../db/index");
+const db = require("../db");
 
 async function createUser(name, email, hashedPassword, user_role) {
   const query =
@@ -12,4 +12,14 @@ async function getUserByEmail(email) {
   const values = [email];
   return await db.query(query, values);
 }
-module.exports = { createUser, getUserByEmail };
+
+async function updateUserProfile(updatedFields) {
+  const {name , email, id } = updatedFields;
+  // console.log(updatedFields);
+  const query = "UPDATE users SET (name, email) = ($1, $2) WHERE id = $3 RETURNING * "
+  const values = [name, email, id];
+  const result = await db.query(query, values);
+  // console.log(result);
+  return result.rows[0];
+}
+module.exports = { createUser, getUserByEmail, updateUserProfile };
