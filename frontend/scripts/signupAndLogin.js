@@ -164,6 +164,8 @@ async function handleLogin() {
   });
   localStorage.setItem("token", result.token);
   localStorage.setItem("role", result.role);
+  localStorage.setItem("username", result.user);
+
   console.log(result);
 
   if (result.message == "Invalid Password or Email") {

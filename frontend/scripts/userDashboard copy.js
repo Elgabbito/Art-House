@@ -1,4 +1,5 @@
 const main = document.querySelector(".profile-info");
+const username = document.querySelector("#username");
 const editProfileBtn = document.querySelector("#edit-profile");
 const myArtBtn = document.querySelector("#my-art");
 const logoutBtn = document.querySelector("#logout-btn");
@@ -183,10 +184,13 @@ myArtBtn.addEventListener("click", () => updateView(myArtComponent));
 logoutBtn.addEventListener("click", () => {
   logout();
 });
+window.addEventListener("load", () => {
+  username.innerText = `Hi, ${localStorage.getItem("username")}`;
+});
 deleteAccountBtn.addEventListener("click", () =>
   updateView(deleteAccountComponent)
 );
-// Functions
+// Function Declararions
 function updateView(component) {
   main.innerHTML = "";
   main.innerHTML = component;
