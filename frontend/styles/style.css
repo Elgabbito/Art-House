@@ -10,6 +10,7 @@ body {
   color: #fae6c7;
   background-color: #1c1c1c;
 }
+
 /* Navbar styles */
 .navbar {
   width: 94%;
@@ -24,17 +25,9 @@ body {
   display: flex;
   align-items: center;
 }
-#explore-link {
-  font-size: 1rem;
-}
-.logo {
-  min-width: 50%;
-}
 .logo-text {
   color: #fae6c7;
   text-decoration: none;
-}
-.logo-text {
   width: 100%;
   font-size: 1rem;
 }
@@ -90,16 +83,40 @@ body {
   animation: btn-anim1 2s linear infinite;
 }
 .nav-btns {
-  /* background: none;
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 5%;
+}
+#commision-btn {
+  background-color: #302c1b;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.profileimage {
   background-color: transparent;
-  border: ipx solid #fae6c7;
-  padding: 10px 20px; */
+  border: none;
+  border-radius: 25px;
+  width: 50px;
+  height: 40px;
+}
+.profileimage:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
+    0 0 10px #fae6c7;
+}
+#profileimg {
+  width: 100%;
+  height: 100%;
 }
 .nav-btn {
   background: none;
   background-color: transparent;
+  white-space: nowrap;
   border: 1px solid #fae6c7;
   padding: 10px 20px;
+  height: min-content;
+  height: max-content;
   color: #fae6c7;
 }
 .nav-btn:hover {
@@ -153,7 +170,7 @@ body {
 }
 #img-1:hover {
   width: 10%;
-  transition: 500ms ease-in-out;
+  transition: 500ms ease;
 }
 #img-2 {
   width: 13%;
@@ -194,19 +211,39 @@ body {
   padding: 0% 5%;
 }
 .art-container {
-  margin-bottom: 5%;
   width: 90%;
+}
+.art-scroll-view {
+  margin-bottom: 5%;
+  padding-bottom: 2px;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.art-scroll-view::-webkit-scrollbar {
+  width: 1em;
+}
+
+.art-scroll-view::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.art-scroll-view::-webkit-scrollbar-thumb {
+  background-color: #fae6c7;
 }
 .art-container h3 {
   margin-bottom: 2%;
 }
-.top-art {
+.art-carousel {
   display: flex;
   justify-content: space-between;
+  gap: 2%;
 }
+
 .card {
   position: relative;
-  width: 11.875em;
+  width: 20%;
+  min-width: 20%;
   height: auto;
   max-height: 16.5em;
   box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
@@ -292,8 +329,9 @@ body {
 .submit-btn {
   position: relative;
   margin: 0% auto;
+  cursor: pointer;
   width: max-content;
-  margin-top: 5%;
+  padding: 2% 0;
 }
 
 .submit-btn a {
@@ -306,13 +344,13 @@ body {
   text-transform: uppercase;
   overflow: hidden;
   transition: 0.5s;
-  margin-top: 20px;
   letter-spacing: 4px;
 }
 .submit-btn a:hover {
   background: #fae6c7;
   color: #000;
   border-radius: 5px;
+  cursor: pointer;
   box-shadow: 0 0 5px #fae6c7, 0 0 25px #fae6c7, 0 0 50px #fae6c7,
     0 0 100px #fae6c7;
 }

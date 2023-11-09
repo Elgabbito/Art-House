@@ -1,18 +1,20 @@
 const letter = document.getElementById("letter");
-const capital = document.getElementById("capital");
 const number = document.getElementById("number");
 const length = document.getElementById("length");
-const specialChar = document.getElementById("special_char");
+const capital = document.getElementById("capital");
+const errorMsg = document.querySelector(".error-msg");
 const username = document.getElementById("name-input");
 const userEmail = document.getElementById("email-input");
+const submitBtn = document.querySelector("#submit-link");
+const userTypes = document.querySelectorAll(".radio-btn");
+const specialChar = document.getElementById("special_char");
 const userPassword = document.getElementById("password-input");
 const ConfirmPassword = document.getElementById("confirm_password_input");
-const AllChecks = {
-  lowercase: false,
-  uppercase: false,
-  hasNumber: false,
-  hasSpecialChar: false,
-  isLongEnough: false,
+const userSignupData = {
+  name: "",
+  email: "",
+  password: "",
+  role: "",
 };
 
 // Username validation
@@ -22,15 +24,18 @@ function ValidateName() {
     username.classList.toggle("error");
     document.getElementById("name_error").classList.remove("hide");
     document.getElementById("name_error").classList.add("show");
+    return false;
   }
   if (username.value.length >= 3) {
     username.classList.toggle("correct");
     document.getElementById("name_error").classList.add("hide");
     document.getElementById("name_error").classList.remove("show");
+    return true;
   } else {
     username.classList.toggle("error");
     document.getElementById("name_error").classList.remove("hide");
     document.getElementById("name_error").classList.add("show");
+    return false;
   }
 }
 // Email validation
@@ -40,15 +45,18 @@ function ValidateEmail() {
     username.classList.toggle("error");
     document.getElementById("email_error").classList.remove("hide");
     document.getElementById("email_error").classList.add("show");
+    return false;
   }
   if (emailRegex.test(userEmail.value)) {
     userEmail.classList.toggle("correct");
     document.getElementById("email_error").classList.add("hide");
     document.getElementById("email_error").classList.remove("show");
+    return true;
   } else {
     userEmail.classList.toggle("error");
     document.getElementById("email_error").classList.remove("hide");
     document.getElementById("email_error").classList.add("show");
+    return false;
   }
 }
 // Check if the password is strong enough
@@ -58,11 +66,10 @@ function ValidatePassword() {
   if (userPassword.value.match(lowerCaseLetters)) {
     letter.classList.remove("invalid");
     letter.classList.add("valid");
-    AllChecks.lowercase = true;
   } else {
     letter.classList.remove("valid");
     letter.classList.add("invalid");
-    AllChecks.lowercase = false;
+    return false;
   }
 
   // Validate Special Characters letters
@@ -72,11 +79,10 @@ function ValidatePassword() {
   if (userPassword.value.match(SpecialCharacters)) {
     specialChar.classList.remove("invalid");
     specialChar.classList.add("valid");
-    AllChecks.hasSpecialChar = true;
   } else {
     specialChar.classList.remove("valid");
     specialChar.classList.add("invalid");
-    AllChecks.hasSpecialChar = false;
+    return false;
   }
 
   // Validate capital letters
@@ -84,11 +90,10 @@ function ValidatePassword() {
   if (userPassword.value.match(upperCaseLetters)) {
     capital.classList.remove("invalid");
     capital.classList.add("valid");
-    AllChecks.uppercase = true;
   } else {
     capital.classList.remove("valid");
     capital.classList.add("invalid");
-    AllChecks.uppercase = false;
+    return false;
   }
 
   // Validate numbers
@@ -96,43 +101,22 @@ function ValidatePassword() {
   if (userPassword.value.match(numbers)) {
     number.classList.remove("invalid");
     number.classList.add("valid");
-    AllChecks.hasNumber = true;
   } else {
     number.classList.remove("valid");
     number.classList.add("invalid");
-    AllChecks.hasNumber = false;
+    return false;
   }
 
   // Validate length
   if (userPassword.value.length >= 8) {
     length.classList.remove("invalid");
     length.classList.add("valid");
-    AllChecks.isLongEnough = true;
   } else {
     length.classList.remove("valid");
     length.classList.add("invalid");
-    AllChecks.isLongEnough = false;
+    return false;
   }
-
-  function checkAllValuesAreTrue(obj) {
-    const checkedValues = [];
-    const keyList = Object.keys(obj);
-    for (let i = 0; i < keyList.length; i++) {
-      let prop = Object.keys(obj)[i];
-      checkedValues.push(obj[prop]);
-    }
-    let AllTrue = checkedValues.includes(false);
-
-    if (AllTrue) {
-      document
-        .getElementById("password_error")
-        .classList.remove("dont_display");
-      document
-        .getElementById("password_error")
-        .classList.add("display_element");
-    }
-  }
-  checkAllValuesAreTrue(AllChecks);
+  return true;
 }
 
 function ShowOrHidePassword() {
@@ -144,53 +128,49 @@ function ShowOrHidePassword() {
 }
 
 async function handleSignup() {
-  ValidateName();
-  ValidateEmail();
-  ValidatePassword();
-  let AllTrue;
-  function checkAllValuesAreTrue(obj) {
-    const checkedValues = [];
-    const keyList = Object.keys(obj);
-    for (let i = 0; i < keyList.length; i++) {
-      let prop = Object.keys(obj)[i];
-      checkedValues.push(obj[prop]);
-    }
-    AllTrue = checkedValues.includes(false);
+  // Run all checks
+  const AllTrue = ValidateName() && ValidateEmail() && ValidatePassword();
 
-    if (AllTrue) {
-      document
-        .getElementById("password_error")
-        .classList.remove("dont_display");
-      document
-        .getElementById("password_error")
-        .classList.add("display_element");
+  // Set user data
+  userSignupData.name = username.value;
+  userSignupData.email = userEmail.value;
+  userSignupData.password = userPassword.value;
+  userTypes.forEach((btn) => {
+    if (btn.checked) {
+      userSignupData.role = btn.value;
+      console.log(btn, btn.value, userSignupData);
     }
-  }
-  checkAllValuesAreTrue(AllChecks);
+  });
+  // Get user type
+
   console.log(AllTrue);
-  const userData = {
-    name: username.value,
-    email: userEmail.value,
-    password: userPassword.value,
-  };
-  console.log(userData);
+  console.log(userSignupData);
 
   // Check if all data is valid and send signup request
-  if (!AllTrue) {
-    const result = await signup(userData);
-    console.log(result);
+  if (AllTrue) {
+    try {
+      const result = await signup(userSignupData);
+      console.log(result);
+    } catch (error) {
+      throw error;
+    }
     window.open("../pages/login.html", "_self");
   }
 }
-
 async function handleLogin() {
-  const userData = {
+  const result = await login({
     email: userEmail.value,
     password: userPassword.value,
-  };
-  console.log(userData);
-  const result = await login(userData);
+  });
+  localStorage.setItem("token", result.token);
+  localStorage.setItem("role", result.role);
   console.log(result);
+
+  if (result.message == "Invalid Password or Email") {
+    errorMsg.classList.remove("hide");
+    errorMsg.classList.add("show");
+  }
+  window.open("../index.html", "_self");
 }
 
 // HTTP Requests
