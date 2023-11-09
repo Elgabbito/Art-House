@@ -11,7 +11,7 @@ async function signup(req, res, next) {
   const { name, email, password, role } = req.body;
   const hashedPassword = await hashPassword(password, saltRounds);
   const result = await usermodel.createUser(name, email, hashedPassword, role);
-  return res.send(result);
+  return res.send(result.rows[0]);
 }
 
 async function hashPassword(password, saltRounds) {
@@ -60,5 +60,9 @@ async function login(req, res, next) {
     return res.status(500).json({ message: "Internal Server Error", error });
   }
 }
+async function name(params) {
+  
+}
+
 
 module.exports = { signup, login };
