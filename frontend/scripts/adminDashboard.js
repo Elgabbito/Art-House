@@ -1,10 +1,13 @@
 const main = document.querySelector(".profile-info");
+const body = document.querySelector("body");
 const username = document.querySelector("#username");
+const analyticsScriptTag = document.querySelector("#analytics-js");
+const manageusersBtn = document.querySelector("#manage-users");
 const editProfileBtn = document.querySelector("#edit-profile");
-const myArtBtn = document.querySelector("#my-art");
+const createAdminBtn = document.querySelector("#my-art");
 const statsBtn = document.querySelector("#stats");
 const logoutBtn = document.querySelector("#logout-btn");
-const deleteAccountBtn = document.querySelector("#delete-account");
+const settingsBtn = document.querySelector("#settings");
 
 // Components
 const profileComponent = ` <h2>Edit Profile</h2>
@@ -40,15 +43,15 @@ const profileComponent = ` <h2>Edit Profile</h2>
               <a onclick="handleDataUpdate()"> Save </a>
             </div>
           </form>`;
-const createAdminComponent = ` <h2>Create Admin</h2>
+const createAdminComponent = ` <h2 id="admin-header">Create Admin</h2>
 
         <div class="profile-data">
           <form method="post" class="sign-form">
-            <div class="form-control">
+            <div class="form-control admin-input">
               <label>Username: </label>
               <input type="text" id="name-input" placeholder="Admin Audu" />
             </div>
-            <div class="form-control">
+            <div class="form-control admin-input">
               <label>Email: </label>
               <input
                 type="text"
@@ -58,7 +61,7 @@ const createAdminComponent = ` <h2>Create Admin</h2>
                 required
               />
             </div>
-            <div class="form-control" id="signup-psw">
+            <div class="form-control admin-input" id="signup-psw">
               <label for="password">Password: </label>
               <input
                 type="password"
@@ -73,65 +76,145 @@ const createAdminComponent = ` <h2>Create Admin</h2>
               <a onclick="handleDataUpdate()"> Save </a>
             </div>
           </form>`;
-const StatisticsComponent = `<h2 id="my-art-header">User Analytics</h2>
-          <div class="my-art">
-            <div id="chart_div"></div>
+const AnalyticsComponent = `<section class="analytics-component">
+          <div class="profile-data">
+          <h2 id="analytics-header">User Analytics</h2>
+          <div class="analytics-section">
+          <div class="user-cards">
+              <div class="card">
+                <div class="title">
+                  <p class="title-text">
+                      Total Monthly Visitors
+                  </p>
+              </div>
+              <div class="data">
+                  <p>39,500</p>
+                  <div class="range">
+                      <div class="fill">
+                      </div>
+                  </div>
+              </div>
+              </div>
+            
+              <div class="card">
+              <div class="title">
+                  <p class="title-text">
+                      Total Users
+                  </p>
+              </div>
+              <div class="data">
+                  <p>84,903</p>
+                  <div class="range">
+                      <div class="fill">
+                      </div>
+                  </div>
+              </div>
+              </div>
+            
+              <div class="card">
+              <div class="title">
+                  <p class="title-text">
+                      Current Active Users
+                  </p>
+              </div>
+              <div class="data">
+                  <p>
+                      3,080
+                  </p>
+                  <div class="range">
+                      <div class="fill">
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+            <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
         </div>
-        <script>
-      // load current chart package
-      google.charts.load('current', {
-        packages: ['corechart', 'line'],
-      });
+        </section>`;
+const analyticsScript = `
+const xValues = [
+    "28th",
+    "29th",
+    "30th",
+    "31st",
+    "1st",
+    "2nd",
+    "3rd",
+    "4th",
+    "5th",
+    "6th",
+    "7th",
+    "8th",
+    "9th",
+    "10th",
+  ];
+  const yValues = [
+    200, 325, 320, 413, 265, 604, 587, 549, 674, 680, 660, 709, 713, 785,
+  ];
 
-      // set callback function when api loaded
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        // create data object with default value
-        let data = google.visualization.arrayToDataTable([
-          ['Time', 'CPU Usage', 'RAM'],
-          [0, 0, 0],
-        ]);
-
-        // create options object with titles, colors, etc.
-        let options = {
-          title: 'CPU Usage',
-          hAxis: {
-            textPosition: 'none',
-          },
-          vAxis: {
-            title: 'Usage',
-          },
-        };
-
-        // draw chart on load
-        let chart = new google.visualization.LineChart(
-          document.getElementById('chart_div')
-        );
-        chart.draw(data, options);
-
-        // max amount of data rows that should be displayed
-        let maxDatas = 50;
-
-        // interval for adding new data every 250ms
-        let index = 0;
-        setInterval(function () {
-          // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
-          let randomCPU = Math.random() * 20;
-          let randomRAM = Math.random() * 50 + 20;
-
-          if (data.getNumberOfRows() > maxDatas) {
-            data.removeRows(0, data.getNumberOfRows() - maxDatas);
-          }
-
-          data.addRow([index, randomCPU, randomRAM]);
-          chart.draw(data, options);
-
-          index++;
-        }, 100);
-      }
-    </script>
-        `;
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [
+        {
+          fill: false,
+          lineTension: 0,
+          backgroundColor: "#302c1b",
+          borderColor: "rgba(0,0,255,0.1)",
+          data: yValues,
+        },
+      ],
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: "Daily Active Users (Last 14 days)",
+      },
+      scales: {
+        yAxes: [{ ticks: { min: 6, max: 1000 } }],
+      },
+    },
+  });
+`;
+const ManageUsersComponent = ` <h2>Manage Users</h2>
+        <div class="profile-data">
+          <form method="post" class="sign-form">
+            <div class="form-control">
+              <label>Deactivate Account: </label>
+              <input type="email"
+                id="email-input"
+                autocomplete="email"
+                placeholder="user@gmail.com"
+                required /><div class="activitation-btn deactivate-btn">
+              <a onclick="handleDataUpdate()"> Deactivate </a>
+            </div>
+            </div>
+            <div class="form-control">
+              <label>Reactivate Account: </label>
+              <input
+                type="email"
+                id="email-input"
+                autocomplete="email"
+                placeholder="user@gmail.com"
+                required
+              /><div class="activitation-btn activate-btn">
+              <a onclick="handleDataUpdate()"> Activate </a>
+            </div>
+            </div>
+          </form>
+            `;
+const SettingComponent = `<section>
+          <h2>Settings</h2>
+          <div class="profile-data">
+            <h1 class="settings-header">
+              Sorry this page is currently under construction check in a little
+              later
+            </h1>
+          </div>
+        </section>`;
 const deleteAccountComponent = `<h2>Delete My Account</h2>
         <div class="delete-container">
           <p>Are you sure you want to leave</p>
@@ -141,22 +224,65 @@ const deleteAccountComponent = `<h2>Delete My Account</h2>
         </div>`;
 
 // Event listeners
-editProfileBtn.addEventListener("click", () => updateView(profileComponent));
-myArtBtn.addEventListener("click", () => updateView(createAdminComponent));
+editProfileBtn.addEventListener("click", () => {
+  window.open("../pages/adminDashboard.html", "_self");
+});
+createAdminBtn.addEventListener("click", () => {
+  updateView(createAdminComponent, "createAdmin");
+});
 statsBtn.addEventListener("click", () => {
-  updateView(StatisticsComponent);
+  updateView(AnalyticsComponent, "analytics");
+  analyticsScriptTag.innerHTML = analyticsScript;
+});
+manageusersBtn.addEventListener("click", () => {
+  updateView(ManageUsersComponent, "manageusers");
+});
+settingsBtn.addEventListener("click", () => {
+  updateView(SettingComponent, "setting");
 });
 logoutBtn.addEventListener("click", () => {
   logout();
 });
 window.addEventListener("load", () => {
-  username.innerText = `Hi, ${localStorage.getItem("username")}`;
+  // Get username from local storage
+  const storedname =
+    localStorage.getItem("username") != null
+      ? localStorage.getItem("username")
+      : "User";
+  username.innerText = `Hi, ${storedname}`;
+  // Prevent Section from changing on page refresh
+  switch (window.location.hash) {
+    case "#editProfile":
+      // window.open("../pages/adminDashboard.html", "_self");
+      break;
+
+    case "#createAdmin":
+      updateView(createAdminComponent, "createAdmin");
+      break;
+
+    case "#manageusers":
+      updateView(ManageUsersComponent, "manageusers");
+      break;
+
+    case "#analytics":
+      updateView(AnalyticsComponent, "analytics");
+      analyticsScriptTag.innerHTML = analyticsScript;
+      break;
+
+    case "#setting":
+      updateView(SettingComponent, "setting");
+      break;
+
+    default:
+      break;
+  }
 });
 deleteAccountBtn.addEventListener("click", () =>
   updateView(deleteAccountComponent)
 );
 // Function Declararions
-function updateView(component) {
+function updateView(component, hash) {
+  window.location.hash = hash;
   main.innerHTML = "";
   main.innerHTML = component;
 }

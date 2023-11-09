@@ -9,9 +9,18 @@ const secretKey = process.env.secretKey;
 
 async function signup(req, res, next) {
   const { name, email, password, role } = req.body;
-  const hashedPassword = await hashPassword(password, saltRounds);
-  const result = await usermodel.createUser(name, email, hashedPassword, role);
-  return res.send(result);
+  try {
+    const hashedPassword = await hashPassword(password, saltRounds);
+    const result = await usermodel.createUser(
+      name,
+      email,
+      hashedPassword,
+      role
+    );
+    return res.send(result);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
 }
 
 async function hashPassword(password, saltRounds) {
