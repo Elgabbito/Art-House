@@ -2,6 +2,7 @@ const route = document.getElementById("route");
 const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const navBtns = document.querySelector(".nav-btns");
+const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 
 // Route to login page
@@ -14,11 +15,15 @@ signupBtn.addEventListener("click", () => {
 });
 // Check if the user is logged in
 window.addEventListener("load", () => {
-  const firstBtn =
-    localStorage.getItem("role") == "artist" ? "Post Art" : "Commision Art";
+  const userrole = localStorage.getItem("role");
+  const firstBtn = userrole == "artist" ? "Post Art" : "Commision Art";
   const profileBtns = `<button class="nav-btn" id="commision-btn">${firstBtn}</button>
         <div class="profileimage">
-          <a href="./pages/userDashboard.html">
+          <a id="profile-btn" href=${
+            userrole == "artist"
+              ? "./pages/artistDashboard.html"
+              : "./pages/userDashboard.html"
+          }>
             <img
               id="profileimg"
               src="./images/profile-fallback.svg"
@@ -37,16 +42,19 @@ window.addEventListener("load", () => {
     return;
   }
   const tokenData = parseJwt(token);
+  console.log(tokenData);
   const tokenExpiry = new Date(tokenData.exp * 1000);
   if (token) {
     navBtns.innerHTML = "";
     navBtns.innerHTML = profileBtns;
     return;
   }
-  if (new Date() == tokenExpiry) {
+  if (new Date() <= tokenExpiry) {
     window.open("./pages/login.html", "_self");
   }
 });
+
+// Function Declarations
 function parseJwt(token) {
   if (!token) {
     return;
