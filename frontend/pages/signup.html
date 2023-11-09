@@ -75,14 +75,20 @@
         </div>
         <div class="userroles">
             <h3>Choose your role</h3>
-            <div class="roles-container">
-              <label for="role"><input type="radio" name="role" value="artist" id="">Artist</label>
-              <label for="role"><input type="radio" name="role" value="none artist" id="">None Artist</label>
-            </div>
+            <div class="radio-inputs">
+  <label class="radio">
+    <input class="radio-btn" type="radio" value="artist" name="radio" checked>
+    <span class="name">Artist</span>
+  </label>
+  <label class="radio">
+    <input class="radio-btn" type="radio" value="none artist" name="radio">
+    <span class="name">None Artist</span>
+  </label>
+</div>
           </div>
 
         <div class="submit-btn">
-          <a onclick="handleSignup()">
+          <a id="submit-link" onclick="handleSignup()">
             SIGN UP
             <span></span>
           </a>

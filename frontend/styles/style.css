@@ -84,6 +84,7 @@ body {
 }
 .nav-btns {
   display: flex;
+  width: max-content;
   align-items: center;
   gap: 5%;
 }
@@ -111,9 +112,11 @@ body {
 .nav-btn {
   background: none;
   background-color: transparent;
+  white-space: nowrap;
   border: 1px solid #fae6c7;
   padding: 10px 20px;
   height: min-content;
+  height: max-content;
   color: #fae6c7;
 }
 .nav-btn:hover {

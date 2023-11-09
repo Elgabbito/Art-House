@@ -1,6 +1,7 @@
 const main = document.querySelector(".profile-info");
 const editProfileBtn = document.querySelector("#edit-profile");
 const myArtBtn = document.querySelector("#my-art");
+const logoutBtn = document.querySelector("#logout-btn");
 const deleteAccountBtn = document.querySelector("#delete-account");
 
 // Components
@@ -179,6 +180,9 @@ const deleteAccountComponent = `<h2>Delete My Account</h2>
 // Event listeners
 editProfileBtn.addEventListener("click", () => updateView(profileComponent));
 myArtBtn.addEventListener("click", () => updateView(myArtComponent));
+logoutBtn.addEventListener("click", () => {
+  logout();
+});
 deleteAccountBtn.addEventListener("click", () =>
   updateView(deleteAccountComponent)
 );
@@ -186,4 +190,8 @@ deleteAccountBtn.addEventListener("click", () =>
 function updateView(component) {
   main.innerHTML = "";
   main.innerHTML = component;
+}
+function logout() {
+  localStorage.clear();
+  window.open("../index.html", "_self");
 }

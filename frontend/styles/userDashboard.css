@@ -132,7 +132,10 @@ body {
   transform-origin: bottom left;
 }
 #delete-account {
-  color: #ff7700;
+  color: #ff2f00;
+}
+#logout-btn {
+  color: #e6a062;
 }
 .profile-info {
   color: #1c1c1c;

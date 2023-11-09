@@ -92,11 +92,13 @@ body {
   flex-grow: 1;
   color: white;
 }
-
+.error-msg {
+  color: rgb(255, 174, 0);
+}
 /* Input field styles */
 .form-control {
   position: relative;
-  margin: 20px 0 40px;
+  margin: 5px 0 40px;
   width: 60%;
 }
 
@@ -160,6 +162,45 @@ body {
 .roles-container {
   display: flex;
   gap: 2em;
+}
+.radio-inputs {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 0.5rem;
+  background-color: #eee;
+  box-sizing: border-box;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+  padding: 0.25rem;
+  width: 300px;
+  font-size: 14px;
+}
+
+.radio-inputs .radio {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.radio-inputs .radio input {
+  display: none;
+}
+
+.radio-inputs .radio .name {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 0;
+  color: rgba(51, 65, 85, 1);
+  transition: all 0.15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+  background-color: #fae6c7;
+  border: 1px solid #1c1c1c;
+  font-weight: 600;
 }
 /* Signin and Login Form styling */
 .login-signup-text:hover {
@@ -281,6 +322,12 @@ body {
 #name_error.hide {
   display: none;
 }
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
 #name_error.show {
   display: block;
 }
@@ -329,4 +376,15 @@ body {
 
 .invalid:before {
   content: "✖ ";
+}
+/* Remove autofill background colour */
+input {
+  color: #fff;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #302c1b inset !important;
+  -webkit-text-fill-color: white !important;
 }

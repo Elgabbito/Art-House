@@ -8,9 +8,9 @@ const saltRounds = Number(process.env.saltRounds);
 const secretKey = process.env.secretKey;
 
 async function signup(req, res, next) {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   const hashedPassword = await hashPassword(password, saltRounds);
-  const result = await usermodel.createUser(name, email, hashedPassword);
+  const result = await usermodel.createUser(name, email, hashedPassword, role);
   return res.send(result);
 }
 
@@ -37,15 +37,20 @@ async function login(req, res, next) {
     const passwordMatch = await bcrypt.compare(password, hashedPassword);
 
     if (passwordMatch) {
-      // JWT token
+      // JWT
       const token = jwt.sign(
         { userId: user.id, email: user.email },
         secretKey,
         {
-          expiresIn: 60 * 60,
+          expiresIn: "24h",
         }
       );
-      return res.json({ message: "Login Successful", token, user: user.email });
+      return res.json({
+        message: "Login Successful",
+        token,
+        user: user.name,
+        role: user.user_role,
+      });
     } else {
       // Password Doesn't Match
       return res.status(401).json({ message: "Invalid Login" });
