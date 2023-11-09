@@ -17,8 +17,7 @@ signupBtn.addEventListener("click", () => {
 window.addEventListener("load", () => {
   const userrole = localStorage.getItem("role");
   const firstBtn = userrole == "artist" ? "Post Art" : "Commision Art";
-  const profileBtns = `<button class="nav-btn" id="commision-btn">${firstBtn}</button>
-        <div class="profileimage">
+  const profileBtns = `  <div class="profileimage">
           <a id="profile-btn" href=${
             userrole == "artist"
               ? "./pages/artistDashboard.html"
