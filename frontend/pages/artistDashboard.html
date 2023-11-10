@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../public/savannah-favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../styles/artistDashboard.css" />
+    <script defer src="../scripts/artistDashboard.js"></script>
+    <title>Savanna Showcase</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo-container">
+        <a href="./index.html" class="logo-text">Savanna Showcase</a>
+      </div>
+      <div><h1>Artist Dashboard</h1></div>
+      <div class="nav-btns">
+        <p id="username"></p>
+        <div class="profileimage">
+          <a href="#">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="profile">
+      <div class="profile-nav">
+        <div class="userprofileimage">
+          <a>
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </a>
+        </div>
+        <menu class="menu">
+          <button class="menu-btn" id="edit-profile">Edit Profile</button>
+          <button class="menu-btn" id="my-art">Collection</button>
+          <button class="menu-btn" id="my-art">Analytics</button>
+          <button class="menu-btn" id="logout-btn">
+            Log out
+          </button>
+          <button class="menu-btn" id="delete-account">
+            Delete Account
+          </button>
+        </menu>
+      </div>
+      <main class="profile-info">
+        <h2>Edit Profile</h2>
+
+        <div class="profile-data">
+          <form method="post" class="sign-form">
+            <div class="form-control">
+              <label>Update Username: </label>
+              <input type="text" id="name-input" placeholder="Marnin Audu" />
+            </div>
+            <div class="form-control">
+              <label>Update Email: </label>
+              <input
+                type="text"
+                id="email-input"
+                autocomplete="email"
+                placeholder="user@gmail.com"
+                required
+              />
+            </div>
+            <div class="form-control" id="signup-psw">
+              <label for="password">Update Password: </label>
+              <input
+                type="password"
+                name="password"
+                id="password-input"
+                autocomplete="new-password"
+                placeholder="********"
+                required
+              />
+            </div>
+            <div class="submit-btn menu-btn">
+              <a onclick="handleDataUpdate()"> Save </a>
+            </div>
+          </form>
+      </main>
+    </section>
+  </body>
+</html>

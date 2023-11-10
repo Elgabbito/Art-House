@@ -10,15 +10,11 @@
       type="image/x-icon"
     />
     <script defer src="script.js"></script>
-    <script src="./scripts/carousel.js"></script>
     <title>Savanna Showcase🖼️</title>
   </head>
   <body>
     <nav class="navbar">
       <div class="logo-container">
-        <!-- <div class="logo">
-          <img src="./images/savannah-favicon.svg" alt="Logo" />
-        </div> -->
         <a href="./index.html" class="logo-text">Savanna Showcase</a>
       </div>
       <div class="nav-links">
@@ -26,7 +22,7 @@
           <a class="nav-link" href="#about">About<span></span></a>
         </div>
         <div class="nav-link-container">
-          <a class="nav-link"  id="explore-link">Explore <span></span></a>
+          <a class="nav-link" id="explore-link">Explore <span></span></a>
         </div>
         <div class="nav-link-container">
           <a class="nav-link" href="#gallery">Gallery <span></span></a>
@@ -63,89 +59,137 @@
         </div>
       </div>
     </section>
-    <section class="gallery" id="gallery">
+    <section class="about" style="padding: 0 5%;">
       <div class="hero-text">
         <h1>
-          Gallery
+          About
           <div></div>
         </h1>
+      <div style="display:flex;">
+        <div class="about-left" style="display: flex; align-items:center; justify-content:center;">
+          <img
+            style="width: 80%; margin: auto;"
+            src="./images/african-art.jpeg"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="about-right" style="padding: 0 5%; display: flex; flex-direction: column; gap: 2em;">
+          <h3 style="font-size: 1.4em;">Showcasing Nigeria's Finest</h3>
+          <!-- <p>Immerse yourself in a world of creativity. Our gallery is a vibrant tapestry of Nigeria's diverse artistic expressions. 
+            From Lagos to Abuja, from Kano to Port Harcourt, we bring you the most exquisite works from every corner of this great nation.
+          </p> -->
+          <p style="text-align: center; justify-self: center;">We're not just about the art; we're about the artists. Connect with the brilliant minds behind the brushstrokes.
+             Gain insight into their inspirations and techniques.
+             Forge personal connections with the creators who pour their souls into their work.</p>
+        </div>
+      </div>
+    </section>
+    <section class="gallery" id="gallery">
+      
       </div>
       <div class="art-container">
         <h3>Top art this week</h3>
-        <div class="top-art">
-          <a href="https://theartling.com/en/artwork/adrienn-krahl-time-travel-3/" class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+        <div class="art-scroll-view">
+          <div class="art-carousel">
+            <a
+              href="https://theartling.com/en/artwork/adrienn-krahl-time-travel-3/"
+              class="card"
+            >
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
+            </a>
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
-          </a>
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
-          </div>
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
-          </div>
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
           </div>
         </div>
       </div>
       <div class="art-container">
         <h3>Categories</h3>
-        <div class="top-art">
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+        <div class="art-scroll-view">
+          <div class="art-carousel">
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
-          </div>
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
-          </div>
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
-          </div>
-          <div class="card">
-            <div class="image">
-              <img src="./images/African-Landscape.jpg" alt="" />
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
             </div>
-            <span class="title">The River's Witness</span>
-            <span class="price">N 100,000</span>
+            <div class="card">
+              <div class="image">
+                <img src="./images/African-Landscape.jpg" alt="" />
+              </div>
+              <span class="title">The River's Witness</span>
+              <span class="price">N 100,000</span>
+            </div>
           </div>
         </div>
-        <div class="submit-btn">
-          <a onclick="">
-            Find more
-            <span></span>
-          </a>
-        </div>
+      </div>
     </section>
+    <div class="submit-btn">
+      <a onclick="">
+        Find more
+        <span></span>
+      </a>
+    </div>
     <footer>
       <div class="footer-left">
         <h3 class="footer-heading">Join the Art Revolution</h3>
-        <p>Become a part of something bigger. Connect, create, and collect with us. Unleash the artist within and experience the heart and soul of Nigeria's artistic renaissance.</p>
+        <p>
+          Become a part of something bigger. Connect, create, and collect with
+          us. Unleash the artist within and experience the heart and soul of
+          Nigeria's artistic renaissance.
+        </p>
       </div>
       <div class="footer-center">
         <div>
@@ -159,7 +203,6 @@
           <a href="#">Terms of Service</a>
         </div>
       </div>
-      
     </footer>
   </body>
 </html>
