@@ -2,6 +2,7 @@ const route = document.getElementById("route");
 const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const navBtns = document.querySelector(".nav-btns");
+const commisionBtn = document.querySelector("#commision-btn")
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 
@@ -37,7 +38,6 @@ window.addEventListener("load", () => {
   if (!token) {
     navBtns.innerHTML = "";
     navBtns.innerHTML = loginSignupBtns;
-
     return;
   }
   const tokenData = parseJwt(token);
@@ -52,6 +52,7 @@ window.addEventListener("load", () => {
     window.open("./pages/login.html", "_self");
   }
 });
+commisionBtn.addEventListener("click", commisionArtRouting)
 
 // Function Declarations
 function parseJwt(token) {
@@ -67,4 +68,12 @@ function goToLogin() {
 }
 function goToSignup() {
   window.open("./pages/signup.html", "_self");
+}
+function commisionArtRouting() {
+  const token = localStorage.getItem("token")
+  if (token) {
+    window.open("./pages/commisionart.html", "_self")
+    return
+  }
+  window.open("./pages/login.html", "_self")
 }
