@@ -135,8 +135,8 @@ async function handleSignup() {
   userSignupData.name = username.value;
   userSignupData.email = userEmail.value;
   userSignupData.password = userPassword.value;
-  // Get user type
   userTypes.forEach((btn) => {
+    // Get user type
     if (btn.checked) {
       userSignupData.role = btn.value;
       console.log(btn, btn.value, userSignupData);

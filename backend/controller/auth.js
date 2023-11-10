@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
-const db = require("../db/index");
+// const db = require("../db/index");
 const jwt = require("jsonwebtoken");
-const usermodel = require("../models/userModel");
+const usermodel = require("../models/usermodel");
 require("dotenv").config();
 
 const saltRounds = Number(process.env.saltRounds);

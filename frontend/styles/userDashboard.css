@@ -253,6 +253,7 @@ body {
   background: #fff;
   padding: 0.5em;
   padding-bottom: 3.4em;
+  font-size: 0.7rem;
 }
 
 .card::after {

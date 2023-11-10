@@ -181,9 +181,7 @@ const deleteAccountComponent = `<h2>Delete My Account</h2>
 // Event listeners
 editProfileBtn.addEventListener("click", () => updateView(profileComponent));
 myArtBtn.addEventListener("click", () => updateView(myArtComponent));
-logoutBtn.addEventListener("click", () => {
-  logout();
-});
+logoutBtn.addEventListener("click", logout);
 window.addEventListener("load", () => {
   username.innerText = `Hi, ${localStorage.getItem("username")}`;
 });
@@ -196,6 +194,7 @@ function updateView(component) {
   main.innerHTML = component;
 }
 function logout() {
+  console.log("Cleared");
   localStorage.clear();
   window.open("../index.html", "_self");
 }

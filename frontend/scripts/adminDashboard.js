@@ -10,39 +10,10 @@ const logoutBtn = document.querySelector("#logout-btn");
 const settingsBtn = document.querySelector("#settings");
 
 // Components
-const profileComponent = ` <h2>Edit Profile</h2>
+const profileScript = `
+const name = document.querySelector("");
 
-        <div class="profile-data">
-          <form method="post" class="sign-form">
-            <div class="form-control">
-              <label>Update Username: </label>
-              <input type="text" id="name-input" placeholder="Marnin Audu" />
-            </div>
-            <div class="form-control">
-              <label>Update Email: </label>
-              <input
-                type="text"
-                id="email-input"
-                autocomplete="email"
-                placeholder="user@gmail.com"
-                required
-              />
-            </div>
-            <div class="form-control" id="signup-psw">
-              <label for="password">Update Password: </label>
-              <input
-                type="password"
-                name="password"
-                id="password-input"
-                autocomplete="new-password"
-                placeholder="********"
-                required
-              />
-            </div>
-            <div class="submit-btn">
-              <a onclick="handleDataUpdate()"> Save </a>
-            </div>
-          </form>`;
+`;
 const createAdminComponent = ` <h2 id="admin-header">Create Admin</h2>
 
         <div class="profile-data">
@@ -253,7 +224,7 @@ window.addEventListener("load", () => {
   // Prevent Section from changing on page refresh
   switch (window.location.hash) {
     case "#editProfile":
-      // window.open("../pages/adminDashboard.html", "_self");
+      window.open("../pages/adminDashboard.html", "_self");
       break;
 
     case "#createAdmin":
@@ -277,9 +248,9 @@ window.addEventListener("load", () => {
       break;
   }
 });
-deleteAccountBtn.addEventListener("click", () =>
-  updateView(deleteAccountComponent)
-);
+// deleteAccountBtn.addEventListener("click", () =>
+//   updateView(deleteAccountComponent)
+// );
 // Function Declararions
 function updateView(component, hash) {
   window.location.hash = hash;
@@ -289,4 +260,23 @@ function updateView(component, hash) {
 function logout() {
   localStorage.clear();
   window.open("../index.html", "_self");
+}
+async function createAdmin(data) {
+  const url = "http://localhost:3000/auth/signup";
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      console.error(`HTTP Error status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    throw error;
+  }
 }
