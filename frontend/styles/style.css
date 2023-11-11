@@ -87,11 +87,8 @@ body {
   width: max-content;
   align-items: center;
   gap: 5%;
-}
-#commision-btn {
-  background-color: #302c1b;
-  padding: 5px 10px;
-  white-space: nowrap;
+  margin-right: 70px;
+  margin-left: 70px;
 }
 .profileimage {
   background-color: transparent;

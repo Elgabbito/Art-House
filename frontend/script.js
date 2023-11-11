@@ -2,6 +2,7 @@ const route = document.getElementById("route");
 const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const navBtns = document.querySelector(".nav-btns");
+const commisionBtn = document.querySelector("#commision-btn")
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 
@@ -17,8 +18,7 @@ signupBtn.addEventListener("click", () => {
 window.addEventListener("load", () => {
   const userrole = localStorage.getItem("role");
   const firstBtn = userrole == "artist" ? "Post Art" : "Commision Art";
-  const profileBtns = `<button class="nav-btn" id="commision-btn">${firstBtn}</button>
-        <div class="profileimage">
+  const profileBtns = `  <div class="profileimage">
           <a id="profile-btn" href=${
             userrole == "artist"
               ? "./pages/artistDashboard.html"
@@ -38,7 +38,6 @@ window.addEventListener("load", () => {
   if (!token) {
     navBtns.innerHTML = "";
     navBtns.innerHTML = loginSignupBtns;
-
     return;
   }
   const tokenData = parseJwt(token);
@@ -53,6 +52,7 @@ window.addEventListener("load", () => {
     window.open("./pages/login.html", "_self");
   }
 });
+commisionBtn.addEventListener("click", commisionArtRouting)
 
 // Function Declarations
 function parseJwt(token) {
@@ -68,4 +68,12 @@ function goToLogin() {
 }
 function goToSignup() {
   window.open("./pages/signup.html", "_self");
+}
+function commisionArtRouting() {
+  const token = localStorage.getItem("token")
+  if (token) {
+    window.open("./pages/commisionart.html", "_self")
+    return
+  }
+  window.open("./pages/login.html", "_self")
 }
