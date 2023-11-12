@@ -16,7 +16,7 @@ async function signup(req, res, next) {
       hashedPassword,
       role
     );
-    return res.send(result);
+    return res.status(200).send({ status: 200, message: "Sign up successful" });
   } catch (error) {
     return res.status(500).send(error);
   }

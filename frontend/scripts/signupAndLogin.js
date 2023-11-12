@@ -8,18 +8,26 @@ const userEmail = document.getElementById("email-input");
 const submitBtn = document.querySelector("#submit-link");
 const userTypes = document.querySelectorAll(".radio-btn");
 const specialChar = document.getElementById("special_char");
+const showPasswordBtn = document.getElementById("show-password");
 const userPassword = document.getElementById("password-input");
-const ConfirmPassword = document.getElementById("confirm_password_input");
+const passwordImg = document.getElementById("show-password-img");
 const userSignupData = {
   name: "",
   email: "",
   password: "",
   role: "",
 };
+showPasswordBtn.addEventListener("click", () => {
+  ShowOrHidePassword(
+    passwordImg,
+    "../images/eye-show.svg",
+    " ../images/eye-slash.svg"
+  );
+});
 
 // Username validation
 function ValidateName() {
-  console.log(username.value.length);
+  // console.log(username.value.length);
   if (username.value === "") {
     username.classList.toggle("error");
     document.getElementById("name_error").classList.remove("hide");
@@ -119,11 +127,13 @@ function ValidatePassword() {
   return true;
 }
 
-function ShowOrHidePassword() {
+function ShowOrHidePassword(showPasswordImg, showImg, hideImg) {
   if (userPassword.type === "password") {
     userPassword.type = "text";
+    showPasswordImg.src = hideImg;
   } else {
     userPassword.type = "password";
+    showPasswordImg.src = showImg;
   }
 }
 
@@ -139,22 +149,32 @@ async function handleSignup() {
     // Get user type
     if (btn.checked) {
       userSignupData.role = btn.value;
-      console.log(btn, btn.value, userSignupData);
     }
   });
 
-  console.log(AllTrue);
-  console.log(userSignupData);
+  // console.log(AllTrue);
+  // console.log(userSignupData);
 
   // Check if all data is valid and send signup request
   if (AllTrue) {
     try {
       const result = await signup(userSignupData);
       console.log(result);
+      if (result.status == 200) {
+        addNotification("Signup Successful", true);
+        setTimeout(() => {}, 1000);
+        window.open("../pages/login.html", "_self");
+        return;
+      }
+      if (result.code === "23505") {
+        addNotification("Email already exists", false);
+        return;
+      }
+      addNotification("Sorry there was an error, try again", false);
     } catch (error) {
+      addNotification("Sorry there was an error, try again", false);
       throw error;
     }
-    window.open("../pages/login.html", "_self");
   }
 }
 async function handleLogin() {
@@ -165,12 +185,13 @@ async function handleLogin() {
   localStorage.setItem("token", result.token);
   localStorage.setItem("role", result.role);
   localStorage.setItem("username", result.user);
-
+  addNotification("Login Successful", true);
   console.log(result);
 
   if (result.message == "Invalid Password or Email") {
     errorMsg.classList.remove("hide");
     errorMsg.classList.add("show");
+    addNotification("Sorry there was an error, try again", false);
   }
   window.open("../index.html", "_self");
 }
@@ -227,7 +248,8 @@ function addNotification(message, success) {
   NotiElement.style.padding = "10px";
   NotiElement.style.borderRadius = "5px";
   NotiElement.style.border = "1px solid black";
-  NotiElement.style.backgroundColor = success ? "green" : "red";
+  NotiElement.style.backgroundColor = success ? "rgb(26, 255, 60)" : "red";
+  NotiElement.style.color = success ? "#302c1b" : "#fae6c7";
   NotiElement.style.left = "50%";
   NotiElement.style.top = "0";
   NotiElement.style.transform = "translate(-50%, 50%)";
@@ -235,7 +257,7 @@ function addNotification(message, success) {
   NotiElement.innerHTML = ` <span>${message}.</span><div id='closeBtn'>X</div>`;
   document.body.appendChild(NotiElement);
   //keep it always at the bottom corner of the window
-  document.addEventListener("scroll", (event) => {
+  document.addEventListener("scroll", () => {
     let btmPos = -window.scrollY + 10;
     NotiElement.style.bottom = btmPos + "px";
   });
