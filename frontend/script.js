@@ -2,7 +2,7 @@ const route = document.getElementById("route");
 const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
 const navBtns = document.querySelector(".nav-btns");
-const commisionBtn = document.querySelector("#commision-btn")
+const commisionBtn = document.querySelector("#commision-btn");
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 
@@ -33,17 +33,20 @@ window.addEventListener("load", () => {
         </div>`;
   const loginSignupBtns = `<button class="nav-btn" id="login-btn" onclick="goToLogin()">Login</button>
         <button class="nav-btn" id="signup-btn" onclick="goToSignup()">Sign up</button>`;
-  // Get token
-  const token = localStorage.getItem("token");
-  if (!token) {
+
+  commisionBtn.innerText = firstBtn;
+  // Get user data from token
+  const tokenData = parseJwt();
+
+  if (!tokenData) {
     navBtns.innerHTML = "";
     navBtns.innerHTML = loginSignupBtns;
     return;
   }
-  const tokenData = parseJwt(token);
-  console.log(tokenData);
+  // console.log(tokenData);
   const tokenExpiry = new Date(tokenData.exp * 1000);
-  if (token) {
+
+  if (tokenData) {
     navBtns.innerHTML = "";
     navBtns.innerHTML = profileBtns;
     return;
@@ -52,10 +55,11 @@ window.addEventListener("load", () => {
     window.open("./pages/login.html", "_self");
   }
 });
-commisionBtn.addEventListener("click", commisionArtRouting)
+commisionBtn.addEventListener("click", commisionArtRouting);
 
 // Function Declarations
-function parseJwt(token) {
+function parseJwt() {
+  const token = localStorage.getItem("token");
   if (!token) {
     return;
   }
@@ -70,10 +74,10 @@ function goToSignup() {
   window.open("./pages/signup.html", "_self");
 }
 function commisionArtRouting() {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   if (token) {
-    window.open("./pages/commisionart.html", "_self")
-    return
+    window.open("./pages/commisionart.html", "_self");
+    return;
   }
-  window.open("./pages/login.html", "_self")
+  window.open("./pages/login.html", "_self");
 }

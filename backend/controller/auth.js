@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-// const db = require("../db/index");
 const jwt = require("jsonwebtoken");
 const usermodel = require("../models/usermodel");
 require("dotenv").config();
@@ -70,4 +69,4 @@ async function login(req, res, next) {
   }
 }
 
-module.exports = { signup, login };
+module.exports = { signup, login, hashPassword };

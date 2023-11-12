@@ -145,13 +145,6 @@ input::placeholder {
   padding: 5%;
 }
 /* Input field styles */
-.analytics-component {
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.analytics-component::-webkit-scrollbar {
-  width: 1px;
-}
 .form-control {
   position: relative;
   margin: 20px 0 20px;
@@ -174,7 +167,7 @@ input::placeholder {
   border-bottom: 2px #fff solid;
   flex-grow: 1;
   font-size: 18px;
-  color: #fff;
+  color: #000;
 }
 
 .form-control input:focus {
@@ -217,7 +210,6 @@ input::placeholder {
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid #000;
   background-color: #1c1c1c;
   cursor: pointer;
 }
@@ -279,12 +271,19 @@ input::placeholder {
   color: #fae6c7;
   background-color: #302c1b;
 }
+/* Analytics Styles */
 #chart_div {
   width: 200px;
 }
-/* Analytics Styles */
 #analytics-header {
   margin-bottom: 1em;
+}
+.analytics-component {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.analytics-component::-webkit-scrollbar {
+  width: 1px;
 }
 .user-cards {
   display: flex;
@@ -349,6 +348,7 @@ input::placeholder {
 #myChart {
   margin: 10% 0;
 }
+
 .settings-header {
   margin: 10% 0;
   color: #fae6c7;

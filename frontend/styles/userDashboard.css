@@ -143,11 +143,19 @@ body {
 }
 /* Input field styles */
 .form-control {
-  position: relative;
   margin: 20px 0 20px;
-  width: max-content;
+  margin-bottom: 0;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  gap: 2%;
   align-items: center;
+}
+.admin-input {
+  width: 70%;
+}
+.form-control label {
+  white-space: nowrap;
 }
 
 .form-control input {
@@ -155,10 +163,8 @@ body {
   border: 0;
   border-bottom: 2px #fff solid;
   flex-grow: 1;
-  /* padding-top: 15px;
-  padding-bottom: 5px; */
   font-size: 18px;
-  color: #fff;
+  color: #000;
 }
 
 .form-control input:focus {
@@ -168,6 +174,14 @@ body {
 
 .signup-el {
   font-size: 15px !important;
+}
+.passwords {
+  width: 60%;
+  display: flex;
+  gap: 2%;
+}
+.passwords input {
+  width: 40%;
 }
 .submit-btn {
   position: relative;
@@ -193,16 +207,39 @@ body {
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid #000;
   background-color: #1c1c1c;
   cursor: pointer;
 }
-/* Signin and Login Form styling */
-.sign-form {
+.user-form {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.user-form > div {
+  width: 100%;
+}
+#name_error.hide {
+  display: none;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+#name_error.show {
+  display: block;
+}
+#email_error.hide {
+  display: none;
+}
+#email_error.show {
+  display: block;
+}
+.error_section > * {
+  color: #ff2f00;
+  font-size: 0.8rem;
 }
 /* My Art Section */
 #my-art-header {
@@ -331,4 +368,83 @@ body {
 .delete-btns button:nth-child(2) {
   color: #fae6c7;
   background-color: #302c1b;
+}
+.settings-header {
+  margin: 10% 0;
+  color: #fae6c7;
+  background-color: #1c1c1c;
+  padding: 2% 1%;
+  text-align: center;
+}
+#stickyNotification #closeBtn {
+  padding: 5px;
+}
+#stickyNotification #closeBtn:hover {
+  color: white;
+  cursor: pointer;
+}
+/* Customize the label (the container) */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 35px;
+  /* margin-bottom: 12px; */
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+  height: 25px;
+  width: max-content;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: max-content;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+#show-password-text {
+  margin: auto 0;
+  margin-left: 5%;
+  white-space: nowrap;
 }
