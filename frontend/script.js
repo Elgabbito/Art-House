@@ -35,6 +35,7 @@ window.addEventListener("load", () => {
         <button class="nav-btn" id="signup-btn" onclick="goToSignup()">Sign up</button>`;
 
   commisionBtn.innerText = firstBtn;
+
   // Get user data from token
   const tokenData = parseJwt();
 
@@ -55,7 +56,9 @@ window.addEventListener("load", () => {
     window.open("./pages/login.html", "_self");
   }
 });
-commisionBtn.addEventListener("click", commisionArtRouting);
+commisionBtn.addEventListener("click", () =>
+  commisionArtRouting(localStorage.getItem("role"))
+);
 
 // Function Declarations
 function parseJwt() {
@@ -73,10 +76,14 @@ function goToLogin() {
 function goToSignup() {
   window.open("./pages/signup.html", "_self");
 }
-function commisionArtRouting() {
+function commisionArtRouting(role) {
   const token = localStorage.getItem("token");
-  if (token) {
+  if (token && role !== "artist") {
     window.open("./pages/commisionart.html", "_self");
+    return;
+  }
+  if (token && role === "artist") {
+    window.open("./pages/postArt.html", "_self");
     return;
   }
   window.open("./pages/login.html", "_self");
