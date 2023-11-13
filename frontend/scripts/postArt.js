@@ -1,91 +1,24 @@
 const main = document.querySelector(".profile-info");
 const username = document.querySelector("#username");
-const myArtBtn = document.querySelector("#my-art");
-const logoutBtn = document.querySelector("#logout-btn");
-const settingsBtn = document.querySelector("#settings");
 const newNameInput = document.querySelector("#name-input");
 const newEmailInput = document.querySelector("#email-input");
-const editProfileBtn = document.querySelector("#edit-profile");
-const newPassword = document.querySelector("#new-password-input");
-const oldPassword = document.querySelector("#old-password-input");
-const deleteAccountBtn = document.querySelector("#delete-account");
 
 // Components
-const fileReader = new FileReader(); // initialize the object
-const file = document.querySelector("#image-upload-input");
-const upload = document.querySelector("#upload");
-const uploadstatus = document.querySelector("#status");
+document.querySelector("#upload").addEventListener("click", async (e) => {
+  const file = document.querySelector("#image-upload-input").files[0];
+  const url = "http://localhost:3000/art/upload";
+  const formData = new FormData();
 
-// file.addEventListener("change", handleImage);
-function handleImage(event) {
-  const fileInput = event.target;
-  const previewImage = document.getElementById("uploaded-img");
+  // Append the file to the FormData object
+  formData.append("art", file);
+  const result = await fetch(url, {
+    method: "POST",
+    body: formData,
+  });
 
-  if (fileInput.files && fileInput.files[0]) {
-    const imageFile = fileInput.files[0];
-
-    // Display the selected image
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      previewImage.src = e.target.result;
-    };
-    reader.readAsDataURL(imageFile);
-
-    // Convert the image to Blob
-    const blob = new Blob([imageFile], { type: imageFile.type });
-
-    // You can now use the 'blob' variable as needed, e.g., send it to a server.
-    console.log("Blob:", blob);
-  }
-}
-
-upload.addEventListener("click", () => {
-  const selectFile = file.files[0];
-  const fileName = file.value.split("th\\")[1];
-  const url = `http://localhost:3000/art/upload/${fileName}`;
-  console.log(file.files, fileName);
-  // set status to uploading
-  uploadstatus.innerHTML = "uploading…";
-  const blob = new Blob([selectFile], { type: selectFile.type });
-  const fileReader = new FileReader();
-  fileReader.readAsArrayBuffer(blob);
-
-  fileReader.onload = async (event) => {
-    const content = event.target.result;
-    const CHUNK_SIZE = 1000;
-    const totalChunks = event.target.result.byteLength / CHUNK_SIZE;
-
-    // generate a file name
-    // const fileName = Math.random().toString(36).slice(-6) + file.files[0].name;
-
-    for (let chunk = 0; chunk < totalChunks + 1; chunk++) {
-      let CHUNK = content.slice(chunk * CHUNK_SIZE, (chunk + 1) * CHUNK_SIZE);
-
-      const result = await fetch(url, {
-        method: "POST",
-        headers: {
-          "content-type": "application/octet-stream",
-          "content-length": CHUNK.length,
-        },
-        body: CHUNK,
-      });
-      if (chunk == totalChunks) {
-        console.log(result);
-      }
-    }
-    uploadstatus.innerHTML = "uploaded!!!";
-  };
+  e.preventDefault();
+  console.log(result);
 });
-
-function parseJwt() {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return;
-  }
-  const base64Url = token.split(".")[1];
-  const base64 = base64Url.replace("-", "+").replace("_", "/");
-  return JSON.parse(window.atob(base64));
-}
 
 function addNotification(message, success) {
   //create notification
@@ -119,3 +52,13 @@ function addNotification(message, success) {
     document.body.removeChild(NotiElement);
   });
 }
+
+// function parseJwt() {
+//   const token = localStorage.getItem("token");
+//   if (!token) {
+//     return;
+//   }
+//   const base64Url = token.split(".")[1];
+//   const base64 = base64Url.replace("-", "+").replace("_", "/");
+//   return JSON.parse(window.atob(base64));
+// }

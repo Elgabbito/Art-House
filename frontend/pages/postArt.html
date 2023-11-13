@@ -30,7 +30,7 @@
       <main class="upload-info">
         <h2>Edit Profile</h2>
         <div class="profile-data">
-          <form method="post" class="art-form">
+          <form  class="art-form" enctype="multipart/form-data">
             <div class="image-upload-section"><div id="uploaded-img">
                 <input type="file" name="art" accept="image/*" id="image-upload-input"></div>
                 <button id="upload">Upload</button>
@@ -58,7 +58,6 @@
                       id="email-input"
                       autocomplete="email"
                       placeholder="user@gmail.com"
-                      required
                     />
                     <div class="submit-btn">
                       <a id="update-email">Save</a>

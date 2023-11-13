@@ -16,6 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/auth", userAuthRoutes);
 app.use("/artist", artistRoutes);
 app.use("/user", userRoutes);
