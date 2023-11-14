@@ -6,18 +6,19 @@
     <link
       rel="shortcut icon"
       href="../public/savannah-favicon.svg"
-      type="image/x-icon">
-    <script type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"></script>
+      type="image/x-icon"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <link rel="stylesheet" href="../styles/adminDashboard.css" />
-    <script defer src="../scripts/adminDashboard.js"></script>
+    <script defer type="module" src="../scripts/adminDashboard.js"></script>
     <title>Savanna Showcase</title>
   </head>
   <body>
     <nav class="navbar">
       <div class="logo-container">
-        <a href="../index.html" class="logo-text">Savanna Showcase</a>
-      </div><div><h2>Admin Dashboard</h2></div>
+        <a href="./index.html" class="logo-text">Savanna Showcase</a>
+      </div>
+      <div><h2>Admin Dashboard</h2></div>
       <div class="nav-btns">
         <p id="username">Hi</p>
         <div class="profileimage">
@@ -39,22 +40,19 @@
           <button class="menu-btn" id="my-art">Create new admin</button>
           <button class="menu-btn" id="manage-users">Manage users</button>
           <button class="menu-btn" id="stats">Analytics</button>
-          <button class="menu-btn" id="logout-btn">
-            Log out
-          </button>
-          <button class="menu-btn" id="delete-account">
-            Delete Account
-          </button>
+          <button class="menu-btn" id="settings">Settings</button>
+          <button class="menu-btn" id="logout-btn">Log out</button>
         </menu>
       </div>
       <main class="profile-info">
         <h2>Edit Profile</h2>
-
         <div class="profile-data">
           <form method="post" class="sign-form">
             <div class="form-control">
               <label>Update Username: </label>
-              <input type="text" id="name-input" placeholder="Marnin Audu" />
+              <input type="text" id="name-input" placeholder="Marnin Audu" /><div class="submit-btn">
+              <a onclick="handleDataUpdate()"> Save </a>
+            </div>
             </div>
             <div class="form-control">
               <label>Update Email: </label>
@@ -64,24 +62,36 @@
                 autocomplete="email"
                 placeholder="user@gmail.com"
                 required
-              />
+              /><div class="submit-btn">
+              <a onclick="handleDataUpdate()"> Save </a>
+            </div>
             </div>
             <div class="form-control" id="signup-psw">
               <label for="password">Update Password: </label>
-              <input
-                type="password"
-                name="password"
-                id="password-input"
-                autocomplete="new-password"
-                placeholder="********"
-                required
-              />
-            </div>
-            <div class="submit-btn menu-btn">
+              <div class="passwords">
+                <input
+                  type="password"
+                  name="password"
+                  id="password-input1"
+                  autocomplete="new-password"
+                  placeholder="Old Password"
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  id="password-input2"
+                  autocomplete=""
+                  placeholder="New Password"
+                  required
+                />
+              </div><div class="submit-btn">
               <a onclick="handleDataUpdate()"> Save </a>
+            </div>
             </div>
           </form>
       </main>
     </section>
+    <script id="analytics-js"></script>
   </body>
 </html>

@@ -2,9 +2,10 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const userAuthRoutes = require("./routes/userAuth");
-const artistRoutes = require("./routes/artistRoutes")
-const userRoutes = require("./routes/userRoutes")
-const adminRoutes = require('./routes/adminroutes');
+const artistRoutes = require("./routes/artistRoutes");
+const userRoutes = require("./routes/userRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const artRoutes = require("./routes/artRoutes");
 const cors = require("cors");
 const corsOptions = {
   origin: ["http://127.0.0.1:5500", "http://localhost:5500"],
@@ -15,10 +16,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/auth", userAuthRoutes);
 app.use("/artist", artistRoutes);
-app.use("/user", userRoutes)
-app.use("/admin", adminRoutes)
+app.use("/user", userRoutes);
+app.use("/admin", adminRoutes);
+app.use("/art", artRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

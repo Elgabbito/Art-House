@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt");
-const db = require("../db/index");
 const jwt = require("jsonwebtoken");
-const usermodel = require("../models/userModel");
+const usermodel = require("../models/usermodel");
 require("dotenv").config();
 
 const saltRounds = Number(process.env.saltRounds);
@@ -9,9 +8,18 @@ const secretKey = process.env.secretKey;
 
 async function signup(req, res, next) {
   const { name, email, password, role } = req.body;
-  const hashedPassword = await hashPassword(password, saltRounds);
-  const result = await usermodel.createUser(name, email, hashedPassword, role);
-  return res.send(result.rows[0]);
+  try {
+    const hashedPassword = await hashPassword(password, saltRounds);
+    const result = await usermodel.createUser(
+      name,
+      email,
+      hashedPassword,
+      role
+    );
+    return res.status(200).send({ status: 200, message: "Sign up successful" });
+  } catch (error) {
+    return res.status(500).send(error);
+  }
 }
 
 async function hashPassword(password, saltRounds) {
@@ -61,5 +69,4 @@ async function login(req, res, next) {
   }
 }
 
-
-module.exports = { signup, login };
+module.exports = { signup, login, hashPassword };

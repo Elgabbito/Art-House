@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../public/savannah-favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../styles/postArt.css" />
+    <script defer src="../scripts/postArt.js"></script>
+    <title>Savanna Showcase</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo-container">
+        <a href="../index.html" class="logo-text">Savanna Showcase</a>
+      </div>
+      <div class="nav-btns">
+        <p id="username">Hi</p>
+        <div class="profileimage">
+          <a href="#">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="profile">
+      <main class="upload-info">
+        <h2>Edit Profile</h2>
+        <div class="profile-data">
+          <form  class="art-form" enctype="multipart/form-data">
+            <div class="image-upload-section"><div id="uploaded-img">
+                <input type="file" name="art" accept="image/*" id="image-upload-input"></div>
+                <button id="upload">Upload</button>
+                <small id="status"></small>
+            </div>
+                
+            <div>
+                <div>
+                  <div class="form-control">
+                    <label>Update Username: </label>
+                    <input type="text" id="name-input" placeholder="Marnin Audu" />
+                    <div class="submit-btn">
+                      <a id="update-name">Save</a>
+                    </div>
+                </div>
+                <div class="error_section hide" id="name_error">
+                 <p class="invalid">Name must be greater than 2 letters</p>
+                </div>
+                </div>
+                <div>
+                  <div class="form-control">
+                    <label>Update Email: </label>
+                    <input
+                      type="text"
+                      id="email-input"
+                      autocomplete="email"
+                      placeholder="user@gmail.com"
+                    />
+                    <div class="submit-btn">
+                      <a id="update-email">Save</a>
+                    </div>
+                  </div>
+                  <div class="error_section hide" id="email_error">
+                    <p class="invalid">Invalid email here is an example: davinci@gmail.com</p>
+                  </div>
+                </div>
+            </div>
+          </form>
+      </main>
+    </section>
+  </body>
+</html>

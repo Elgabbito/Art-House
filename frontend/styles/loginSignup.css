@@ -310,7 +310,7 @@ body {
   text-align: center;
   font-size: 0.75rem;
   line-height: 1rem;
-  color: rgba(156, 163, 175, 1);
+  color: rgb(156, 175, 159);
 }
 #goto-signup-or-login {
   text-decoration: none;
@@ -364,8 +364,11 @@ body {
 .invalid {
   color: rgb(255, 174, 0);
 }
-.show_password_eye {
-  background-image: url(/assets/eye.svg);
+#show-password {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  /* background-image: url(../images/eye-show.svg); */
   background-position: 50% 50%;
   border: none;
   outline: none;
@@ -373,7 +376,8 @@ body {
   cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 5%;
+  width: 25px;
+  height: 25px;
 }
 
 .invalid:before {
@@ -389,4 +393,11 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #302c1b inset !important;
   -webkit-text-fill-color: white !important;
+}
+#stickyNotification #closeBtn {
+  padding: 5px;
+}
+#stickyNotification #closeBtn:hover {
+  color: white;
+  cursor: pointer;
 }
