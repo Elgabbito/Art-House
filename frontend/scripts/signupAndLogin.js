@@ -17,12 +17,13 @@ const userSignupData = {
   password: "",
   role: "",
 };
-showPasswordBtn.addEventListener("click", () => {
+showPasswordBtn.addEventListener("click", (e) => {
   ShowOrHidePassword(
     passwordImg,
     "../images/eye-show.svg",
     " ../images/eye-slash.svg"
   );
+  e.preventDefault();
 });
 
 // Username validation
@@ -185,15 +186,19 @@ async function handleLogin() {
   localStorage.setItem("token", result.token);
   localStorage.setItem("role", result.role);
   localStorage.setItem("username", result.user);
-  addNotification("Login Successful", true);
-  console.log(result);
-
-  if (result.message == "Invalid Password or Email") {
-    errorMsg.classList.remove("hide");
-    errorMsg.classList.add("show");
-    addNotification("Sorry there was an error, try again", false);
+  if (result.status == 200) {
+    addNotification("Login Successful", true);
+    window.open("../index.html", "_self");
+    console.log(result);
+    return;
   }
-  window.open("../index.html", "_self");
+  console.log(result);
+  if (result.status == 401) {
+    // errorMsg.classList.remove("hide");
+    // errorMsg.classList.add("show");
+    addNotification("Invalid email or Password", false);
+    return;
+  }
 }
 
 // HTTP Requests

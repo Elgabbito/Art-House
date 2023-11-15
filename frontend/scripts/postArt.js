@@ -1,24 +1,54 @@
-const main = document.querySelector(".profile-info");
-const username = document.querySelector("#username");
-const newNameInput = document.querySelector("#name-input");
-const newEmailInput = document.querySelector("#email-input");
+const description = document.querySelector("#description");
+const file = document.querySelector("#image-upload-input");
+const title = document.querySelector("#title-input");
+const cost = document.querySelector("#cost-input");
+const type = document.querySelector("#img-type");
 
-// Components
-document.querySelector("#upload").addEventListener("click", async (e) => {
-  const file = document.querySelector("#image-upload-input").files[0];
-  const url = "http://localhost:3000/art/upload";
+// Upload Data
+document.querySelector(".art-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
   const formData = new FormData();
 
-  // Append the file to the FormData object
-  formData.append("art", file);
-  const result = await fetch(url, {
-    method: "POST",
-    body: formData,
-  });
+  formData.append("art", file.files[0]);
+  formData.append("title", title.value);
+  formData.append("cost", cost.value);
+  formData.append("type", type.value);
+  formData.append("description", description.value);
 
-  e.preventDefault();
-  console.log(result);
+  console.log(file.files[0]);
+  const response = await uploadData(formData);
+
+  console.log(response.data.url);
+  const image = document.createElement("img");
+  const imgContainer = document.querySelector("#uploaded-img");
+  imgContainer.backgroundColor = "none";
+  image.src = response.data.url;
+  imgContainer.appendChild(image);
+  if (response.status == 200) {
+    addNotification("Uploaded successfully", true);
+    return;
+  }
+  addNotification("Failed to upload", false);
 });
+
+// Functions
+async function uploadData(data) {
+  const url = "http://localhost:3000/art/upload";
+
+  try {
+    const result = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Access-Control-Allow-Origin":
+          "file://wsl.localhost/Ubuntu-22.04/home/marnin_a/js/Art-House/frontend/pages/",
+      },
+      body: data,
+    });
+    return await result.json();
+  } catch (error) {
+    return error;
+  }
+}
 
 function addNotification(message, success) {
   //create notification
@@ -52,7 +82,6 @@ function addNotification(message, success) {
     document.body.removeChild(NotiElement);
   });
 }
-
 // function parseJwt() {
 //   const token = localStorage.getItem("token");
 //   if (!token) {

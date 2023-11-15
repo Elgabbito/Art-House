@@ -13,14 +13,14 @@ const uploadImage = async (imgPath) => {
   const options = {
     use_filename: true,
     unique_filename: false,
-    folder: "savanna-showcase",
+    folder: process.env.FOLDER,
     overwrite: true,
   };
 
   try {
     // Upload the image
     const result = await cloudinary.uploader.upload(imgPath, options);
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     console.error(error);

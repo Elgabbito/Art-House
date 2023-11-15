@@ -3,14 +3,22 @@ const uploadImage = require("../cloudinary/index");
 
 const uploadArt = async (req, res) => {
   try {
-    const fileName = req.file.originalname;
+    console.log(req.body);
+    const { title, cost, description, type } = req.body;
     const cloudinaryResponse = await uploadImage(req.file.path);
     const { public_id, url } = cloudinaryResponse;
-    const result = storeArtData(fileName, public_id, url);
-
-    res.status(200).send({
+    const result = await storeArtData(
+      title,
+      public_id,
+      url,
+      cost,
+      type,
+      description
+    );
+    res.status(200).json({
       message: "Image uploaded successfully",
       data: { url: result.url, name: result.name },
+      status: 200,
     });
   } catch (error) {
     console.error("Error Uploading Art", error);

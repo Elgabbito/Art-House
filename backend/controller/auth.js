@@ -54,6 +54,7 @@ async function login(req, res, next) {
         }
       );
       return res.json({
+        status: 200,
         message: "Login Successful",
         token,
         user: user.name,
@@ -61,7 +62,7 @@ async function login(req, res, next) {
       });
     } else {
       // Password Doesn't Match
-      return res.status(401).json({ message: "Invalid Login" });
+      return res.status(401).json({ status: 401, message: "Invalid Login" });
     }
   } catch (error) {
     console.error("error in loing route:", error);

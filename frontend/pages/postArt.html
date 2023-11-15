@@ -18,7 +18,6 @@
         <a href="../index.html" class="logo-text">Savanna Showcase</a>
       </div>
       <div class="nav-btns">
-        <p id="username">Hi</p>
         <div class="profileimage">
           <a href="#">
             <img src="../images/profile-fallback.svg" alt="Profile Picture" />
@@ -28,47 +27,57 @@
     </nav>
     <section class="profile">
       <main class="upload-info">
-        <h2>Edit Profile</h2>
+        <div class="page-top">
+          <h2>Post Art</h2>
+          <button type="submit" form="art-form" class="submit-btn" id="upload" >Upload</button>
+        </div>
         <div class="profile-data">
-          <form  class="art-form" enctype="multipart/form-data">
-            <div class="image-upload-section"><div id="uploaded-img">
-                <input type="file" name="art" accept="image/*" id="image-upload-input"></div>
-                <button id="upload">Upload</button>
-                <small id="status"></small>
-            </div>
-                
-            <div>
-                <div>
-                  <div class="form-control">
-                    <label>Update Username: </label>
-                    <input type="text" id="name-input" placeholder="Marnin Audu" />
-                    <div class="submit-btn">
-                      <a id="update-name">Save</a>
+        <form method="post" class="art-form" id="art-form" enctype="multipart/form-data">
+              <div class="image-upload-section">
+                <div id="uploaded-img">
+                </div>
+                <div class="image-upload-container">
+                      <input type="file" name="art" required accept="image/*" id="image-upload-input">
+                </div>
+              </div>
+  
+              <div class="inputs">
+                  <div class="title-cost">
+                    <div class="form-control">
+                      <label>Title: </label>
+                      <input type="text" id="title-input" required placeholder="Mystical Horizons" />
                     </div>
-                </div>
-                <div class="error_section hide" id="name_error">
-                 <p class="invalid">Name must be greater than 2 letters</p>
-                </div>
-                </div>
-                <div>
-                  <div class="form-control">
-                    <label>Update Email: </label>
-                    <input
-                      type="text"
-                      id="email-input"
-                      autocomplete="email"
-                      placeholder="user@gmail.com"
-                    />
-                    <div class="submit-btn">
-                      <a id="update-email">Save</a>
+
+                    <div class="form-control">
+                      <label>Cost: </label>
+                      <input type="number" id="cost-input" required placeholder="₦5000" />
                     </div>
                   </div>
-                  <div class="error_section hide" id="email_error">
-                    <p class="invalid">Invalid email here is an example: davinci@gmail.com</p>
+                  <div class="form-control">
+                      <label>Type: </label>
+                      <select name="type" id="img-type" required>
+                        <option value="select an art type">Select an Art Type</option>
+                        <option value="drawing">Drawing</option>
+                        <option value="ceramic">Ceramic</option>
+                        <option value="painting">Painting</option>
+                        <option value="sculpture">Sculpture</option>
+                        <option value="photography">Photography</option>
+                      </select>
                   </div>
+                  <div class="form-control">
+                      <label id="description-label">Description: </label>
+                      <textarea
+                      required
+                        type="text"
+                        id="description"
+                        placeholder="Enter a brief description of the artwork, including its inspiration, style, and any notable features."
+                      ></textarea>
+                    </div>
+                    <div class="error_section hide" id="email_error">
+                      <p class="invalid">Invalid email here is an example: davinci@gmail.com</p>
+                   </div>
                 </div>
-            </div>
-          </form>
+              </form>
       </main>
     </section>
   </body>
