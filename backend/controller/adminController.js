@@ -2,10 +2,6 @@ const { createUser } = require("../models/usermodel");
 
 async function createNewAdmin(req, res, next) {
   try {
-    //  check if the person is an admin
-    // if(!req.user || req.user.role !== 'admin' ) {
-    //     return res.status(403).json({ message: "Admin permission Required"})
-    // }
     if (req.body === "") {
       res.status(401).send("Empty request");
     }
