@@ -5,6 +5,9 @@ const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
+const toggleButton = document.querySelector('.toggle-button');
+const navLinks = document.querySelector('.nav-links');
+
 
 // Route to login page
 loginBtn.addEventListener("click", () => {
@@ -60,6 +63,15 @@ commisionBtn.addEventListener("click", () =>
   commisionArtRouting(localStorage.getItem("role"))
 );
 
+
+// navlinks
+document.addEventListener('DOMContentLoaded', function () {
+toggleButton.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+})
+})
+
+
 // Function Declarations
 function parseJwt() {
   const token = localStorage.getItem("token");
@@ -88,3 +100,4 @@ function commisionArtRouting(role) {
   }
   window.open("./pages/login.html", "_self");
 }
+
