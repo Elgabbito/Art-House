@@ -1,4 +1,4 @@
-const { storeArtData } = require("../models/artmodel");
+const { storeArtData, getArtData } = require("../models/artmodel");
 const uploadImage = require("../cloudinary/index");
 
 const uploadArt = async (req, res) => {
@@ -6,11 +6,11 @@ const uploadArt = async (req, res) => {
     console.log(req.body);
     const { title, cost, description, type } = req.body;
     const cloudinaryResponse = await uploadImage(req.file.path);
-    const { public_id, url } = cloudinaryResponse;
+    const { public_id, secure_url } = cloudinaryResponse;
     const result = await storeArtData(
       title,
       public_id,
-      url,
+      secure_url,
       cost,
       type,
       description
@@ -27,5 +27,10 @@ const uploadArt = async (req, res) => {
       .json({ success: false, message: "Internal Server Error", error: error });
   }
 };
+const fetchArt = async (req, res) => {
+  const result = await getArtData();
+  res.send({ message: "Success", data: result, status: 200 });
+};
+const fetchSingleArt = async (req, res) => {};
 
-module.exports = { uploadArt };
+module.exports = { uploadArt, fetchArt, fetchSingleArt };

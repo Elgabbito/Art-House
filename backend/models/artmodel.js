@@ -7,4 +7,9 @@ async function storeArtData(title, public_id, url, cost, type, description) {
   const dbResult = await db.query(query, values);
   return dbResult.rows[0];
 }
-module.exports = { storeArtData };
+async function getArtData() {
+  const query = "SELECT * FROM art LIMIT 10";
+  const dbResult = await db.query(query);
+  return dbResult.rows;
+}
+module.exports = { storeArtData, getArtData };

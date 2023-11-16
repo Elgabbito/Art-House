@@ -308,12 +308,12 @@ body {
 .image {
   background: rgb(241, 241, 241);
   width: 100%;
-  height: 100%;
   display: grid;
   place-items: center;
 }
 .image img {
   width: 100%;
+  aspect-ratio: 5/4;
 }
 /* Submit btn styles */
 @keyframes btn-anim1 {

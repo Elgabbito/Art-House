@@ -17,8 +17,6 @@ document.querySelector(".art-form").addEventListener("submit", async (e) => {
 
   console.log(file.files[0]);
   const response = await uploadData(formData);
-
-  console.log(response.data.url);
   const image = document.createElement("img");
   const imgContainer = document.querySelector("#uploaded-img");
   imgContainer.backgroundColor = "none";
@@ -27,8 +25,9 @@ document.querySelector(".art-form").addEventListener("submit", async (e) => {
   if (response.status == 200) {
     addNotification("Uploaded successfully", true);
     return;
+  } else {
+    addNotification("Failed to upload", false);
   }
-  addNotification("Failed to upload", false);
 });
 
 // Functions
@@ -38,10 +37,6 @@ async function uploadData(data) {
   try {
     const result = await fetch(url, {
       method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin":
-          "file://wsl.localhost/Ubuntu-22.04/home/marnin_a/js/Art-House/frontend/pages/",
-      },
       body: data,
     });
     return await result.json();
@@ -82,6 +77,40 @@ function addNotification(message, success) {
     document.body.removeChild(NotiElement);
   });
 }
+// window.addEventListener("load",()=>displayLoading("dark"))
+function displayLoading(theme) {
+  const loadingEl = document.createElement("div");
+
+  loadingEl.id = "stickyNotification";
+  loadingEl.style.display = "flex";
+  loadingEl.style.alignItems = "center";
+  loadingEl.style.position = "absolute";
+  loadingEl.style.width = "max-content";
+  loadingEl.style.height = "max-content";
+  loadingEl.style.padding = "10px";
+  loadingEl.style.borderRadius = "5px";
+  loadingEl.style.border = "1px solid black";
+  loadingEl.style.backgroundColor = theme == "dark" ? "#fae6c7" : "#1c1c1c";
+  loadingEl.style.left = "50%";
+  loadingEl.style.top = "50%";
+  loadingEl.style.transform = "translate(-50%, 50%)";
+
+  loadingEl.innerHTML = ` <span>Loading.</span><div class="loader"></div>`;
+  document.body.appendChild(loadingEl);
+  //keep it always at the bottom corner of the window
+  document.addEventListener("scroll", (event) => {
+    let btmPos = -window.scrollY + 10;
+    loadingEl.style.bottom = btmPos + "px";
+  });
+  // Remove popup
+  // By timer
+  setTimeout(() => document.body.removeChild(loadingEl), 3000);
+  // By button click
+  document.getElementById("closeBtn").addEventListener("click", () => {
+    document.body.removeChild(loadingEl);
+  });
+}
+function removeLoading() {}
 // function parseJwt() {
 //   const token = localStorage.getItem("token");
 //   if (!token) {
