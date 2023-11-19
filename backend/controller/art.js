@@ -1,4 +1,8 @@
-const { storeArtData, getArtData } = require("../models/artmodel");
+const {
+  storeArtData,
+  getArtData,
+  getArtByCategory,
+} = require("../models/artmodel");
 const uploadImage = require("../cloudinary/index");
 
 const uploadArt = async (req, res) => {
@@ -31,6 +35,10 @@ const fetchArt = async (req, res) => {
   const result = await getArtData();
   res.send({ message: "Success", data: result, status: 200 });
 };
+const fetchTopArtByCategory = async (req, res) => {
+  const result = await getArtByCategory();
+  res.send({ message: "Success", data: result, status: 200 });
+};
 const fetchSingleArt = async (req, res) => {};
 
-module.exports = { uploadArt, fetchArt, fetchSingleArt };
+module.exports = { uploadArt, fetchArt, fetchTopArtByCategory, fetchSingleArt };

@@ -12,4 +12,10 @@ async function getArtData() {
   const dbResult = await db.query(query);
   return dbResult.rows;
 }
-module.exports = { storeArtData, getArtData };
+async function getArtByCategory() {
+  const query =
+    "SELECT DISTINCT ON (type) * FROM art ORDER BY type, id OFFSET 1 LIMIT 1";
+  const dbResult = await db.query(query);
+  return dbResult.rows;
+}
+module.exports = { storeArtData, getArtData, getArtByCategory };
