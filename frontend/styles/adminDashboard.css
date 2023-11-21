@@ -1,358 +1,396 @@
 @font-face {
-  font-family: Gebril;
-  src: url("../fonts/Gerbil-Font/gerbil.otf");
+	font-family: Gebril;
+	src: url("../fonts/Gerbil-Font/gerbil.otf");
 }
 * {
-  font-family: Gebril;
-  margin: 0%;
+	font-family: Gebril;
+	margin: 0%;
 }
 body {
-  color: #fae6c7;
-  background-color: #1c1c1c;
-  overflow: hidden;
+	color: #fae6c7;
+	background-color: #1c1c1c;
+	overflow: hidden;
 }
 /* Navbar Styles */
 .navbar {
-  width: 94%;
-  padding: 0% 3%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #302c1b;
-  height: 14.8dvh;
+	width: 94%;
+	padding: 0% 3%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #302c1b;
+	height: 14.8dvh;
 }
 .logo-container {
-  width: max-content;
-  display: flex;
-  align-items: center;
+	width: max-content;
+	display: flex;
+	align-items: center;
 }
 .logo {
-  min-width: 50%;
+	min-width: 50%;
 }
 .logo-text {
-  color: #fae6c7;
-  text-decoration: none;
+	color: #fae6c7;
+	text-decoration: none;
 }
 .logo-text {
-  width: 100%;
-  font-size: 1rem;
+	width: 100%;
+	font-size: 1rem;
 }
 .nav-btns {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  letter-spacing: 2px;
+	display: flex;
+	align-items: center;
+	gap: 1em;
+	letter-spacing: 2px;
 }
 .profileimage {
-  background-color: transparent;
-  border: none;
-  border-radius: 50px;
-  width: 50px;
-  height: 50px;
+	background-color: transparent;
+	border: none;
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
 }
 .profileimage:hover {
-  cursor: pointer;
-  box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
-    0 0 10px #fae6c7;
+	cursor: pointer;
+	box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
+		0 0 10px #fae6c7;
 }
 .nav-btn {
-  background: none;
-  background-color: transparent;
-  border: 1px solid #fae6c7;
-  padding: 10px 20px;
-  color: #fae6c7;
+	background: none;
+	background-color: transparent;
+	border: 1px solid #fae6c7;
+	padding: 10px 20px;
+	color: #fae6c7;
 }
 .nav-btn:hover {
-  box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
-    0 0 10px #fae6c7;
+	box-shadow: 0 0 2px #fae6c7, 0 0 5px #fae6c7, 0 0 10px #fae6c7,
+		0 0 10px #fae6c7;
 }
 .profile {
-  height: 85dvh;
-  display: flex;
+	height: 85dvh;
+	display: flex;
+}
+.page-content {
+	width: 100%;
 }
 .profile-nav {
-  width: 30%;
-  height: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2%;
-  /* background-color: #302c1b; */
+	width: 30%;
+	height: 95%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 2%;
+	/* background-color: #302c1b; */
 }
 .userprofileimage {
-  background-color: transparent;
-  border: none;
-  border-radius: 50px;
-  width: 50%;
-  margin-bottom: 5%;
+	background-color: transparent;
+	border: none;
+	border-radius: 50px;
+	width: 50%;
+	margin-bottom: 5%;
+}
+.profile-body {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 10%;
 }
 .profile-info {
-  background-color: rgb(225, 223, 223);
-  width: 70%;
-  height: 100%;
-  overflow: scroll;
+	background-color: rgb(225, 223, 223);
+	height: 100%;
+	overflow: scroll;
+	overflow-y: scroll;
+	color: #1c1c1c;
+	padding: 5%;
+	padding-bottom: 10%;
 }
-
 .menu {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-  justify-content: space-between;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 50%;
+	justify-content: space-between;
 }
 .menu-btn {
-  background-color: transparent;
-  color: white;
-  width: max-content;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  background: none;
-  position: relative;
-  padding-bottom: 5px;
+	background-color: transparent;
+	color: white;
+	width: max-content;
+	border: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow: hidden;
+	background: none;
+	position: relative;
+	padding-bottom: 5px;
 }
 input::placeholder {
-  padding-left: 5%;
+	padding-left: 5%;
 }
 .menu-btn:before {
-  content: "";
-  position: absolute;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  background: currentColor;
-  transition: transform 0.25s ease-out;
+	content: "";
+	position: absolute;
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	transform: scaleX(0);
+	transform-origin: bottom right;
+	background: currentColor;
+	transition: transform 0.25s ease-out;
 }
 .menu-btn:hover:before {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+	transform: scaleX(1);
+	transform-origin: bottom left;
 }
 #delete-account {
-  color: #ff2f00;
+	color: #ff2f00;
 }
 #logout-btn {
-  color: #e6a062;
+	color: #e6a062;
 }
-.profile-info {
-  color: #1c1c1c;
-  padding: 5%;
+/* Display Elements */
+.show {
+	display: block;
+}
+.hide {
+	display: none;
 }
 /* Input field styles */
 .form-control {
-  position: relative;
-  margin: 20px 0 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 2%;
-  align-items: center;
+	position: relative;
+	margin: 20px 0 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 2%;
+	align-items: center;
 }
 .admin-input {
-  width: 70%;
+	width: 70%;
 }
 .form-control label {
-  white-space: nowrap;
+	white-space: nowrap;
 }
 
 .form-control input {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px #fff solid;
-  flex-grow: 1;
-  font-size: 18px;
-  color: #000;
+	background-color: transparent;
+	border: 0;
+	border-bottom: 2px #fff solid;
+	flex-grow: 1;
+	font-size: 18px;
+	color: #000;
 }
 
 .form-control input:focus {
-  outline: 0;
-  border-bottom-color: #1c1c1c;
+	outline: 0;
+	border-bottom-color: #1c1c1c;
 }
 
 .signup-el {
-  font-size: 15px !important;
+	font-size: 15px !important;
 }
 .passwords {
-  width: 60%;
-  display: flex;
-  gap: 2%;
+	width: 60%;
+	display: flex;
+	gap: 2%;
 }
 .passwords input {
-  width: 40%;
+	width: 40%;
 }
 .submit-btn {
-  position: relative;
-  cursor: pointer;
-  margin: 0% auto;
-  width: max-content;
-  padding: 2% 0;
+	position: relative;
+	cursor: pointer;
+	margin: 0% auto;
+	width: max-content;
+	padding: 2% 0;
 }
 
 .submit-btn a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  color: #000;
-  font-size: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: 0.5s;
-  letter-spacing: 4px;
+	position: relative;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #000;
+	font-size: 16px;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: 0.5s;
+	letter-spacing: 4px;
 }
 .submit-btn a:hover {
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #1c1c1c;
-  cursor: pointer;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #1c1c1c;
+	cursor: pointer;
 }
 .activitation-btn a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  color: #000;
-  font-size: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: 0.5s;
-  letter-spacing: 4px;
+	position: relative;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #000;
+	font-size: 16px;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: 0.5s;
+	letter-spacing: 4px;
 }
 .activate-btn a:hover {
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid #000;
-  background-color: #10942a;
-  cursor: pointer;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 1px solid #000;
+	background-color: #10942a;
+	cursor: pointer;
 }
 .deactivate-btn a:hover {
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 1px solid #000;
-  background-color: #ff2f00;
-  cursor: pointer;
+	color: #fff;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 1px solid #000;
+	background-color: #ff2f00;
+	cursor: pointer;
 }
 /* Signin and Login Form styling */
 .sign-form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 /* */
 #admin-header {
-  margin-bottom: 5%;
+	margin-bottom: 5%;
 }
 /* Delete account Styles */
 .delete-container {
-  padding-top: 5%;
+	padding-top: 5%;
 }
 .delete-container p {
-  padding-bottom: 5%;
+	padding-bottom: 5%;
 }
 .delete-btns button {
-  padding: 10px 15px;
-  letter-spacing: 1px;
-  cursor: pointer;
+	padding: 10px 15px;
+	letter-spacing: 1px;
+	cursor: pointer;
 }
 .delete-btns button:nth-child(1) {
-  background-color: #fae6c7;
+	background-color: #fae6c7;
 }
 .delete-btns button:nth-child(2) {
-  color: #fae6c7;
-  background-color: #302c1b;
+	color: #fae6c7;
+	background-color: #302c1b;
 }
 /* Analytics Styles */
 #chart_div {
-  width: 200px;
+	width: 200px;
 }
 #analytics-header {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
 .analytics-component {
-  overflow-y: scroll;
-  overflow-x: hidden;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .analytics-component::-webkit-scrollbar {
-  width: 1px;
+	width: 1px;
 }
-.user-cards {
-  display: flex;
-  gap: 2%;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+.user-data-cards {
+	display: flex;
+	gap: 2%;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 .card {
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  max-width: 320px;
-  border-radius: 20px;
+	padding: 1rem;
+	background-color: #fff;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+		0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	max-width: 320px;
+	border-radius: 20px;
 }
 
 .title {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .title-text {
-  margin-left: 0.5rem;
-  color: #374151;
-  font-size: 18px;
+	margin-left: 0.5rem;
+	color: #374151;
+	font-size: 1rem;
 }
 
 .data {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	font-size: 2rem;
 }
 
 .data p {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  color: #1f2937;
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-  font-weight: 700;
-  text-align: left;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	color: #1f2937;
+	font-size: 2.25rem;
+	line-height: 2.5rem;
+	font-weight: 700;
+	text-align: left;
 }
 
 .data .range {
-  position: relative;
-  background-color: #e5e7eb;
-  width: 100%;
-  height: 0.5rem;
-  border-radius: 0.25rem;
+	position: relative;
+	background-color: #e5e7eb;
+	width: 100%;
+	height: 0.5rem;
+	border-radius: 0.25rem;
 }
 
 .data .range .fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #fae6c7;
-  width: 100%;
-  height: 100%;
-  border-radius: 0.25rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fae6c7;
+	width: 100%;
+	height: 100%;
+	border-radius: 0.25rem;
 }
 #myChart {
-  margin: 10% 0;
+	margin: 10% 0;
 }
 
 .settings-header {
-  margin: 10% 0;
-  color: #fae6c7;
-  background-color: #1c1c1c;
-  padding: 2% 1%;
-  text-align: center;
+	margin: 10% 0;
+	color: #fae6c7;
+	background-color: #1c1c1c;
+	padding: 2% 1%;
+	text-align: center;
+}
+.users-list {
+	display: flex;
+	flex-direction: column;
+	padding: 5%;
+}
+.users-list-header {
+	font-weight: 700;
+	display: grid;
+	text-align: center;
+	padding: 0 2%;
+
+	grid-template-columns: 10% 30% 40% 20%;
+}
+.user-card {
+	display: grid;
+	grid-template-columns: 10% 30% 40% 20%;
+	background-color: #e5e7eb;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	padding: 2%;
+}
+.user-card > div {
+	text-align: center;
 }

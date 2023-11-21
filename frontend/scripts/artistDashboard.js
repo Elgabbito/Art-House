@@ -4,6 +4,8 @@ const editProfileBtn = document.querySelector("#edit-profile");
 const myArtBtn = document.querySelector("#my-art");
 const logoutBtn = document.querySelector("#logout-btn");
 const deleteAccountBtn = document.querySelector("#delete-account");
+import { handleOnPageRouting } from "./adminDashboard.js";
+console.log(handleOnPageRouting);
 
 // Components
 const profileComponent = ` <h2>Edit Profile</h2>
@@ -139,20 +141,20 @@ const deleteAccountComponent = `<h2>Delete My Account</h2>
 editProfileBtn.addEventListener("click", () => updateView(profileComponent));
 myArtBtn.addEventListener("click", () => updateView(myArtComponent));
 logoutBtn.addEventListener("click", () => {
-  logout();
+	logout();
 });
 window.addEventListener("load", () => {
-  username.innerText = `Hi, ${localStorage.getItem("username")}`;
+	username.innerText = `Hi, ${localStorage.getItem("username")}`;
 });
 deleteAccountBtn.addEventListener("click", () =>
-  updateView(deleteAccountComponent)
+	updateView(deleteAccountComponent)
 );
 // Function Declararions
 function updateView(component) {
-  main.innerHTML = "";
-  main.innerHTML = component;
+	main.innerHTML = "";
+	main.innerHTML = component;
 }
 function logout() {
-  localStorage.clear();
-  window.open("../index.html", "_self");
+	localStorage.clear();
+	window.open("../index.html", "_self");
 }
