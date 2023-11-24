@@ -236,7 +236,7 @@ body {
 }
 .art-carousel {
 	display: flex;
-	justify-content: flex-start;
+	justify-content: center;
 	gap: 2%;
 }
 
@@ -249,13 +249,15 @@ body {
 	box-shadow: 0px 1px 13px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
 	transition: all 120ms;
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 	align-items: center;
 	justify-content: center;
-	background: #fff;
+	background: #fae6c7;
 	padding: 0.5em;
 	padding-bottom: 3.4em;
 	font-size: 0.8rem;
+	border-radius: 5px;
 }
 
 .card::after {
@@ -278,17 +280,10 @@ body {
 .card .title {
 	font-size: 0.9em;
 	position: absolute;
+	text-align: center;
 	left: 0.625em;
 	bottom: 0.875em;
 	font-weight: 400;
-	color: #000;
-}
-
-.card .price {
-	font-size: 0.9em;
-	position: absolute;
-	left: 0.625em;
-	bottom: 0.625em;
 	color: #000;
 }
 

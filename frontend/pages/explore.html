@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/explore.css" />
+    <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
+    <script defer src="../scripts/explore.js"></script>
+    <title>Savanna Showcase🖼️</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="../index.html" class="logo-text">Savanna Showcase</a>
+        </div>
+        <div class="nav-btns">
+            <button class="nav-btn" id="login-btn">Login</button>
+            <button class="nav-btn" id="signup-btn">Sign up</button>
+        </div>
+    </nav>
+    <div class="page-content">
+        <div class="search-container">
+            <div class="input-container">
+                <input type="text" name="text" class="input" placeholder="search...">
+                <span class="icon"><img src="../images/search-icon.svg" alt="" srcset=""></span>
+            </div>
+        </div>
+        <section class="main-container">
+            <aside class="filter-section">
+                <h3>Filter</h3>
+                <div class="filters">
+                    <div class="price-filter">
+                        <h5 class="filter-title">Price Range</h5>
+                        <div class="price-ranges">
+                            <!-- Min Value -->
+                            <div class="number-control">
+                                <div class="number-left"></div>
+                                <input type="number" name="number" class="number-quantity" placeholder="min">
+                                <div class="number-right"></div>
+                            </div>
+                            <!-- Max Value -->
+                            <div class="number-control">
+                                <div class="number-left"></div>
+                                <!-- The value should be the highest price from the DB -->
+                                <input type="number" name="number" class="number-quantity" placeholder="max">
+                                <div class="number-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-filter">
+                        <h5 class="filter-title">Location</h5>
+                        <form class="location-search">
+                            <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+                            <ul class="value-list">
+                                <li>Alabama</li>
+                                <li>Alaska</li>
+                                <li>Arizona</li>
+                                <li>Arkansas</li>
+                                <li>California</li>
+                                <li>Colorado</li>
+                                <li>Connecticut</li>
+                                <li>Delaware</li>
+                                <li>Florida</li>
+                                <li>Georgia</li>
+                                <li>Hawaii</li>
+                                <li>Idaho</li>
+                                <li>Illinois</li>
+                                <li>Indiana</li>
+                                <li>Iowa</li>
+                                <li>Kansas</li>
+                                <li>Kentucky</li>
+                                <li>Louisiana</li>
+                                <li>Maine</li>
+                                <li>Maryland</li>
+                                <li>Massachusetts</li>
+                                <li>Michigan</li>
+                                <li>Minnesota</li>
+                                <li>Mississippi</li>
+                                <li>Missouri</li>
+                                <li>Montana</li>
+                                <li>Nebraska</li>
+                                <li>Nevada</li>
+                                <li>New Hampshire</li>
+                                <li>New Jersey</li>
+                                <li>New Mexico</li>
+                                <li>New York</li>
+                                <li>North Carolina</li>
+                                <li>North Dakota</li>
+                                <li>Ohio</li>
+                                <li>Oklahoma</li>
+                                <li>Oregon</li>
+                                <li>Pennsylvania</li>
+                                <li>Rhode Island</li>
+                                <li>South Carolina</li>
+                                <li>South Dakota</li>
+                                <li>Tennessee</li>
+                                <li>Texas</li>
+                                <li>Utah</li>
+                                <li>Vermont</li>
+                                <li>Virginia</li>
+                                <li>Washington</li>
+                                <li>West Virginia</li>
+                                <li>Wisconsin</li>
+                                <li>Wyoming</li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="category-filter">
+                        <h5 class="filter-title">Categories</h5>
+                        <div class="checkbox-group">
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Sculpture</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Painting</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Drawing</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Ceramic</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Photograph</span>
+                            </label>
+                        </div>
+                    </div>
+            </aside>
+            <main class="art-display">
+
+            </main>
+        </section>
+    </div>
+    <footer>
+        <div class="footer-left">
+            <h3 class="footer-heading">Join the Art Revolution</h3>
+            <p>
+                Become a part of something bigger. Connect, create, and collect with
+                us. Unleash the artist within and experience the heart and soul of
+                Nigeria's artistic renaissance.
+            </p>
+        </div>
+        <div class="footer-center">
+            <div>
+                <h3 class="footer-heading">About</h3>
+                <a href="#">Our Story</a>
+                <a href="#">Our Community</a>
+            </div>
+            <div class="footer-heading">
+                <h3>Legal</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

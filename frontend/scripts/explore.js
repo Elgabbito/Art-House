@@ -1,38 +1,33 @@
-const route = document.getElementById("route");
+const commisionBtn = document.querySelector("#commision-btn");
+const navBtns = document.querySelector(".nav-btns");
+const artDisplay = document.querySelector(".art-display");
 const loginBtn = document.getElementById("login-btn");
 const signupBtn = document.getElementById("signup-btn");
-const navBtns = document.querySelector(".nav-btns");
-const commisionBtn = document.querySelector("#commision-btn");
-const topArtCarousel = document.querySelector("#top-art");
-const categoriesCarousel = document.querySelector("#categories");
-const cards = document.querySelectorAll(".card");
-const basePath = "./index.html";
+const inputField = document.querySelector(".chosen-value");
+const dropdown = document.querySelector(".value-list");
+const dropdownArray = [...document.querySelectorAll("li")];
+let valueArray = [];
 
-// Event Listeners
-// Check if the user is logged in
+// Check if the useris logged in
 window.addEventListener("load", async () => {
+	const { data: art } = await getArt();
 	const userrole = localStorage.getItem("role");
 	const firstBtn = userrole == "artist" ? "Post Art" : "Commision Art";
-	const art = await getTopArt();
-	// const categoryArt = await getArtCategory();
 	const profileBtns = `  <div class="profileimage">
           <a id="profile-btn" href=${
 						userrole == "artist"
-							? "./pages/artistDashboard.html"
-							: "./pages/userDashboard.html"
+							? "../pages/artistDashboard.html"
+							: "../pages/userDashboard.html"
 					}>
             <img
               id="profileimg"
-              src="./images/profile-fallback.svg"
+              src="../images/profile-fallback.svg"
               alt="Profile Picture"
             />
           </a>
         </div>`;
 	const loginSignupBtns = `<button class="nav-btn" id="login-btn" onclick="goToLogin()">Login</button>
         <button class="nav-btn" id="signup-btn" onclick="goToSignup()">Sign up</button>`;
-
-	commisionBtn.innerText = firstBtn;
-	// commisionBtn.addEventListener("click");
 
 	// Get user data from token
 	const tokenData = parseJwt();
@@ -50,13 +45,16 @@ window.addEventListener("load", async () => {
 		navBtns.innerHTML = profileBtns;
 
 		if (new Date() >= tokenExpiry) {
-			window.open("./pages/login.html", "_self");
+			window.open("../pages/login.html", "_self");
 		}
 	}
 
-	// Append art to DOM
-	createCarousel(art.data, topArtCarousel);
-	// createCarousel(categoryArt.data, categoriesCarousel);
+	// Append Art to DOM
+	art.forEach((item) =>
+		artDisplay.appendChild(
+			createArtCard(item.url, item.description, item.name, item.cost)
+		)
+	);
 });
 
 // Route to login page
@@ -67,10 +65,93 @@ loginBtn.addEventListener("click", () => {
 signupBtn.addEventListener("click", () => {
 	goToSignup();
 });
-// Set where commision art btn takes you
-commisionBtn.addEventListener("click", () =>
-	commisionArtRouting(localStorage.getItem("role"))
-);
+// Create Art Card
+function createArtCard(imgSrc, imgDescription, title, cost) {
+	const card = document.createElement("div");
+	card.className = "art-card";
+	card.innerHTML = `<div class="card-img-container"><img class="card-img" src="${imgSrc}" alt="${imgDescription}"></div>
+                    <div class="card-text">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="cost">N${cost}</p>
+                    </div>`;
+	return card;
+}
+async function getArt() {
+	const url = "http://localhost:3000/art/";
+	try {
+		const response = await fetch(url);
+		const data = await response.json();
+		console.log(data);
+		return data;
+	} catch (error) {
+		console.log(error);
+		return error;
+	}
+}
+
+// Dropdown Code Start
+dropdownArray.forEach((item) => {
+	valueArray.push(item.textContent);
+});
+
+const closeDropdown = () => {
+	dropdown.classList.remove("open");
+};
+
+inputField.addEventListener("input", () => {
+	dropdown.classList.add("open");
+	let inputValue = inputField.value.toLowerCase();
+	let valueSubstring;
+	if (inputValue.length > 0) {
+		for (let j = 0; j < valueArray.length; j++) {
+			if (
+				!(
+					inputValue.substring(0, inputValue.length) ===
+					valueArray[j].substring(0, inputValue.length).toLowerCase()
+				)
+			) {
+				dropdownArray[j].classList.add("closed");
+			} else {
+				dropdownArray[j].classList.remove("closed");
+			}
+		}
+	} else {
+		for (let i = 0; i < dropdownArray.length; i++) {
+			dropdownArray[i].classList.remove("closed");
+		}
+	}
+});
+
+dropdownArray.forEach((item) => {
+	item.addEventListener("click", (evt) => {
+		inputField.value = item.textContent;
+		dropdownArray.forEach((dropdown) => {
+			dropdown.classList.add("closed");
+		});
+	});
+});
+
+inputField.addEventListener("focus", () => {
+	inputField.placeholder = "Type to filter";
+	dropdown.classList.add("open");
+	dropdownArray.forEach((dropdown) => {
+		dropdown.classList.remove("closed");
+	});
+});
+
+inputField.addEventListener("blur", () => {
+	inputField.placeholder = "Select Location";
+	dropdown.classList.remove("open");
+});
+
+document.addEventListener("click", (evt) => {
+	const isDropdown = dropdown.contains(evt.target);
+	const isInput = inputField.contains(evt.target);
+	if (!isDropdown && !isInput) {
+		dropdown.classList.remove("open");
+	}
+});
+// Dropdown Code End
 
 // Function Declarations
 function parseJwt() {
@@ -83,10 +164,10 @@ function parseJwt() {
 	return JSON.parse(window.atob(base64));
 }
 function goToLogin() {
-	window.open("./pages/login.html", "_self");
+	window.open("../pages/login.html", "_self");
 }
 function goToSignup() {
-	window.open("./pages/signup.html", "_self");
+	window.open("../pages/signup.html", "_self");
 }
 function commisionArtRouting(role) {
 	const token = localStorage.getItem("token");
@@ -95,55 +176,11 @@ function commisionArtRouting(role) {
 		return;
 	}
 	if (token && role !== "artist") {
-		window.open("./pages/commisionart.html", "_self");
+		window.open("../pages/commisionart.html", "_self");
 	} else if (token && role === "artist") {
-		window.open("./pages/postArt.html", "_self");
+		window.open("../pages/postArt.html", "_self");
 	}
 }
-async function getTopArt() {
-	const url = "http://localhost:3000/art/";
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
-		console.log(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-		return error;
-	}
-}
-async function getArtCategory() {
-	const url = "http://localhost:3000/art/categories";
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
-		console.log(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-		return error;
-	}
-}
-function createCarousel(data, carousel) {
-	carousel.innerHTML = "";
-	for (let i = 0; i < data.length; i++) {
-		const card = createCard(data[i].url, data[i].name, data[i].cost);
-		card.addEventListener("click", () => {
-			window.open(`./pages/product.html#${data[i].name.split(" ").join("-")}`);
-		});
-		carousel.appendChild(card);
-	}
-	console.log(carousel);
-}
-const createCard = (src, name) => {
-	const card = document.createElement("div");
-	card.classList.add("card");
-	card.innerHTML = `<div class="image">
-                        <img id="card-img" src=${src} alt=${name} />
-                    </div>
-                    <span class="title">${name}</span>`;
-	return card;
-};
 function addNotification(message, type) {
 	//create notification
 	const NotiElement = document.createElement("div");
@@ -159,6 +196,7 @@ function addNotification(message, type) {
 	NotiElement.style.paddingRight = "20px";
 	NotiElement.style.borderRadius = "5px";
 	NotiElement.style.border = "1px solid black";
+	NotiElement.style.cursor = "pointer";
 	NotiElement.style.backgroundColor =
 		type === "good" ? "rgb(26, 255, 60)" : type === "bad" ? "red" : "#1F88D9";
 	NotiElement.style.color =

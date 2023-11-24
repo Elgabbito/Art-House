@@ -186,7 +186,7 @@ function addNotification(message, success) {
 	});
 	// Remove popup
 	// By timer
-	setTimeout(() => document.body.removeChild(NotiElement), 3000);
+	setTimeout(() => document.body.removeChild(NotiElement), 5000);
 	// By button click
 	document.getElementById("closeBtn").addEventListener("click", () => {
 		document.body.removeChild(NotiElement);

@@ -4,8 +4,6 @@ const editProfileBtn = document.querySelector("#edit-profile");
 const myArtBtn = document.querySelector("#my-art");
 const logoutBtn = document.querySelector("#logout-btn");
 const deleteAccountBtn = document.querySelector("#delete-account");
-import { handleOnPageRouting } from "./adminDashboard.js";
-console.log(handleOnPageRouting);
 
 // Components
 const profileComponent = ` <h2>Edit Profile</h2>
