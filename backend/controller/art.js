@@ -1,6 +1,7 @@
 const {
 	storeArtData,
 	getArtData,
+	getSingleArt,
 	getArtByCategory,
 	getFilteredArt,
 } = require("../models/artmodel");
@@ -56,7 +57,12 @@ const fetchFilteredArt = async (req, res) => {
 	}
 };
 
-const fetchSingleArt = async (req, res) => {};
+const fetchSingleArt = async (req, res) => {
+	const { name } = req.params;
+	const result = await getSingleArt(name);
+	res.send(result);
+	console.log(name);
+};
 
 module.exports = {
 	uploadArt,

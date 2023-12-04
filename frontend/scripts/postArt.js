@@ -1,8 +1,12 @@
 const description = document.querySelector("#description");
 const file = document.querySelector("#image-upload-input");
+const inputField = document.querySelector(".chosen-value");
+const dropdown = document.querySelector(".value-list");
+const dropdownArray = document.querySelectorAll("li");
 const title = document.querySelector("#title-input");
 const cost = document.querySelector("#cost-input");
 const type = document.querySelector("#img-type");
+const valueArray = [];
 
 // Upload Data
 document.querySelector(".art-form").addEventListener("submit", async (e) => {
@@ -14,14 +18,16 @@ document.querySelector(".art-form").addEventListener("submit", async (e) => {
 	formData.append("cost", cost.value);
 	formData.append("type", type.value);
 	formData.append("description", description.value);
+	formData.append("location", inputField.value);
 
-	console.log(file.files[0]);
 	const response = await uploadData(formData);
 	const image = document.createElement("img");
 	const imgContainer = document.querySelector("#uploaded-img");
+
 	imgContainer.backgroundColor = "none";
 	image.src = response.data.url;
 	imgContainer.appendChild(image);
+
 	if (response.status == 200) {
 		addNotification("Uploaded successfully", true);
 		return;
@@ -111,12 +117,66 @@ function displayLoading(theme) {
 	});
 }
 function removeLoading() {}
-// function parseJwt() {
-//   const token = localStorage.getItem("token");
-//   if (!token) {
-//     return;
-//   }
-//   const base64Url = token.split(".")[1];
-//   const base64 = base64Url.replace("-", "+").replace("_", "/");
-//   return JSON.parse(window.atob(base64));
-// }
+// Dropdown Code Start
+dropdownArray.forEach((item) => {
+	valueArray.push(item.textContent);
+});
+
+const closeDropdown = () => {
+	dropdown.classList.remove("open");
+};
+
+inputField.addEventListener("input", () => {
+	dropdown.classList.add("open");
+	let inputValue = inputField.value.toLowerCase();
+	let valueSubstring;
+	if (inputValue.length > 0) {
+		for (let j = 0; j < valueArray.length; j++) {
+			if (
+				!(
+					inputValue.substring(0, inputValue.length) ===
+					valueArray[j].substring(0, inputValue.length).toLowerCase()
+				)
+			) {
+				dropdownArray[j].classList.add("closed");
+			} else {
+				dropdownArray[j].classList.remove("closed");
+			}
+		}
+	} else {
+		for (let i = 0; i < dropdownArray.length; i++) {
+			dropdownArray[i].classList.remove("closed");
+		}
+	}
+});
+
+dropdownArray.forEach((item) => {
+	item.addEventListener("pointerdown", (evt) => {
+		inputField.value = item.textContent;
+		dropdownArray.forEach((dropdown) => {
+			dropdown.classList.add("closed");
+		});
+	});
+});
+
+inputField.addEventListener("focus", () => {
+	inputField.placeholder = "Type to search";
+	dropdown.classList.add("open");
+	dropdownArray.forEach((dropdown) => {
+		dropdown.classList.remove("closed");
+	});
+});
+
+inputField.addEventListener("blur", () => {
+	inputField.placeholder = "Select Location";
+	dropdown.classList.remove("open");
+});
+
+document.addEventListener("click", (evt) => {
+	const isDropdown = dropdown.contains(evt.target);
+	const isInput = inputField.contains(evt.target);
+	if (!isDropdown && !isInput) {
+		dropdown.classList.remove("open");
+	}
+});
+// Dropdown Code End //

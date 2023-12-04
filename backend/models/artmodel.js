@@ -18,6 +18,11 @@ async function getArtByCategory() {
 	const dbResult = await db.query(query);
 	return dbResult.rows;
 }
+async function getSingleArt(name) {
+	const query = "SELECT * FROM art WHERE name = $1";
+	const dbResult = await db.query(query, [name]);
+	return dbResult.rows;
+}
 async function getFilteredArt(
 	minPrice = min,
 	maxPrice = max,
@@ -44,4 +49,10 @@ WHERE cost BETWEEN ${minPrice} AND ${maxPrice}
 	console.log("DBresults:", dbResult);
 	return dbResult.rows[0];
 }
-module.exports = { storeArtData, getArtData, getArtByCategory, getFilteredArt };
+module.exports = {
+	storeArtData,
+	getArtData,
+	getArtByCategory,
+	getFilteredArt,
+	getSingleArt,
+};

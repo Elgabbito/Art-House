@@ -307,10 +307,6 @@ body::-webkit-scrollbar-thumb {
 	position: absolute;
 	width: 100%;
 }
-.category-filter {
-	/* position: absolute; */
-	width: 100%;
-}
 
 .chosen-value,
 .value-list {
@@ -394,6 +390,10 @@ body::-webkit-scrollbar-thumb {
 }
 /* Category Filter */
 /* Hide the default checkbox */
+.category-filter {
+	/* position: absolute; */
+	width: 100%;
+}
 .checkbox-container input {
 	position: absolute;
 	opacity: 0;

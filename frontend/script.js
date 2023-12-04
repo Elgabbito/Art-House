@@ -139,6 +139,10 @@ function createCarousel(data, carousel) {
 const createCard = (src, name) => {
 	const card = document.createElement("div");
 	card.classList.add("card");
+	card.id = name;
+	card.addEventListener("click", () => {
+		window.open(`./pages/product.html?art=${name}`, "_self");
+	});
 	card.innerHTML = `<div class="image">
                         <img id="card-img" src=${src} alt=${name} />
                     </div>

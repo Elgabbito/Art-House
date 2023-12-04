@@ -1,84 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../public/savannah-favicon.svg"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="../styles/postArt.css" />
-    <script defer src="../scripts/postArt.js"></script>
-    <title>Savanna Showcase</title>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo-container">
-        <a href="../index.html" class="logo-text">Savanna Showcase</a>
-      </div>
-      <div class="nav-btns">
-        <div class="profileimage">
-          <a href="#">
-            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
-          </a>
-        </div>
-      </div>
-    </nav>
-    <section class="profile">
-      <main class="upload-info">
-        <div class="page-top">
-          <h2>Post Art</h2>
-          <button type="submit" form="art-form" class="submit-btn" id="upload" >Upload</button>
-        </div>
-        <div class="profile-data">
-        <form method="post" class="art-form" id="art-form" enctype="multipart/form-data">
-              <div class="image-upload-section">
-                <div id="uploaded-img">
-                </div>
-                <div class="image-upload-container">
-                      <input type="file" name="art" required accept="image/*" id="image-upload-input">
-                </div>
-              </div>
-  
-              <div class="inputs">
-                  <div class="title-cost">
-                    <div class="form-control">
-                      <label>Title: </label>
-                      <input type="text" id="title-input" required placeholder="Mystical Horizons" />
-                    </div>
 
-                    <div class="form-control">
-                      <label>Cost: </label>
-                      <input type="number" id="cost-input" required placeholder="₦5000" />
-                    </div>
-                  </div>
-                  <div class="form-control">
-                      <label>Type: </label>
-                      <select name="type" id="img-type" required>
-                        <option value="select an art type">Select an Art Type</option>
-                        <option value="drawing">Drawing</option>
-                        <option value="ceramic">Ceramic</option>
-                        <option value="painting">Painting</option>
-                        <option value="sculpture">Sculpture</option>
-                        <option value="photography">Photography</option>
-                      </select>
-                  </div>
-                  <div class="form-control">
-                      <label id="description-label">Description: </label>
-                      <textarea
-                      required
-                        type="text"
-                        id="description"
-                        placeholder="Enter a brief description of the artwork, including its inspiration, style, and any notable features."
-                      ></textarea>
-                    </div>
-                    <div class="error_section hide" id="email_error">
-                      <p class="invalid">Invalid email here is an example: davinci@gmail.com</p>
-                   </div>
-                </div>
-              </form>
-      </main>
-    </section>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="../styles/postArt.css" />
+  <script defer src="../scripts/postArt.js"></script>
+  <title>Savanna Showcase</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo-container">
+      <a href="../index.html" class="logo-text">Savanna Showcase</a>
+    </div>
+    <div class="nav-btns">
+      <div class="profileimage">
+        <a href="#">
+          <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+        </a>
+      </div>
+    </div>
+  </nav>
+  <section class="profile">
+    <main class="upload-info">
+      <div class="page-top">
+        <h2>Post Art</h2>
+        <button type="submit" form="art-form" class="submit-btn" id="upload">Upload</button>
+      </div>
+      <div class="profile-data">
+        <form method="post" class="art-form" id="art-form" enctype="multipart/form-data">
+          <div class="image-upload-section">
+            <div id="uploaded-img">
+            </div>
+            <div class="image-upload-container">
+              <input type="file" name="art" required accept="image/*" id="image-upload-input">
+            </div>
+          </div>
+
+          <div class="inputs">
+            <div class="title-cost">
+              <div class="form-control">
+                <label>Title: </label>
+                <input type="text" id="title-input" required placeholder="Mystical Horizons" />
+              </div>
+
+              <div class="form-control">
+                <label>Cost: </label>
+                <input type="number" id="cost-input" required placeholder="₦5000" />
+              </div>
+            </div>
+            <div class="form-control large-field">
+              <label>Type: </label>
+              <select name="type" id="img-type" required>
+                <option value="select an art type">Select an Art Type</option>
+                <option value="drawing">Drawing</option>
+                <option value="ceramic">Ceramic</option>
+                <option value="painting">Painting</option>
+                <option value="sculpture">Sculpture</option>
+                <option value="photography">Photography</option>
+              </select>
+            </div>
+            <div class="location-control large-field">
+              <label for="location-form">Location:</label>
+              <div class="location-filter">
+                <form class="location-search" name="location-form">
+                  <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+                  <ul class="value-list">
+                    <li>Abia</li>
+                    <li>Adamawa</li>
+                    <li>Akwa Ibom</li>
+                    <li>Anambra</li>
+                    <li>Bauchi</li>
+                    <li>Bayelsa</li>
+                    <li>Benue</li>
+                    <li>Borno</li>
+                    <li>Cross River</li>
+                    <li>Delta</li>
+                    <li>Ebonyi</li>
+                    <li>Edo</li>
+                    <li>Ekiti</li>
+                    <li>Enugu</li>
+                    <li>Gombe</li>
+                    <li>Imo</li>
+                    <li>Jigawa</li>
+                    <li>Kaduna</li>
+                    <li>Kano</li>
+                    <li>Katsina</li>
+                    <li>Kebbi</li>
+                    <li>Kogi</li>
+                    <li>Kwara</li>
+                    <li>Lagos</li>
+                    <li>Nasarawa</li>
+                    <li>Niger</li>
+                    <li>Ogun</li>
+                    <li>Ondo</li>
+                    <li>Osun</li>
+                    <li>Oyo</li>
+                    <li>Plateau</li>
+                    <li>Rivers</li>
+                    <li>Sokoto</li>
+                    <li>Taraba</li>
+                    <li>Yobe</li>
+                    <li>Zamfara</li>
+                  </ul>
+                </form>
+              </div>
+            </div>
+            <div class="form-control large-field">
+              <label id="description-label">Description: </label>
+              <textarea required type="text" id="description"
+                placeholder="Enter a brief description of the artwork, including its inspiration, style, and any notable features."></textarea>
+            </div>
+            <div class="error_section hide" id="email_error">
+              <p class="invalid">Invalid email here is an example: davinci@gmail.com</p>
+            </div>
+          </div>
+        </form>
+    </main>
+  </section>
+</body>
+
 </html>
