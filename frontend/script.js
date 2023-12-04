@@ -101,10 +101,11 @@ function commisionArtRouting(role) {
 	}
 }
 async function getTopArt() {
-	const url = "http://localhost:3000/art/";
+	const url = "http://localhost:4000/art/";
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
+
 		console.log(data);
 		return data;
 	} catch (error) {
@@ -113,7 +114,7 @@ async function getTopArt() {
 	}
 }
 async function getArtCategory() {
-	const url = "http://localhost:3000/art/categories";
+	const url = "http://localhost:4000/art/categories";
 	try {
 		const response = await fetch(url);
 		const data = await response.json();

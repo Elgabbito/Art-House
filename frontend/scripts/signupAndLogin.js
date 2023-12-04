@@ -203,7 +203,7 @@ async function handleLogin() {
 
 // HTTP Requests
 async function signup(data) {
-	const url = "http://localhost:3000/auth/signup";
+	const url = "http://localhost:4000/auth/signup";
 	try {
 		const response = await fetch(url, {
 			method: "POST",
@@ -223,7 +223,7 @@ async function signup(data) {
 }
 
 async function login(data) {
-	const url = "http://localhost:3000/auth/login";
+	const url = "http://localhost:4000/auth/login";
 	try {
 		const response = await fetch(url, {
 			method: "POST",

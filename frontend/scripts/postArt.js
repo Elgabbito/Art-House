@@ -32,7 +32,7 @@ document.querySelector(".art-form").addEventListener("submit", async (e) => {
 
 // Functions
 async function uploadData(data) {
-	const url = "http://localhost:3000/art/upload";
+	const url = "http://localhost:4000/art/upload";
 
 	try {
 		const result = await fetch(url, {

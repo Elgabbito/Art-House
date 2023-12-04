@@ -256,7 +256,7 @@ async function updateUserData(data) {
 	// Get userId
 	const userData = parseJwt();
 	const userId = userData.userId;
-	const url = `http://localhost:3000/user/edit/${userId}`;
+	const url = `http://localhost:4000/user/edit/${userId}`;
 
 	try {
 		const response = await fetch(url, {
