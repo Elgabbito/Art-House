@@ -16,8 +16,7 @@
     <div class="login-left"></div>
     <div class="login-right">
       <h1 class="login-signup-text">Login</h1>
-      <form method="post" class="login-form">
-        <div class="error-msg hide"><p>Invalid username or password</p></div>
+      <form class="login-form">
         <div class="form-control">
           <input type="email" id="email-input" required autocomplete="email" onchange="ValidateEmail()"/>
           <label>
@@ -33,6 +32,7 @@
         </div>
 
         <div class="form-control">
+          <button id="show-password"><img id="show-password-img" src="../images/eye-show.svg" alt=""></button>
           <input type="password" id="password-input" required autocomplete="current-password" oninput="ValidatePassword()" />
           <label>
             <span style="transition-delay: 0ms">P</span

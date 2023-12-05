@@ -1,98 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="../public/savannah-favicon.svg"
-      type="image/x-icon"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <link rel="stylesheet" href="../styles/adminDashboard.css" />
-    <script defer src="../scripts/adminDashboard.js"></script>
-    <title>Savanna Showcase</title>
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo-container">
-        <a href="./index.html" class="logo-text">Savanna Showcase</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <link rel="stylesheet" href="../styles/adminDashboard.css" />
+  <script defer type="module" src="../scripts/adminDashboard.js"></script>
+  <title>Savanna Showcase</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo-container">
+      <a href="./index.html" class="logo-text">Savanna Showcase</a>
+    </div>
+    <div>
+      <h2>Admin Dashboard</h2>
+    </div>
+    <div class="nav-btns">
+      <p id="username">Hi</p>
+      <div class="profileimage">
+        <a href="#">
+          <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+        </a>
       </div>
-      <div><h2>Admin Dashboard</h2></div>
-      <div class="nav-btns">
-        <p id="username">Hi</p>
-        <div class="profileimage">
-          <a href="#">
-            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
-          </a>
-        </div>
+    </div>
+  </nav>
+  <section class="profile">
+    <div class="profile-nav">
+      <div class="userprofileimage">
+        <a>
+          <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+        </a>
       </div>
-    </nav>
-    <section class="profile">
-      <div class="profile-nav">
-        <div class="userprofileimage">
-          <a>
-            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
-          </a>
-        </div>
-        <menu class="menu">
-          <button class="menu-btn" id="edit-profile">Edit Profile</button>
-          <button class="menu-btn" id="my-art">Create new admin</button>
-          <button class="menu-btn" id="manage-users">Manage users</button>
-          <button class="menu-btn" id="stats">Analytics</button>
-          <button class="menu-btn" id="settings">Settings</button>
-          <button class="menu-btn" id="logout-btn">Log out</button>
-        </menu>
-      </div>
-      <main class="profile-info">
+      <menu class="menu">
+        <button class="menu-btn" id="edit-profile">Edit Profile</button>
+        <button class="menu-btn" id="my-art">Create new admin</button>
+        <button class="menu-btn" id="manage-users">Manage users</button>
+        <button class="menu-btn" id="stats">Analytics</button>
+        <button class="menu-btn" id="settings">Settings</button>
+        <button class="menu-btn" id="logout-btn">Log out</button>
+      </menu>
+    </div>
+    <div class="profile-body">
+      <main class="profile-info show" id="edit-profile-body">
         <h2>Edit Profile</h2>
-        <div class="profile-data">
-          <form method="post" class="sign-form">
-            <div class="form-control">
-              <label>Update Username: </label>
-              <input type="text" id="name-input" placeholder="Marnin Audu" /><div class="submit-btn">
+        <form method="post" class="sign-form">
+          <div class="form-control">
+            <label>Update Username: </label>
+            <input type="text" class="name-input" placeholder="Marnin Audu" />
+            <div class="submit-btn">
               <a onclick="handleDataUpdate()"> Save </a>
             </div>
-            </div>
-            <div class="form-control">
-              <label>Update Email: </label>
-              <input
-                type="text"
-                id="email-input"
-                autocomplete="email"
-                placeholder="user@gmail.com"
-                required
-              /><div class="submit-btn">
+          </div>
+          <div class="form-control">
+            <label>Update Email: </label>
+            <input type="text" class="email-input" autocomplete="email" placeholder="user@gmail.com" required />
+            <div class="submit-btn">
               <a onclick="handleDataUpdate()"> Save </a>
             </div>
+          </div>
+          <div class="form-control" id="signup-psw">
+            <label for="password">Update Password: </label>
+            <div class="passwords">
+              <input type="password" name="password" id="password-input1" autocomplete="new-password"
+                placeholder="Old Password" required />
+              <input type="password" name="password" id="password-input2" autocomplete="" placeholder="New Password"
+                required />
             </div>
-            <div class="form-control" id="signup-psw">
-              <label for="password">Update Password: </label>
-              <div class="passwords">
-                <input
-                  type="password"
-                  name="password"
-                  id="password-input1"
-                  autocomplete="new-password"
-                  placeholder="Old Password"
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  id="password-input2"
-                  autocomplete=""
-                  placeholder="New Password"
-                  required
-                />
-              </div><div class="submit-btn">
+            <div class="submit-btn">
               <a onclick="handleDataUpdate()"> Save </a>
             </div>
-            </div>
-            
-          </form>
+          </div>
+        </form>
       </main>
-    </section>
-    <script id="analytics-js"></script>
-  </body>
+      <main class="profile-info hide" id="create-admin-body">
+        <h2 id="admin-header">Create Admin</h2>
+        <form method="post" class="sign-form">
+          <div class="form-control admin-input">
+            <label>Username: </label>
+            <input type="text" class="name-input" placeholder="Admin Audu" />
+          </div>
+          <div class="form-control admin-input">
+            <label>Email: </label>
+            <input type="text" class="email-input" autocomplete="email" placeholder="admin@gmail.com" required />
+          </div>
+          <div class="form-control admin-input" id="signup-psw">
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password-input" autocomplete="new-password"
+              placeholder="********" required />
+          </div>
+          <div class="submit-btn">
+            <a onclick="handleDataUpdate()"> Save </a>
+          </div>
+        </form>
+      </main>
+      <main class="profile-info hide" id="manage-users-body">
+        <h2>Manage Users</h2>
+        <form method="post" class="sign-form">
+          <div class="form-control">
+            <label>Deactivate Account: </label>
+            <input type="email" class="email-input" autocomplete="email" placeholder="user@gmail.com" required />
+            <div class="activitation-btn deactivate-btn">
+              <a onclick="handleDataUpdate()"> Deactivate </a>
+            </div>
+          </div>
+          <div class="form-control">
+            <label>Reactivate Account: </label>
+            <input type="email" class="email-input" autocomplete="email" placeholder="user@gmail.com" required />
+            <div class="activitation-btn activate-btn">
+              <a onclick="handleDataUpdate()"> Activate </a>
+            </div>
+          </div>
+        </form>
+        <section class="users">
+          <h1>User Lists</h1>
+          <div class="users-list">
+            <div class="users-list-header"><span>S/No</span><span>Name</span><span>Emails</span><span>Role</span></div>
+          </div>
+        </section>
+      </main>
+      <main class="profile-info hide" id="user-analytics-body">
+        <section class="analytics-component">
+          <h2 id="analytics-header">User Analytics</h2>
+          <div class="analytics-section">
+            <div class="user-data-cards">
+              <div class="card">
+                <div class="title">
+                  <p class="title-text">
+                    Total Monthly Visitors
+                  </p>
+                </div>
+                <div class="data">
+                  <p>39,500</p>
+                  <div class="range">
+                    <div class="fill">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title">
+                  <p class="title-text">
+                    Total Users
+                  </p>
+                </div>
+                <div class="data">
+                  <p>84,903</p>
+                  <div class="range">
+                    <div class="fill">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="title">
+                  <p class="title-text">
+                    Current Active Users
+                  </p>
+                </div>
+                <div class="data">
+                  <p>
+                    3,080
+                  </p>
+                  <div class="range">
+                    <div class="fill">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        </section>
+      </main>
+      <main class="profile-info hide" id="settings-body">
+        <section>
+          <h2>Settings</h2>
+          <div class="profile-data">
+            <h1 class="settings-header">
+              Sorry this page is currently under construction check in a little
+              later
+            </h1>
+          </div>
+        </section>
+      </main>
+    </div>
+  </section>
+  <script id="analytics-js"></script>
+</body>
+
 </html>

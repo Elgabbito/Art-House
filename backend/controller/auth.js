@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const db = require("../db/index");
 const jwt = require("jsonwebtoken");
 const usermodel = require("../models/usermodel");
 require("dotenv").config();
@@ -17,7 +16,7 @@ async function signup(req, res, next) {
       hashedPassword,
       role
     );
-    return res.send(result);
+    return res.status(200).send({ status: 200, message: "Sign up successful" });
   } catch (error) {
     return res.status(500).send(error);
   }
@@ -55,6 +54,7 @@ async function login(req, res, next) {
         }
       );
       return res.json({
+        status: 200,
         message: "Login Successful",
         token,
         user: user.name,
@@ -62,7 +62,7 @@ async function login(req, res, next) {
       });
     } else {
       // Password Doesn't Match
-      return res.status(401).json({ message: "Invalid Login" });
+      return res.status(401).json({ status: 401, message: "Invalid Login" });
     }
   } catch (error) {
     console.error("error in loing route:", error);
@@ -70,4 +70,4 @@ async function login(req, res, next) {
   }
 }
 
-module.exports = { signup, login };
+module.exports = { signup, login, hashPassword };

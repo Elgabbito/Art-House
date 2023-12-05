@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/explore.css" />
+    <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
+    <script defer src="../scripts/explore.js"></script>
+    <title>Savanna Showcase🖼️</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="../index.html" class="logo-text">Savanna Showcase</a>
+        </div>
+        <div class="nav-btns">
+            <button class="nav-btn" id="login-btn">Login</button>
+            <button class="nav-btn" id="signup-btn">Sign up</button>
+        </div>
+    </nav>
+    <div class="page-content">
+        <section class="main-container">
+            <aside class="filter-section">
+                <div class="filters-top">
+                    <h3>Filter</h3>
+                    <div class="submit-btn" id="submit">
+                        <a> Search </a>
+                    </div>
+                    <div class="submit-btn" id="clear">
+                        <a> Clear </a>
+                    </div>
+                </div>
+                <div class="filters">
+                    <div class="serach-filter">
+                        <div class="input-container">
+                            <input type="text" name="text" class="input" id="search-by-name"
+                                placeholder="search by name...">
+                            <button class="search-icon"><img src="../images/search-icon.svg" alt="" srcset=""></button>
+                        </div>
+                    </div>
+                    <div class="price-filter">
+                        <h5 class="filter-title">Price Range</h5>
+                        <div class="price-ranges">
+                            <div class="content">
+                                <div id="my-slider" se-min="-0" se-step="10" se-min-value="0" se-max-value="999999"
+                                    se-max="99999" class="slider">
+                                    <div class="slider-touch-left">
+                                        <span></span>
+                                    </div>
+                                    <div class="slider-touch-right">
+                                        <span></span>
+                                    </div>
+                                    <div class="slider-line">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prices-result">
+                                <span id="min-result">Min: ₦0</span><span id="max-result">Max: ₦999,990</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location-filter">
+                        <h5 class="filter-title">Location</h5>
+                        <form class="location-search">
+                            <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+                            <ul class="value-list">
+                                <li>Abia</li>
+                                <li>Adamawa</li>
+                                <li>Akwa Ibom</li>
+                                <li>Anambra</li>
+                                <li>Bauchi</li>
+                                <li>Bayelsa</li>
+                                <li>Benue</li>
+                                <li>Borno</li>
+                                <li>Cross River</li>
+                                <li>Delta</li>
+                                <li>Ebonyi</li>
+                                <li>Edo</li>
+                                <li>Ekiti</li>
+                                <li>Enugu</li>
+                                <li>Gombe</li>
+                                <li>Imo</li>
+                                <li>Jigawa</li>
+                                <li>Kaduna</li>
+                                <li>Kano</li>
+                                <li>Katsina</li>
+                                <li>Kebbi</li>
+                                <li>Kogi</li>
+                                <li>Kwara</li>
+                                <li>Lagos</li>
+                                <li>Nasarawa</li>
+                                <li>Niger</li>
+                                <li>Ogun</li>
+                                <li>Ondo</li>
+                                <li>Osun</li>
+                                <li>Oyo</li>
+                                <li>Plateau</li>
+                                <li>Rivers</li>
+                                <li>Sokoto</li>
+                                <li>Taraba</li>
+                                <li>Yobe</li>
+                                <li>Zamfara</li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="category-filter">
+                        <h5 class="filter-title">Categories</h5>
+                        <div class="checkbox-group">
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" value="sculpture" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Sculpture</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" value="painting" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Painting</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" value="drawing" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Drawing</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" value="ceramic" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Ceramic</span>
+                            </label>
+                            <label class="checkbox-container">
+                                <div>
+                                    <input type="checkbox" value="photograph" class="checkbox-input">
+                                    <div class="checkmark"></div>
+                                </div>
+                                <span>Photograph</span>
+                            </label>
+                        </div>
+                    </div>
+
+            </aside>
+            <main class="art-display">
+
+            </main>
+        </section>
+    </div>
+    <footer>
+        <div class="footer-left">
+            <h3 class="footer-heading">Join the Art Revolution</h3>
+            <p>
+                Become a part of something bigger. Connect, create, and collect with
+                us. Unleash the artist within and experience the heart and soul of
+                Nigeria's artistic renaissance.
+            </p>
+        </div>
+        <div class="footer-center">
+            <div>
+                <h3 class="footer-heading">About</h3>
+                <a href="#">Our Story</a>
+                <a href="#">Our Community</a>
+            </div>
+            <div class="footer-heading">
+                <h3>Legal</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

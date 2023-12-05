@@ -15,7 +15,7 @@
   <body>
     <nav class="navbar">
       <div class="logo-container">
-        <a href="./index.html" class="logo-text">Savanna Showcase</a>
+        <a href="../index.html" class="logo-text">Savanna Showcase</a>
       </div>
       <div class="nav-btns">
         <p id="username">Hi</p>
@@ -36,46 +36,87 @@
         <menu class="menu">
           <button class="menu-btn" id="edit-profile">Edit Profile</button>
           <button class="menu-btn" id="my-art">My Art</button>
+          <button class="menu-btn" id="settings">Settings</button>
           <button class="menu-btn" id="logout-btn">
             Log out
-          </button>
-          <button class="menu-btn" id="delete-account">
-            Delete Account
           </button>
         </menu>
       </div>
       <main class="profile-info">
         <h2>Edit Profile</h2>
-
         <div class="profile-data">
-          <form method="post" class="sign-form">
-            <div class="form-control">
-              <label>Update Username: </label>
-              <input type="text" id="name-input" placeholder="Marnin Audu" />
+          <form method="post" class="user-form">
+            <div>
+              <div class="form-control">
+                <label>Update Username: </label>
+                <input type="text" id="name-input" placeholder="Marnin Audu" />
+                <div class="submit-btn">
+                  <a id="update-name">Save</a>
+                </div>
             </div>
-            <div class="form-control">
-              <label>Update Email: </label>
-              <input
-                type="text"
-                id="email-input"
-                autocomplete="email"
-                placeholder="user@gmail.com"
-                required
-              />
+            <div class="error_section hide" id="name_error">
+             <p class="invalid">Name must be greater than 2 letters</p>
             </div>
-            <div class="form-control" id="signup-psw">
-              <label for="password">Update Password: </label>
-              <input
-                type="password"
-                name="password"
-                id="password-input"
-                autocomplete="new-password"
-                placeholder="********"
-                required
-              />
             </div>
-            <div class="submit-btn menu-btn">
-              <a onclick="handleDataUpdate()"> Save </a>
+            <div>
+              <div class="form-control">
+                <label>Update Email: </label>
+                <input
+                  type="text"
+                  id="email-input"
+                  autocomplete="email"
+                  placeholder="user@gmail.com"
+                  required
+                />
+                <div class="submit-btn">
+                  <a id="update-email">Save</a>
+                </div>
+              </div>
+              <div class="error_section hide" id="email_error">
+                <p class="invalid">Invalid email here is an example: davinci@gmail.com</p>
+              </div>
+            </div>
+            <div>
+              <div class="form-control" id="signup-psw">
+                <label for="password">Update Password: </label>
+                <div class="passwords">
+                  <input
+                    type="password"
+                    name="password"
+                    id="old-password-input"
+                    autocomplete="new-password"
+                    placeholder="Old Password"
+                    class="password-input"
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    id="new-password-input"
+                    autocomplete=""
+                    placeholder="New Password"
+                    class="password-input"
+                    required
+                  />
+                </div>
+                <div class="submit-btn">
+                  <a id="update-password">Save</a>
+                </div>
+              </div>
+
+              <div >
+                <label class="checkbox-container">
+                  <input id="show-password" type="checkbox" >
+                  <span class="checkmark"></span>
+                  <span id="show-password-text">Show Password</span>  
+                </label>
+                <div class="error_section hide" id="old-password-error">
+                  <p class="invalid">Password is too weak</p>
+                </div>
+                <div class="error_section hide" id="new-password-error">
+                  <p class="invalid">example email: davinci@gmail.com</p>
+                </div>
+              </div>
             </div>
           </form>
       </main>

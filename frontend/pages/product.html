@@ -1,10 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="../scripts/product.js"></script>
-    <title>Savanna Showcase🖼️</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
+  <link rel="stylesheet" href="../styles/product.css">
+  <script defer src="../scripts/product.js"></script>
+  <title>Savanna Showcase🖼️</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo-container">
+      <a href="../index.html" class="logo-text">Savanna Showcase</a>
+    </div>
+    <div class="nav-links">
+      <div class="nav-link-container">
+        <a class="nav-link" href="#about">About<span></span></a>
+      </div>
+      <div class="nav-link-container">
+        <a class="nav-link" href="./pages/explore.html" id="explore-link">Explore <span></span></a>
+      </div>
+      <div class="nav-link-container">
+        <a class="nav-link" href="#gallery">Gallery <span></span></a>
+      </div>
+      <div class="nav-link-container">
+        <a class="nav-link" id="commision-btn">Commision Art <span></span></a>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <button class="nav-btn" id="login-btn">Login</button>
+      <button class="nav-btn" id="signup-btn">Sign up</button>
+    </div>
+  </nav>
+  <main class="page-content">
+    <section class="layout-left">
+      <div id="image-container"></div>
+      <div class="detail">
+        <h4>Created By:</h4>
+        <span>Timothy Monimay</span>
+      </div>
+      <div class="detail">
+        <h4>Size:</h4>
+        <span>400cm x 400cm</span>
+      </div>
+      <div class="timer-details">
+        <h4>Auction ends in:</h4>
+        <div class="timer">
+          <div class="timer-img-container"><img class="timer-img" src="../images/timer-svg.svg" alt="timer">
+          </div>
+          <span id="timer-value">00 : 12 : 47 : 03</span>
+        </div>
+        <button id="set-bid">Set a bid</button>
+
+      </div>
+    </section>
+    <section class="layout-right">
+      <h1 class="title"></h1>
+      <p class="description"></p>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-left">
+      <h3 class="footer-heading">Join the Art Revolution</h3>
+      <p>
+        Become a part of something bigger. Connect, create, and collect with
+        us. Unleash the artist within and experience the heart and soul of
+        Nigeria's artistic renaissance.
+      </p>
+    </div>
+    <div class="footer-center">
+      <div>
+        <h3 class="footer-heading">About</h3>
+        <a href="#">Our Story</a>
+        <a href="#">Our Community</a>
+      </div>
+      <div class="footer-heading">
+        <h3>Legal</h3>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>
