@@ -18,10 +18,16 @@ async function getArtByCategory() {
 	const dbResult = await db.query(query);
 	return dbResult.rows;
 }
-async function getSingleArt(name) {
-	const query = "SELECT * FROM art WHERE name = $1";
-	const dbResult = await db.query(query, [name]);
-	return dbResult.rows;
+async function getSingleArt(id) {
+	const artDetailsQuery = "SELECT * FROM art WHERE id = $1;";
+	const bidsQuery = `SELECT users.name, bids.bid_id, bids.art_id, bids.amount, bids.start_time, bids.end_time, bids.bidder_id
+        FROM bids
+        JOIN users
+        ON bids.bidder_id = users.id
+        WHERE bids.art_id = $1;`;
+	const artDetailsResult = await db.query(artDetailsQuery, [id]);
+	const bidsResult = await db.query(bidsQuery, [id]);
+	return { details: artDetailsResult.rows[0], bids: bidsResult.rows.reverse() };
 }
 async function getFilteredArt(
 	minPrice = min,

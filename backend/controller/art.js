@@ -58,10 +58,10 @@ const fetchFilteredArt = async (req, res) => {
 };
 
 const fetchSingleArt = async (req, res) => {
-	const { name } = req.params;
-	const result = await getSingleArt(name);
+	const { id } = req.query;
+	console.log(req.query);
+	const result = await getSingleArt(id);
 	res.send(result);
-	console.log(name);
 };
 
 module.exports = {

@@ -128,7 +128,7 @@ async function getArtCategory() {
 function createCarousel(data, carousel) {
 	carousel.innerHTML = "";
 	for (let i = 0; i < data.length; i++) {
-		const card = createCard(data[i].url, data[i].name, data[i].cost);
+		const card = createCard(data[i].url, data[i].name, data[i].id);
 		card.addEventListener("click", () => {
 			window.open(`./pages/product.html#${data[i].name.split(" ").join("-")}`);
 		});
@@ -136,12 +136,12 @@ function createCarousel(data, carousel) {
 	}
 	console.log(carousel);
 }
-const createCard = (src, name) => {
+const createCard = (src, name, id) => {
 	const card = document.createElement("div");
 	card.classList.add("card");
 	card.id = name;
 	card.addEventListener("click", () => {
-		window.open(`./pages/product.html?art=${name}`, "_self");
+		window.open(`./pages/product.html?art=${name}&id=${id}`, "_self");
 	});
 	card.innerHTML = `<div class="image">
                         <img id="card-img" src=${src} alt=${name} />

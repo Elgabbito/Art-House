@@ -14,5 +14,5 @@ router.post("/upload", upload.single("art"), uploadArt);
 router.get("/", fetchArt);
 router.get("/categories", fetchTopArtByCategory);
 router.get("/filteredArt", fetchFilteredArt);
-router.get("/singleArt/:name", fetchSingleArt);
+router.get("/singleArt/", fetchSingleArt);
 module.exports = router;
