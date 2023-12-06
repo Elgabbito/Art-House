@@ -4,3 +4,4 @@ package-lock.json
 *.Identifier
 ./db/index.js
 ./uploads/*
+*.sql
