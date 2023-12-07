@@ -20,7 +20,7 @@ async function getArtByCategory() {
 }
 async function getSingleArt(id) {
 	const artDetailsQuery = "SELECT * FROM art WHERE id = $1;";
-	const bidsQuery = `SELECT users.name, bids.bid_id, bids.art_id, bids.amount, bids.start_time, bids.end_time, bids.bidder_id
+	const bidsQuery = `SELECT users.name, bids.bid_id, bids.art_id, bids.amount, bids.created_at, bids.bidder_id
         FROM bids
         JOIN users
         ON bids.bidder_id = users.id
