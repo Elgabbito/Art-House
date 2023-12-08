@@ -1,6 +1,7 @@
 const bidsEl = document.querySelector(".bids");
 const title = document.querySelector(".title");
 const timer = document.querySelector(".timer");
+const detailsEl = document.querySelector(".details");
 const navBtns = document.querySelector(".nav-btns");
 const buyNowBtn = document.getElementById("buy-now");
 const setBidBtn = document.querySelector("#set-bid");
@@ -56,6 +57,7 @@ window.addEventListener("load", async () => {
 		rightDetail.style.display = "none";
 	}
 	if (details.purchase_type !== "bid") {
+		detailsEl.style.display = "none";
 		bidsEl.style.display = "none";
 		purchaseDetails.style.display = "none";
 		rightDetail.setAttribute("style", "display:flex");

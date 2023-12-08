@@ -1,9 +1,23 @@
 const db = require("../db");
 
-async function storeArtData(title, public_id, url, cost, type, description) {
+async function storeArtData(
+	public_id,
+	url,
+	{ title, cost, type, description, location, purchase_type, artist_id }
+) {
 	const query =
-		"INSERT INTO art (name, public_id, url, cost,type, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
-	const values = [title, public_id, url, cost, type, description];
+		"INSERT INTO art (name, public_id, url, cost,type, description, location, purchase_type, artist_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *";
+	const values = [
+		title,
+		public_id,
+		url,
+		cost,
+		type,
+		description,
+		location,
+		purchase_type,
+		artist_id,
+	];
 	const dbResult = await db.query(query, values);
 	return dbResult.rows[0];
 }
