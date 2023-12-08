@@ -8,7 +8,11 @@ const adminRoutes = require("./routes/adminRoutes");
 const artRoutes = require("./routes/artRoutes");
 const cors = require("cors");
 const corsOptions = {
-	origin: ["http://localhost:5500", "https://savanna-showcase.netlify.app"],
+	origin: [
+		"http://localhost:5500",
+		"http://127.0.0.1:5500",
+		"https://savanna-showcase.netlify.app",
+	],
 	methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 };
 
