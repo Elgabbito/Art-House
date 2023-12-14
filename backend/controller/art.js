@@ -4,6 +4,7 @@ const {
 	getSingleArt,
 	getArtByCategory,
 	getFilteredArt,
+	deleteArtListing
 } = require("../models/artmodel");
 const fs = require("fs");
 const uploadImage = require("../cloudinary/index");
@@ -60,10 +61,21 @@ const fetchSingleArt = async (req, res) => {
 	res.send(result);
 };
 
+async  function deleteArt(req, res) {
+  const artId = req.params.artId;
+  try {
+    const deletedArt = await deleteArtListing(artId);
+    return res.json({ success: true, deletedArt });
+  } catch (error) {
+    console.error("Failed to Delete", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
 module.exports = {
 	uploadArt,
 	fetchArt,
 	fetchTopArtByCategory,
 	fetchSingleArt,
 	fetchFilteredArt,
+	deleteArt
 };

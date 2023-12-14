@@ -5,9 +5,24 @@ const { hashPassword } = require("../controller/auth");
 
 async function createUser(name, email, hashedPassword, user_role) {
 	const query =
-		"INSERT INTO users (name, email, password, user_role) VALUES ($1, $2, $3, $4) RETURNING *";
+		"INSERT INTO users (name, email, password, user_role) VALUES ($1, $2, $3, $4) RETURNING id";
 	const values = [name, email, hashedPassword, user_role];
-	return await db.query(query, values);
+	const response = await db.query(query, values)
+	console.log("RESPONSE",response.rows, "USER ROLE", user_role);
+	if (user_role === "artist") {
+		console.log("CREATING ARTIST");
+		const result = await createArtist(response.rows[0].id)
+		console.log(result);
+	}
+	return response.rows;
+}
+
+async function createArtist(user_id) {
+		const query = "INSERT INTO artists (user_id, art_types, rating, about) VALUES ($1, $2, $3, $4) RETURNING *";
+		const result = await db.query(query, [user_id, [], 0.0, ""])
+
+		console.log(result);
+	return response.rows;
 }
 
 async function getUserByEmail(email) {
@@ -21,10 +36,10 @@ async function getAllUsers() {
 }
 async function getArtistsModel() {
 	const query =
-		"SELECT name, email, user_role FROM users WHERE user_role = 'artist'";
+		"SELECT users.name, users.profile_picture, artists.art_types, artists.rating FROM users JOIN artists ON users.id = artists.user_id WHERE users.user_role = 'artist'";
 	return await db.query(query);
 }
-
+ 
 async function updateUserProfile(updatedFields, id) {
 	const { value, fieldToUpdate } = updatedFields;
 	console.log(

@@ -9,7 +9,7 @@
 body {
 	color: #fae6c7;
 	background-color: #1c1c1c;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 /* Navbar Styles */
 .navbar {
@@ -73,7 +73,7 @@ body {
 	margin-bottom: 30px;
 }
 .profile {
-	height: 85dvh;
+	/* height: 85dvh; */
 	display: flex;
 }
 .userprofileimage {

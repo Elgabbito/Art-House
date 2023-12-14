@@ -5,9 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon">
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../styles/commisionart.css" />
-  <script defer src="#"></script>
+  <script defer src="../scripts/commissionart.js"></script>
   <title>Savanna Showcase</title>
 
 </head>
@@ -36,28 +36,156 @@
   </nav>
 
 
-  <div class="main">
-    <div class="main-left">
-      <div class="mainleft-header">
-        <h1>The Beauty <br>of Nigerian <br> Arts</h1>
+  <main class="main">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-left-header">
+          <h1>The Beauty <br>of Nigerian <br> Art</h1>
+        </div>
+        <div class="hero-left-content">
+          <h4> <a href="#"> Meet our Artists</a></h4>
+        </div>
       </div>
-      <div class="mainleft-content">
-        <h4> <a href="./postArt.html"> List An Artwork</a></h4>
-        <p>Let's unite in showcasing the vibrant tapestry of Nigerian art to the world. Through the lens of our rich
-          heritage and diverse creativity, we have the power to captivate hearts globally. Embrace the opportunity to
-          share your unique narratives, allowing people from every corner of the globe to appreciate the beauty that
-          Nigeria has to offer. Let your art transcend borders, becoming a symbol of unity and understanding. Together,
-          let's allow the world to collect a piece of Nigeria's artistic soul.</p>
+      <div class="hero-right">
+        <div class="hero-img">
+          <img src="../images/mixart.png">
+        </div>
       </div>
-    </div>
+    </section>
+    <!-- View Artists -->
+    <section class="main-container">
+      <aside class="filter-section">
+        <div class="filters-top">
+          <h3>Filter</h3>
+          <div class="submit-btn" id="submit">
+            <a> Search </a>
+          </div>
+          <div class="submit-btn" id="clear">
+            <a> Clear </a>
+          </div>
+        </div>
+        <div class="filters">
+          <div class="serach-filter">
+            <div class="input-container">
+              <input type="text" name="text" class="input" id="search-by-name" placeholder="search by name...">
+              <button class="search-icon"><img src="../images/search-icon.svg" alt="" srcset=""></button>
+            </div>
+          </div>
+          <div class="price-filter">
+            <h5 class="filter-title">Price Range</h5>
+            <div class="price-ranges">
+              <div class="content">
+                <div id="my-slider" se-min="-0" se-step="10" se-min-value="0" se-max-value="999999" se-max="99999"
+                  class="slider">
+                  <div class="slider-touch-left">
+                    <span></span>
+                  </div>
+                  <div class="slider-touch-right">
+                    <span></span>
+                  </div>
+                  <div class="slider-line">
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+              <div class="prices-result">
+                <span id="min-result">Min: ₦0</span><span id="max-result">Max: ₦999,990</span>
+              </div>
+            </div>
+          </div>
+          <div class="location-filter">
+            <h5 class="filter-title">Location</h5>
+            <form class="location-search">
+              <input class="chosen-value" type="text" value="" placeholder="Type to filter">
+              <ul class="value-list">
+                <li>Abia</li>
+                <li>Adamawa</li>
+                <li>Akwa Ibom</li>
+                <li>Anambra</li>
+                <li>Bauchi</li>
+                <li>Bayelsa</li>
+                <li>Benue</li>
+                <li>Borno</li>
+                <li>Cross River</li>
+                <li>Delta</li>
+                <li>Ebonyi</li>
+                <li>Edo</li>
+                <li>Ekiti</li>
+                <li>Enugu</li>
+                <li>Gombe</li>
+                <li>Imo</li>
+                <li>Jigawa</li>
+                <li>Kaduna</li>
+                <li>Kano</li>
+                <li>Katsina</li>
+                <li>Kebbi</li>
+                <li>Kogi</li>
+                <li>Kwara</li>
+                <li>Lagos</li>
+                <li>Nasarawa</li>
+                <li>Niger</li>
+                <li>Ogun</li>
+                <li>Ondo</li>
+                <li>Osun</li>
+                <li>Oyo</li>
+                <li>Plateau</li>
+                <li>Rivers</li>
+                <li>Sokoto</li>
+                <li>Taraba</li>
+                <li>Yobe</li>
+                <li>Zamfara</li>
+              </ul>
+            </form>
+          </div>
+          <div class="category-filter">
+            <h5 class="filter-title">Categories</h5>
+            <div class="checkbox-group">
+              <label class="checkbox-container">
+                <div>
+                  <input type="checkbox" value="sculpture" class="checkbox-input">
+                  <div class="checkmark"></div>
+                </div>
+                <span>Sculpture</span>
+              </label>
+              <label class="checkbox-container">
+                <div>
+                  <input type="checkbox" value="painting" class="checkbox-input">
+                  <div class="checkmark"></div>
+                </div>
+                <span>Painting</span>
+              </label>
+              <label class="checkbox-container">
+                <div>
+                  <input type="checkbox" value="drawing" class="checkbox-input">
+                  <div class="checkmark"></div>
+                </div>
+                <span>Drawing</span>
+              </label>
+              <label class="checkbox-container">
+                <div>
+                  <input type="checkbox" value="ceramic" class="checkbox-input">
+                  <div class="checkmark"></div>
+                </div>
+                <span>Ceramic</span>
+              </label>
+              <label class="checkbox-container">
+                <div>
+                  <input type="checkbox" value="photograph" class="checkbox-input">
+                  <div class="checkmark"></div>
+                </div>
+                <span>Photograph</span>
+              </label>
+            </div>
+          </div>
 
+      </aside>
+      <main class="art-display">
 
-    <div class="main-right">
-      <div class="main-img">
-        <img src="../images/mixart.png">
-      </div>
-    </div>
-  </div>
+      </main>
+
+    </section>
+  </main>
   </div>
   <footer>
     <div class="footer-left">

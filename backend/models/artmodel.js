@@ -64,10 +64,17 @@ WHERE cost BETWEEN ${minPrice} AND ${maxPrice}
     ${category.includes("photograph") ? "'photograph'" : ""})`
 			: ""
 	};`;
-	// Add loaction to upload setction : ${location ? `AND location = '${location}'` : ""}
+	// Add location to upload setction : ${location ? `AND location = '${location}'` : ""}
 	const dbResult = await db.query(query);
 	console.log("DBresults:", dbResult);
 	return dbResult.rows[0];
+}
+async function deleteArtListing(artId) {
+     const query = "DELETE FROM art WHERE id= $1 RETURNING *";
+     const values = [artId];
+
+     const result = await db.query(query, values)
+     return result.rows[0];
 }
 module.exports = {
 	storeArtData,
@@ -75,4 +82,5 @@ module.exports = {
 	getArtByCategory,
 	getFilteredArt,
 	getSingleArt,
+	deleteArtListing
 };

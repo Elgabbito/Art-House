@@ -7,14 +7,14 @@ const saltRounds = Number(process.env.saltRounds);
 const secretKey = process.env.secretKey;
 
 async function signup(req, res, next) {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, user_role } = req.body;
   try {
     const hashedPassword = await hashPassword(password, saltRounds);
     const result = await usermodel.createUser(
       name,
       email,
       hashedPassword,
-      role
+      user_role
     );
     return res.status(200).send({ status: 200, message: "Sign up successful" });
   } catch (error) {
