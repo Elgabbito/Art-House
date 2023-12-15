@@ -4,28 +4,25 @@ const {
 	getSingleArt,
 	getArtByCategory,
 	getFilteredArt,
+	deleteArtListing,
 } = require("../models/artmodel");
+const fs = require("fs");
 const uploadImage = require("../cloudinary/index");
 
 const uploadArt = async (req, res) => {
 	try {
 		console.log(req.body);
-		const { title, cost, description, type } = req.body;
+		const { title, cost, description, type, location, purchase_type } =
+			req.body;
 		const cloudinaryResponse = await uploadImage(req.file.path);
 		const { public_id, secure_url } = cloudinaryResponse;
-		const result = await storeArtData(
-			title,
-			public_id,
-			secure_url,
-			cost,
-			type,
-			description
-		);
+		const result = await storeArtData(public_id, secure_url, req.body);
 		res.status(200).json({
 			message: "Image uploaded successfully",
 			data: { url: result.url, name: result.name },
 			status: 200,
 		});
+		fs.unlinkSync(req.file.path);
 	} catch (error) {
 		console.error("Error Uploading Art", error);
 		res
@@ -47,9 +44,9 @@ const fetchTopArtByCategory = async (req, res) => {
 const fetchFilteredArt = async (req, res) => {
 	try {
 		const { min, max, name, location, category } = req.query;
-		console.log(min, max, name, location, category);
-		console.log(req.query);
 		const result = await getFilteredArt(min, max, name, location, category);
+
+		console.log(req.query);
 		res.send(result);
 	} catch (error) {
 		res.send(error);
@@ -64,10 +61,21 @@ const fetchSingleArt = async (req, res) => {
 	res.send(result);
 };
 
+async function deleteArt(req, res) {
+	const artId = req.params.artId;
+	try {
+		const deletedArt = await deleteArtListing(artId);
+		return res.json({ success: true, deletedArt });
+	} catch (error) {
+		console.error("Failed to Delete", error);
+		return res.status(500).json({ message: "Internal Server Error" });
+	}
+}
 module.exports = {
 	uploadArt,
 	fetchArt,
 	fetchTopArtByCategory,
 	fetchSingleArt,
 	fetchFilteredArt,
+	deleteArt,
 };

@@ -1,9 +1,23 @@
 const db = require("../db");
 
-async function storeArtData(title, public_id, url, cost, type, description) {
+async function storeArtData(
+	public_id,
+	url,
+	{ title, cost, type, description, location, purchase_type, artist_id }
+) {
 	const query =
-		"INSERT INTO art (name, public_id, url, cost,type, description) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
-	const values = [title, public_id, url, cost, type, description];
+		"INSERT INTO art (name, public_id, url, cost,type, description, location, purchase_type, artist_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *";
+	const values = [
+		title,
+		public_id,
+		url,
+		cost,
+		type,
+		description,
+		location,
+		purchase_type,
+		artist_id,
+	];
 	const dbResult = await db.query(query, values);
 	return dbResult.rows[0];
 }
@@ -20,7 +34,7 @@ async function getArtByCategory() {
 }
 async function getSingleArt(id) {
 	const artDetailsQuery = "SELECT * FROM art WHERE id = $1;";
-	const bidsQuery = `SELECT users.name, bids.bid_id, bids.art_id, bids.amount, bids.start_time, bids.end_time, bids.bidder_id
+	const bidsQuery = `SELECT users.name, bids.bid_id, bids.art_id, bids.amount, bids.created_at, bids.bidder_id
         FROM bids
         JOIN users
         ON bids.bidder_id = users.id
@@ -36,24 +50,40 @@ async function getFilteredArt(
 	location,
 	category
 ) {
-	// const query = `SELECT * art WHERE  ${name ? "name=" + name : ""}`;
+	// console.log(
+	// 	"Min",
+	// 	minPrice,
+	// 	"Max",
+	// 	maxPrice,
+	// 	"Name",
+	// 	name,
+	// 	"Category",
+	// 	category
+	// );
 	const query = `SELECT *
 FROM art
 WHERE cost BETWEEN ${minPrice} AND ${maxPrice}
-  ${name ? `AND name = '${name}'` : ""}
+  ${name ? `AND name LIKE '%${name}%'` : ""}
   ${
 		category
-			? `AND type IN (${category.includes("painting") ? "'painting'" : ""},
-    ${category.includes("ceramic") ? "'ceramic'" : ""},
-    ${category.includes("sculpture") ? "'sculpture'" : ""},
-    ${category.includes("drawing") ? "'drawing'" : ""},
+			? `AND type IN (${category.includes("painting") ? "'painting'" : ""}
+    ${category.includes("ceramic") ? "'ceramic'" : ""}
+    ${category.includes("sculpture") ? "'sculpture'" : ""}
+    ${category.includes("drawing") ? "'drawing'" : ""}
     ${category.includes("photograph") ? "'photograph'" : ""})`
 			: ""
 	};`;
-	// Add loaction to upload setction : ${location ? `AND location = '${location}'` : ""}
+	// Add location to upload setction : ${location ? `AND location = '${location}'` : ""}
 	const dbResult = await db.query(query);
-	console.log("DBresults:", dbResult);
-	return dbResult.rows[0];
+	// console.log("DBresults:", dbResult.rows);
+	return dbResult.rows;
+}
+async function deleteArtListing(artId) {
+	const query = "DELETE FROM art WHERE id= $1 RETURNING *";
+	const values = [artId];
+
+	const result = await db.query(query, values);
+	return result.rows[0];
 }
 module.exports = {
 	storeArtData,
@@ -61,4 +91,5 @@ module.exports = {
 	getArtByCategory,
 	getFilteredArt,
 	getSingleArt,
+	deleteArtListing,
 };

@@ -1,3 +1,4 @@
+const purchaseTypes = document.querySelectorAll(".radio-btn");
 const description = document.querySelector("#description");
 const file = document.querySelector("#image-upload-input");
 const inputField = document.querySelector(".chosen-value");
@@ -10,6 +11,19 @@ const valueArray = [];
 
 // Upload Data
 document.querySelector(".art-form").addEventListener("submit", async (e) => {
+	// Get purchase type from checkboxes and
+	// get artist id from local storage
+	let tokenData = parseJwt();
+	let purchaseType,
+		artistId = tokenData.id;
+	console.log(artistId);
+	purchaseTypes.forEach((btn) => {
+		// Get user type
+		if (btn.checked) {
+			purchaseType = btn.value;
+		}
+	});
+
 	e.preventDefault();
 	const formData = new FormData();
 
@@ -19,6 +33,8 @@ document.querySelector(".art-form").addEventListener("submit", async (e) => {
 	formData.append("type", type.value);
 	formData.append("description", description.value);
 	formData.append("location", inputField.value);
+	formData.append("purchase_type", purchaseType);
+	formData.append("artist_id", purchaseType);
 
 	const response = await uploadData(formData);
 	const image = document.createElement("img");
@@ -180,3 +196,13 @@ document.addEventListener("click", (evt) => {
 	}
 });
 // Dropdown Code End //
+
+function parseJwt() {
+	const token = localStorage.getItem("token");
+	if (!token) {
+		return;
+	}
+	const base64Url = token.split(".")[1];
+	const base64 = base64Url.replace("-", "+").replace("_", "/");
+	return JSON.parse(window.atob(base64));
+}

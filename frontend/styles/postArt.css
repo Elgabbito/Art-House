@@ -9,7 +9,7 @@
 body {
 	color: #fae6c7;
 	background-color: #1c1c1c;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 /* Navbar Styles */
 .navbar {
@@ -73,7 +73,7 @@ body {
 	margin-bottom: 30px;
 }
 .profile {
-	height: 85dvh;
+	/* height: 85dvh; */
 	display: flex;
 }
 .userprofileimage {
@@ -144,7 +144,7 @@ img {
 	margin-bottom: 0;
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	gap: 2%;
 	align-items: center;
 	min-width: 100px;
@@ -362,4 +362,57 @@ img {
 	overflow: hidden;
 	padding: 0;
 	opacity: 0;
+}
+/* Select Role */
+.userroles {
+	padding: 15px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.userroles h3:nth-child(1) {
+	padding-bottom: 1em;
+}
+.roles-container {
+	display: flex;
+	gap: 2em;
+}
+.radio-inputs {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	border-radius: 0.5rem;
+	background-color: #eee;
+	box-sizing: border-box;
+	box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+	padding: 0.25rem;
+	width: 300px;
+	font-size: 14px;
+}
+
+.radio-inputs .radio {
+	flex: 1 1 auto;
+	text-align: center;
+}
+
+.radio-inputs .radio input {
+	display: none;
+}
+
+.radio-inputs .radio .name {
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0.5rem;
+	border: none;
+	padding: 0.5rem 0;
+	color: rgba(51, 65, 85, 1);
+	transition: all 0.15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked + .name {
+	background-color: #fae6c7;
+	border: 1px solid #1c1c1c;
+	font-weight: 600;
 }

@@ -7,6 +7,7 @@ const {
 	fetchTopArtByCategory,
 	fetchSingleArt,
 	fetchFilteredArt,
+	deleteArt
 } = require("../controller/art");
 const upload = multer({ dest: "./uploads" });
 
@@ -15,4 +16,5 @@ router.get("/", fetchArt);
 router.get("/categories", fetchTopArtByCategory);
 router.get("/filteredArt", fetchFilteredArt);
 router.get("/singleArt/", fetchSingleArt);
+router.delete("/delete", deleteArt);
 module.exports = router;

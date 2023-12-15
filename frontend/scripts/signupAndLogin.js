@@ -15,7 +15,7 @@ const userSignupData = {
 	name: "",
 	email: "",
 	password: "",
-	role: "",
+	user_role: "",
 };
 showPasswordBtn.addEventListener("click", (e) => {
 	ShowOrHidePassword(

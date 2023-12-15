@@ -51,8 +51,23 @@
                 <input type="number" id="cost-input" required placeholder="₦5000" />
               </div>
             </div>
+            <!-- Purchase Type Checkbox -->
             <div class="form-control large-field">
-              <label>Type: </label>
+              <label>Purchase Type: </label>
+              <div class="radio-inputs">
+                <label class="radio">
+                  <input class="radio-btn" type="radio" value="Bid" name="radio" checked>
+                  <span class="name">Bid</span>
+                </label>
+                <label class="radio">
+                  <input class="radio-btn" type="radio" value="Buy Now" name="radio">
+                  <span class="name">Buy Now</span>
+                </label>
+              </div>
+            </div>
+            <!-- Art Type Dropdown -->
+            <div class="form-control large-field">
+              <label>Art Type: </label>
               <select name="type" id="img-type" required>
                 <option value="select an art type">Select an Art Type</option>
                 <option value="drawing">Drawing</option>
@@ -62,6 +77,7 @@
                 <option value="photography">Photography</option>
               </select>
             </div>
+            <!-- Location Dropdown -->
             <div class="location-control large-field">
               <label for="location-form">Location:</label>
               <div class="location-filter">
