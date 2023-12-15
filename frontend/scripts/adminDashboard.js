@@ -129,7 +129,7 @@ function updateView(componentId) {
 }
 
 async function getUsers() {
-	const url = "http://localhost:4000/user/";
+	const url = `${baseServerUrl}/user/`;
 	try {
 		const result = await fetch(url);
 		if (!result.ok) {
@@ -142,7 +142,7 @@ async function getUsers() {
 }
 
 async function createAdmin(data) {
-	const url = "http://localhost:4000/auth/signup";
+	const url = `${baseServerUrl}/auth/signup`;
 	try {
 		const response = await fetch(url, {
 			method: "POST",

@@ -11,6 +11,7 @@ const specialChar = document.getElementById("special_char");
 const showPasswordBtn = document.getElementById("show-password");
 const userPassword = document.getElementById("password-input");
 const passwordImg = document.getElementById("show-password-img");
+import { baseServerUrl } from "./baseServerUrl.mjs";
 const userSignupData = {
 	name: "",
 	email: "",
@@ -203,7 +204,7 @@ async function handleLogin() {
 
 // HTTP Requests
 async function signup(data) {
-	const url = "http://localhost:4000/auth/signup";
+	const url = `${baseServerUrl()}/auth/signup`;
 	try {
 		const response = await fetch(url, {
 			method: "POST",
@@ -223,7 +224,7 @@ async function signup(data) {
 }
 
 async function login(data) {
-	const url = "http://localhost:4000/auth/login";
+	const url = `${baseServerUrl()}/auth/login`;
 	try {
 		const response = await fetch(url, {
 			method: "POST",

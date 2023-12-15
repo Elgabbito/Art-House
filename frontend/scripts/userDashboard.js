@@ -1,3 +1,4 @@
+import { baseServerUrl } from "./baseServerUrl.mjs";
 const main = document.querySelector(".profile-info");
 const username = document.querySelector("#username");
 const myArtBtn = document.querySelector("#my-art");
@@ -256,7 +257,7 @@ async function updateUserData(data) {
 	// Get userId
 	const userData = parseJwt();
 	const userId = userData.userId;
-	const url = `http://localhost:4000/user/edit/${userId}`;
+	const url = `${baseServerUrl()}/user/edit/${userId}`;
 
 	try {
 		const response = await fetch(url, {

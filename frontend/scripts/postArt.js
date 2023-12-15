@@ -8,6 +8,7 @@ const title = document.querySelector("#title-input");
 const cost = document.querySelector("#cost-input");
 const type = document.querySelector("#img-type");
 const valueArray = [];
+import { baseServerUrl } from "./baseServerUrl.mjs";
 
 // Upload Data
 document.querySelector(".art-form").addEventListener("submit", async (e) => {
@@ -54,7 +55,7 @@ document.querySelector(".art-form").addEventListener("submit", async (e) => {
 
 // Functions
 async function uploadData(data) {
-	const url = "http://localhost:4000/art/upload";
+	const url = `${baseServerUrl()}/art/upload`;
 
 	try {
 		const result = await fetch(url, {

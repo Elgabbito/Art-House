@@ -7,6 +7,7 @@ const topArtCarousel = document.querySelector("#top-art");
 const categoriesCarousel = document.querySelector("#categories");
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
+import { baseServerUrl } from "./baseServerUrl.mjs";
 
 // Event Listeners
 // Check if the user is logged in
@@ -101,7 +102,7 @@ function commisionArtRouting(role) {
 	}
 }
 async function getTopArt() {
-	const url = "http://localhost:4000/art/";
+	const url = `${baseServerUrl()}/art/`;
 	try {
 		const response = await fetch(url);
 		const data = await response.json();

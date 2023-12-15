@@ -14,6 +14,7 @@ const dropdownArray = document.querySelectorAll("li");
 const categories = document.querySelectorAll(".checkbox-input");
 const urlParams = new URLSearchParams(window.location.search);
 const valueArray = [];
+import { baseServerUrl } from "./baseServerUrl.mjs";
 
 // Check if the useris logged in
 window.addEventListener("load", async () => {
@@ -143,7 +144,7 @@ function createArtistCard(imgSrc, art_types, name, rating) {
 	return card;
 }
 async function getArt() {
-	const url = "http://localhost:4000/user/artists";
+	const url = `${baseServerUrl()}/user/artists`;
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
@@ -158,7 +159,7 @@ console.log(urlParams.toString());
 
 async function getFilteredArt() {
 	console.log(window.location.search);
-	const url = `http://localhost:4000/art/filteredArt?${urlParams.toString()}`;
+	const url = `${baseServerUrl()}/art/filteredArt?${urlParams.toString()}`;
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
