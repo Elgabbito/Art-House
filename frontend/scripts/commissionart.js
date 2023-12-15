@@ -130,6 +130,9 @@ function createArtistCard(imgSrc, art_types, name, rating) {
 		stars.appendChild(star);
 	}
 
+	card.addEventListener("click", () => {
+		window.open("../pages/chat.html");
+	});
 	card.className = "art-card";
 	card.innerHTML = `<div class="card-img-container"><img class="card-img" src="${imgSrc}" alt="${""}"></div>
                     <div class="card-text">
