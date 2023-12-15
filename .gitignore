@@ -4,3 +4,4 @@ package-lock.json
 *.Identifier
 
 uploads/*
+baseServerUrl.mjs
