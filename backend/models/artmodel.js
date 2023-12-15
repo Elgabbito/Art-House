@@ -50,31 +50,40 @@ async function getFilteredArt(
 	location,
 	category
 ) {
-	// const query = `SELECT * art WHERE  ${name ? "name=" + name : ""}`;
+	// console.log(
+	// 	"Min",
+	// 	minPrice,
+	// 	"Max",
+	// 	maxPrice,
+	// 	"Name",
+	// 	name,
+	// 	"Category",
+	// 	category
+	// );
 	const query = `SELECT *
 FROM art
 WHERE cost BETWEEN ${minPrice} AND ${maxPrice}
-  ${name ? `AND name = '${name}'` : ""}
+  ${name ? `AND name LIKE '%${name}%'` : ""}
   ${
 		category
-			? `AND type IN (${category.includes("painting") ? "'painting'" : ""},
-    ${category.includes("ceramic") ? "'ceramic'" : ""},
-    ${category.includes("sculpture") ? "'sculpture'" : ""},
-    ${category.includes("drawing") ? "'drawing'" : ""},
+			? `AND type IN (${category.includes("painting") ? "'painting'" : ""}
+    ${category.includes("ceramic") ? "'ceramic'" : ""}
+    ${category.includes("sculpture") ? "'sculpture'" : ""}
+    ${category.includes("drawing") ? "'drawing'" : ""}
     ${category.includes("photograph") ? "'photograph'" : ""})`
 			: ""
 	};`;
 	// Add location to upload setction : ${location ? `AND location = '${location}'` : ""}
 	const dbResult = await db.query(query);
-	console.log("DBresults:", dbResult);
-	return dbResult.rows[0];
+	// console.log("DBresults:", dbResult.rows);
+	return dbResult.rows;
 }
 async function deleteArtListing(artId) {
-     const query = "DELETE FROM art WHERE id= $1 RETURNING *";
-     const values = [artId];
+	const query = "DELETE FROM art WHERE id= $1 RETURNING *";
+	const values = [artId];
 
-     const result = await db.query(query, values)
-     return result.rows[0];
+	const result = await db.query(query, values);
+	return result.rows[0];
 }
 module.exports = {
 	storeArtData,
@@ -82,5 +91,5 @@ module.exports = {
 	getArtByCategory,
 	getFilteredArt,
 	getSingleArt,
-	deleteArtListing
+	deleteArtListing,
 };

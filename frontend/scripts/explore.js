@@ -110,11 +110,18 @@ signupBtn.addEventListener("click", () => {
 });
 // Search by filter
 filterBtn.addEventListener("click", async () => {
-	const response = await getFilteredArt();
-	console.log(response);
+	const art = await getFilteredArt();
+	console.log(art);
+
+	artDisplay.innerHTML = "";
+	art.forEach((item) =>
+		artDisplay.appendChild(
+			createArtCard(item.url, item.description, item.name, item.cost)
+		)
+	);
 });
 // Search for art by name
-searchBarBtn.addEventListener("click", () => {
+searchBar.addEventListener("blur", () => {
 	searchBar.placeholder = searchBar.value;
 	addURLParam("name", searchBar.value, true);
 });

@@ -68,7 +68,20 @@ window.addEventListener("load", async () => {
 
 // Search by filter
 filterBtn.addEventListener("click", async () => {
-	const response = await getFilteredArt();
+	const artists = await getFilteredArt();
+	console.log(artists);
+
+	artDisplay.innerHTML = "";
+	artists.forEach((artist) =>
+		artDisplay.appendChild(
+			createArtistCard(
+				artist.profile_picture,
+				artist.art_types,
+				artist.name,
+				artist.rating
+			)
+		)
+	);
 	console.log(response);
 });
 // Search for art by name

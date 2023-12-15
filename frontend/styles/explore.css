@@ -492,6 +492,9 @@ body::-webkit-scrollbar-thumb {
 .art-display::-webkit-scrollbar-thumb {
 	background-color: #666666;
 }
+.art-card {
+	max-width: 300px;
+}
 .card-img-container {
 	display: flex;
 	align-items: flex-end;
