@@ -1,3 +1,3 @@
 export function baseServerUrl() {
-	return "http://localhost:4000";
+	return "https://savanna-showcase-server.onrender.com";
 }
