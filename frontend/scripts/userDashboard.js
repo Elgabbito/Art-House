@@ -1,4 +1,4 @@
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 const main = document.querySelector(".profile-info");
 const username = document.querySelector("#username");
 const myArtBtn = document.querySelector("#my-art");

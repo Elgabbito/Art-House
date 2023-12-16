@@ -16,7 +16,7 @@ const dropdownArray = document.querySelectorAll("li");
 const categories = document.querySelectorAll(".checkbox-input");
 const urlParams = new URLSearchParams(window.location.search);
 const valueArray = [];
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 
 // Check if the useris logged in
 window.addEventListener("load", async () => {

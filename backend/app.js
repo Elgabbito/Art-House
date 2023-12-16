@@ -5,6 +5,7 @@ const userAuthRoutes = require("./routes/userAuth");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const artRoutes = require("./routes/artRoutes");
+
 const cors = require("cors");
 const corsOptions = {
 	origin: [
@@ -15,7 +16,6 @@ const corsOptions = {
 	methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 };
 
-// Add routes and middleware to server
 app.use(cors(corsOptions));
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -40,6 +40,20 @@ if (app.get("env") === "development") {
 	});
 }
 
-app.listen(4000, () => {
+const server = app.listen(4000, () => {
 	console.log("Server started on port 4000!");
+});
+const io = require("socket.io")(server, { cors: corsOptions });
+
+io.on("connection", (socket) => {
+	console.log("A user connected");
+
+	socket.on("disconnect", () => {
+		console.log("A user disconnected");
+	});
+
+	socket.on("message", (message) => {
+		console.log("Received message:", message);
+		io.emit("message", message);
+	});
 });

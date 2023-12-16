@@ -11,7 +11,7 @@ const specialChar = document.getElementById("special_char");
 const showPasswordBtn = document.getElementById("show-password");
 const userPassword = document.getElementById("password-input");
 const passwordImg = document.getElementById("show-password-img");
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 const userSignupData = {
 	name: "",
 	email: "",
