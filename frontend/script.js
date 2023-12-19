@@ -1,9 +1,10 @@
 const route = document.getElementById("route");
-const loginBtn = document.getElementById("login-btn");
-const signupBtn = document.getElementById("signup-btn");
+const signupBtn = document.createElement("button");
+const loginBtn = document.createElement("button");
 const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
 const topArtCarousel = document.querySelector("#top-art");
+
 const categoriesCarousel = document.querySelector("#categories");
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
@@ -29,8 +30,16 @@ window.addEventListener("load", async () => {
             />
           </a>
         </div>`;
-	const loginSignupBtns = `<button class="nav-btn" id="login-btn" onclick="goToLogin()">Login</button>
-        <button class="nav-btn" id="signup-btn" onclick="goToSignup()">Sign up</button>`;
+
+	loginBtn.onclick = goToLogin;
+	loginBtn.className = "nav-btn";
+	loginBtn.innerText = "Login";
+	loginBtn.id = "login-btn";
+
+	signupBtn.addEventListener("click", goToSignup);
+	signupBtn.className = "nav-btn";
+	signupBtn.innerText = "Sign Up";
+	signupBtn.id = "signup-btn";
 
 	commisionBtn.innerText = firstBtn;
 	// commisionBtn.addEventListener("click");
@@ -40,7 +49,8 @@ window.addEventListener("load", async () => {
 
 	if (!tokenData) {
 		navBtns.innerHTML = "";
-		navBtns.innerHTML = loginSignupBtns;
+		navBtns.appendChild(loginBtn);
+		navBtns.appendChild(signupBtn);
 		navBtns.style.marginLeft = "0";
 	}
 	// console.log(tokenData);

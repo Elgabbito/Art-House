@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -5,7 +6,7 @@ const userAuthRoutes = require("./routes/userAuth");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const artRoutes = require("./routes/artRoutes");
-
+const Port = process.env.PORT || 4000;
 const cors = require("cors");
 const corsOptions = {
 	origin: [
@@ -40,12 +41,13 @@ if (app.get("env") === "development") {
 	});
 }
 
-const server = app.listen(4000, () => {
+const server = app.listen(Port, () => {
 	console.log("Server started on port 4000!");
 });
 const io = require("socket.io")(server, { cors: corsOptions });
 
 io.on("connection", (socket) => {
+	console.log();
 	console.log("A user connected");
 
 	socket.on("disconnect", () => {

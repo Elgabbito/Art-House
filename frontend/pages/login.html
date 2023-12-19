@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
   <link rel="stylesheet" href="../styles/loginSignup.css" />
-  <script defer type="module" src="../scripts/signupAndLogin.js"></script>
+  <script defer type="module" src="../scripts/login.js"></script>
   <title>Savanna Showcase</title>
 </head>
 
@@ -16,7 +16,7 @@
     <h1 class="login-signup-text">Login</h1>
     <form class="login-form">
       <div class="form-control">
-        <input type="email" id="email-input" required autocomplete="email" onchange="ValidateEmail()" />
+        <input type="email" id="email-input" required autocomplete="email" />
         <label>
           <span style="transition-delay: 0ms">E</span><span style="transition-delay: 50ms">m</span><span
             style="transition-delay: 100ms">a</span><span style="transition-delay: 150ms">i</span><span
@@ -29,8 +29,7 @@
 
       <div class="form-control">
         <button id="show-password"><img id="show-password-img" src="../images/eye-show.svg" alt=""></button>
-        <input type="password" id="password-input" required autocomplete="current-password"
-          oninput="ValidatePassword()" />
+        <input type="password" id="password-input" required autocomplete="current-password" />
         <label>
           <span style="transition-delay: 0ms">P</span><span style="transition-delay: 50ms">a</span><span
             style="transition-delay: 100ms">s</span><span style="transition-delay: 150ms">s</span><span
@@ -52,7 +51,7 @@
       </div>
 
       <div class="submit-btn">
-        <a onclick="handleLogin()">
+        <a id="submit-link">
           LOGIN
           <span></span>
         </a>

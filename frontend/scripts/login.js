@@ -19,16 +19,19 @@ const userSignupData = {
 	user_role: "",
 };
 showPasswordBtn.addEventListener("click", (e) => {
+	e.preventDefault();
 	ShowOrHidePassword(
 		passwordImg,
 		"../images/eye-show.svg",
 		" ../images/eye-slash.svg"
 	);
-	e.preventDefault();
 });
+userEmail.addEventListener("change", ValidateEmail);
+userPassword.addEventListener("input", ValidatePassword);
+submitBtn.addEventListener("click", handleLogin);
 
 // Username validation
-function ValidateName() {
+export function ValidateName() {
 	// console.log(username.value.length);
 	if (username.value === "") {
 		username.classList.toggle("error");
@@ -49,7 +52,7 @@ function ValidateName() {
 	}
 }
 // Email validation
-function ValidateEmail() {
+export function ValidateEmail() {
 	const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 	if (userEmail.value === "") {
 		username.classList.toggle("error");
@@ -70,7 +73,7 @@ function ValidateEmail() {
 	}
 }
 // Check if the password is strong enough
-function ValidatePassword() {
+export function ValidatePassword() {
 	// Validate lowercase letters
 	let lowerCaseLetters = /[a-z]/g;
 	if (userPassword.value.match(lowerCaseLetters)) {
@@ -129,7 +132,7 @@ function ValidatePassword() {
 	return true;
 }
 
-function ShowOrHidePassword(showPasswordImg, showImg, hideImg) {
+export function ShowOrHidePassword(showPasswordImg, showImg, hideImg) {
 	if (userPassword.type === "password") {
 		userPassword.type = "text";
 		showPasswordImg.src = hideImg;
@@ -139,7 +142,7 @@ function ShowOrHidePassword(showPasswordImg, showImg, hideImg) {
 	}
 }
 
-async function handleSignup() {
+export async function handleSignup() {
 	// Run all checks
 	const AllTrue = ValidateName() && ValidateEmail() && ValidatePassword();
 
