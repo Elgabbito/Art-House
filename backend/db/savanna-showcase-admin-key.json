@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "savanna-showcase",
+  "private_key_id": "41b2c6eb827383f57300e57cacc1525708648a25",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDC7RX/Cs99NSZb\nPPMSqMdbHTR3pn6/CIwuJJD1RW5WYF+oxIp7HzJCxbBtNpHOIAgACQWoG33SBwRP\n12DzSoePjQFjEi+UYzB0gEO5d8FxIKC8mbbkT8WxjFsvKyqqFhqsrzfNl1Vl2DCL\n31eKvkTmuo9fjU+vjEbbREIrVTC4Lct7Cuf5yBWZy2DaJ3B2MuqwiLPD+h9a4nQ3\nYKw9q3dtZXOhAdYcbV/3oPJg7xlrN9SrFRtFK3Z7yKfPMNbKj3Hqrng333AqzMfQ\n62MlejkCfooi6/b4xaMzz9xJa6ySwJQmSfihIk868mSnpHvvhWgqhaWGl6JizT1T\n6b85r3MfAgMBAAECggEAApLj/eKxnknO3zFOQWugGGcpvYlS/aY2g1MnbrAb9+Xt\n8li5Za9TMJur3Pcm1wPguGU+t4elFzzRU8vJqakIJ0aCKsHB1Nfy50PSw5CC5PMB\ndPD8CakFrs9cXGdtZSKx0Coiu5vLl4Z5+3gNrUi786Gp1fmnk/kWsuLdHURclTUL\nErv1ivbagZaBwibgqN6Jlg396qyCGV98bC5ml0uD2zhwrm8l6sCmPOxUAiG/0kMU\nwzLgqYVIuBsf/qU9wIWGW+mc+UxXE9zTKHvEkpo5fbrQ90byfNumzbh5vUabJ/3s\n7VipR4OrHt57UacTqBvWz4PEewk4WknqsOQ0QusQRQKBgQDnIKmN6NuZzr8aFqdq\nIwJNF97nT6ZQ4ghVWLhQXLB/L1sjaFi75cYYJzH+5oXurCFPeLVrjCG4HHefllm+\nQCuTklUxt75LX5wMdySiGxte90g4Z/L1lkIdtFL3GvkNNUQ4Wp8IDTXuooCjzYwY\nLBbmsCTNTTPOxc1JiQCPdHbYrQKBgQDX5xvUBLkHQFfCiQJ21w0ppasXxm65+Cwv\nMZELPWuXuvc8/r0XsbOJqV/8dMJdIzNBLJvrLoMRTpo4ui/gdXxmu3wMAhoL2XQV\ny+ZS1a5HUq3khEe7qNAm5Cj1Ro78ZjBRlqcl0l8WYA605iz74bXk7AY04+Ew+xkg\niCmq6l24ewKBgAOmbWcTVVyBel0kHHK9qMyk4t1OUbcXSsBmTUrfm932Vn8hp70X\n7N/2xoBbDaRuTXxe0KapKOMqd+0qR7KMeuOyvOuzFitEkEdWHlr9CJqgVyCk655b\nSCIF9gV3BJXj0Hb/X2GWK9Lf+B4eIedD0vzDrWEcpgPO9eYCZuLdGP9lAoGAVA5D\nFFFeZAdV44QJ9JCXLE62hMQZmceYFCudB547BFCjLxkSL2Zcusy5dQVUIoSw0L/4\nWCC8oIFUo59BQocbDrgRfG9ZCqH3gwDmQ/uzJUt4Lg6eCt6XY3zSwWNeCcATMcCQ\nhLYZlRGCyEUQ4GOouF53sCHEK5im2LaKWmNyZ38CgYEApV8qSoTyrFC/Iw1l0Nqo\nmOFT2jBR68qOCSJkBUgVrbxzhQyN6zotFGwrAQxapne3YLfffhYn+uNFKvDqBaVn\nJjzD/4NSbHGpmKrvO3Hd37ipEkqxFzjFzLuFDXQbEieQx/l5cKVNFmvUWPtiqIS1\nFB0ekbmmJoeH8sviK8QQf0s=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-21xg2@savanna-showcase.iam.gserviceaccount.com",
+  "client_id": "109841192800977055445",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-21xg2%40savanna-showcase.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

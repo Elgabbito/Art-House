@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="../styles/chats.css" />
+    <script defer type="module" src="../scripts/chats.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <title>Savanna Showcase</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="../index.html" class="logo-text">Savanna Showcase</a>
+        </div>
+        <div class="nav-btns">
+            <p id="username"></p>
+            <div class="profileimage">
+                <a href="#">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section class="profile">
+        <!-- Chat List -->
+        <menu class="menu">
+            <button class="chat-btn selected-chat" id="edit-profile">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn" id="my-art">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn" id="chats">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn" id="settings">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn" id="chats">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn" id="settings">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+            <button class="chat-btn">
+                <div class="profile-picture">
+                    <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                </div>
+                <div class="chat-info">
+                    <div class="chat-name">Kepler Hanson</div>
+                    <div class="chat-details"><span>12:30PM</span> <span>Sent</span></div>
+                </div>
+            </button>
+        </menu>
+        <!-- <main class="main-chat-section">
+            <div id="welcome">Welcome to your chats, you don't have any chats yet</div>
+        </main> -->
+        <main class="main-chat-section">
+            <section class="chat">
+
+                <div class="messages">
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                    <div class="my-msg-container">
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+                        </div>
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                    </div>
+                    <div class="their-msg-container">
+                        <div class="profile-picture">
+                            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+                        </div>
+                        <div class="msg-info">
+                            <div class="msg-top">
+                                <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+                            </div>
+                            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" placeholder="Write your message here" autofocus>
+                    <img src="../images/clip-svg.svg">
+                    <button id="send-btn">
+                        <img src="../images/send-svg.svg" alt="">
+                    </button>
+                </div>
+
+            </section>
+        </main>
+    </section>
+    </main>
+    </section>
+</body>
+
+</html>

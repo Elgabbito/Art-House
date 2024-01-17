@@ -4,11 +4,11 @@ const loginBtn = document.createElement("button");
 const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
 const topArtCarousel = document.querySelector("#top-art");
-
 const categoriesCarousel = document.querySelector("#categories");
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 import { baseServerUrl } from "./baseServerUrl.mjs";
+import { parseJwt } from "./scripts/utils.js";
 
 // Event Listeners
 // Check if the user is logged in
@@ -84,15 +84,6 @@ commisionBtn.addEventListener("click", () =>
 );
 
 // Function Declarations
-function parseJwt() {
-	const token = localStorage.getItem("token");
-	if (!token) {
-		return;
-	}
-	const base64Url = token.split(".")[1];
-	const base64 = base64Url.replace("-", "+").replace("_", "/");
-	return JSON.parse(window.atob(base64));
-}
 function goToLogin() {
 	window.open("./pages/login.html", "_self");
 }
@@ -185,11 +176,7 @@ function addNotification(message, type) {
 
 	NotiElement.innerHTML = ` <span>${message}.</span><div id='closeBtn'>X</div>`;
 	document.body.appendChild(NotiElement);
-	//keep it always at the bottom corner of the window
-	document.addEventListener("scroll", () => {
-		let btmPos = -window.scrollY + 10;
-		NotiElement.style.bottom = btmPos + "px";
-	});
+
 	// Remove popup
 	// By timer
 	setTimeout(() => document.body.removeChild(NotiElement), 5000);

@@ -1,11 +1,13 @@
 import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
+import { parseJwt } from "./utils.js";
+
 const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const messages = document.getElementById("messages");
 const socket = io("http://localhost:4000");
 
 socket.on("connect", () => {
-	console.log("Connected to server");
+	console.log("Connected to server", "Socket Id", socket.id);
 });
 socket.on("disconnect", () => {
 	console.log("Disconnected from server");
@@ -20,3 +22,4 @@ socket.on("message", (message) => {
 	messageElement.innerText = message;
 	messages.appendChild(messageElement);
 });
+// socket.on("activity", () => {});

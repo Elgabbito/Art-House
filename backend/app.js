@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const userAuthRoutes = require("./routes/userAuth");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 const artRoutes = require("./routes/artRoutes");
 const Port = process.env.PORT || 4000;
 const cors = require("cors");
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/auth", userAuthRoutes);
 app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
+app.use("/chat", chatRoutes);
 app.use("/art", artRoutes);
 
 // catch 404 and forward to error handler
@@ -42,20 +44,25 @@ if (app.get("env") === "development") {
 }
 
 const server = app.listen(Port, () => {
-	console.log("Server started on port 4000!");
+	console.log(`Server started on port ${Port}!`);
 });
 const io = require("socket.io")(server, { cors: corsOptions });
-
 io.on("connection", (socket) => {
-	console.log();
+	// console.log(socket.handshake.query.roomId);
+	const currentRoom = socket.handshake.query.roomId;
 	console.log("A user connected");
+
+	socket.on("enterRoom", ({ name, room }) => {
+		console.log("Name ", name, " Room: ", room);
+		socket.join(room);
+	});
 
 	socket.on("disconnect", () => {
 		console.log("A user disconnected");
 	});
 
 	socket.on("message", (message) => {
-		console.log("Received message:", message);
-		io.emit("message", message);
+		console.log("Received message:", message, "Room:", currentRoom);
+		socket.to(`${currentRoom}`).emit("message", message);
 	});
 });
