@@ -4,7 +4,7 @@ const loginBtn = document.createElement("button");
 const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
 const topArtCarousel = document.querySelector("#top-art");
-const categoriesCarousel = document.querySelector("#categories");
+const categoryCards = document.querySelectorAll(".category");
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 import { baseServerUrl } from "./baseServerUrl.mjs";
@@ -102,6 +102,27 @@ function commisionArtRouting(role) {
 		window.open("./pages/postArt.html", "_self");
 	}
 }
+// Add event listener to each category card
+categoryCards.forEach((card) => {
+	card.addEventListener("click", () => {
+		if (card.id === "photo-category") {
+			window.open("./pages/explore.html?category=photograph", "_self");
+			return;
+		}
+		if (card.id === "sculpture-category") {
+			window.open("./pages/explore.html?category=sculpture", "_self");
+			return;
+		}
+		if (card.id === "painting-category") {
+			window.open("./pages/explore.html?category=painting", "_self");
+			return;
+		}
+		if (card.id === "drawing-category") {
+			window.open("./pages/explore.html?category=drawing", "_self");
+			return;
+		}
+	});
+});
 async function getTopArt() {
 	const url = `${baseServerUrl()}/art/`;
 	try {
@@ -115,18 +136,18 @@ async function getTopArt() {
 		return error;
 	}
 }
-async function getArtCategory() {
-	const url = "http://localhost:4000/art/categories";
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
-		console.log(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-		return error;
-	}
-}
+// async function getArtCategory() {
+// 	const url = "http://localhost:4000/art/categories";
+// 	try {
+// 		const response = await fetch(url);
+// 		const data = await response.json();
+// 		console.log(data);
+// 		return data;
+// 	} catch (error) {
+// 		console.log(error);
+// 		return error;
+// 	}
+// }
 function createCarousel(data, carousel) {
 	carousel.innerHTML = "";
 	for (let i = 0; i < data.length; i++) {
