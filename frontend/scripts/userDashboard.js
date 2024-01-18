@@ -1,7 +1,5 @@
-import { io } from "https://cdn.socket.io/4.7.2/socket.io.esm.min.js";
 import { baseServerUrl } from "../baseServerUrl.mjs";
 import { parseJwt } from "./utils.js";
-const socket = io("http://localhost:4000");
 const main = document.querySelector(".profile-info");
 const username = document.querySelector("#username");
 const chatBtn = document.querySelector("#chats");
@@ -13,11 +11,10 @@ const newEmailInput = document.querySelector("#email-input");
 const editProfileBtn = document.querySelector("#edit-profile");
 const newPassword = document.querySelector("#new-password-input");
 const oldPassword = document.querySelector("#old-password-input");
-const deleteAccountBtn = document.querySelector("#delete-account");
 
 // Components
 const myArtComponent = document.createElement("div");
-myArtComponent.innerHTML = `<h2 id="my-art-header">My Art</h2>
+myArtComponent.innerHTML = `<h2 id="section-title">My Art</h2>
           <div class="my-art">
             <div class="art-container">
               <h3>Purchased</h3>
@@ -30,7 +27,7 @@ myArtComponent.innerHTML = `<h2 id="my-art-header">My Art</h2>
               <span class="title">The River's Witness</span>
               <span class="price">N 100,000</span>
                         </a>
-                        <div class="card">
+                <div class="card">
               <div class="image">
                 <img src="../images/African-Landscape.jpg" alt="" />
               </div>
@@ -366,20 +363,13 @@ chatComponent.id = "chat-container";
 chatComponent.appendChild(messages);
 
 const SettingComponent = document.createElement("section");
-SettingComponent.innerHTML = ` <h2>Settings</h2>
+SettingComponent.innerHTML = ` <h2 id="section-title">Settings</h2>
           <div class="profile-data">
             <h1 class="settings-header">
               Sorry this page is currently under construction check in a little
               later
             </h1>
           </div>`;
-const deleteAccountComponent = `<h2>Delete My Account</h2>
-        <div class="delete-container">
-          <p>Are you sure you want to leave</p>
-          <div class="delete-btns">
-            <button>TAKE ME BACK</button><button>I WANT TO LEAVE</button>
-          </div>
-        </div>`;
 
 // Event listeners
 editProfileBtn.addEventListener("click", () =>
@@ -397,65 +387,6 @@ logoutBtn.addEventListener("click", logout);
 window.addEventListener("load", loadPage);
 window.addEventListener("hashchange", loadPage);
 
-if (chatComponent) {
-	const inputContainer = document.createElement("div");
-	const input = document.createElement("input");
-	const sendBtn = document.createElement("button");
-	const clipImage = document.createElement("img");
-
-	sendBtn.id = "send-btn";
-	sendBtn.innerHTML = `<img src="../images/send-svg.svg" alt="">`;
-	inputContainer.classList.add("chat-input-container");
-	clipImage.src = "../images/clip-svg.svg";
-	input.id = "chat-input";
-
-	sendBtn.addEventListener("click", () => {
-		const chatBubble = document.createElement("div");
-		chatBubble.classList.add("my-msg-container");
-		chatBubble.innerHTML = `<div class="msg-info">
-            <div class="msg-top">
-              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
-            </div>
-            <div class="my-msg">${input.value}</div>
-          </div>
-          <div class="profile-picture">
-            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
-            </div>`;
-
-		messages.appendChild(chatBubble);
-		socket.emit("message", input.value);
-		input.value = "";
-		scrollToBottom(".profile-info");
-	});
-	inputContainer.appendChild(input);
-	inputContainer.appendChild(clipImage);
-	inputContainer.appendChild(sendBtn);
-
-	chatComponent.appendChild(inputContainer);
-
-	socket.on("connect", () => {
-		console.log("Connected to server", "Socket Id", socket.id);
-	});
-	socket.on("disconnect", () => {
-		console.log("Disconnected from server");
-	});
-	socket.on("message", (message) => {
-		const chatBubble = document.createElement("div");
-		chatBubble.classList.add("my-msg-container");
-		chatBubble.innerHTML = `<div class="msg-info">
-            <div class="msg-top">
-              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
-            </div>
-            <div class="my-msg">${message}</div>
-          </div>
-          <div class="profile-picture">
-            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
-            </div>`;
-
-		messages.appendChild(chatBubble);
-	});
-}
-
 // Function Declararions
 function loadPage() {
 	username.innerText = `Hi, ${localStorage.getItem("username") ?? "User"}`;
@@ -464,51 +395,6 @@ function loadPage() {
 		case "#editProfile" || "":
 			window.open("../pages/userDashboard.html", "_self");
 			newNameInput.placeholder = localStorage.getItem("username") ?? "User";
-			document.querySelector("#update-name").addEventListener("click", () => {
-				if (ValidateName(newNameInput)) {
-					const newname = document.querySelector("#name-input").value;
-					try {
-						updateUserData({ value: newname, fieldToUpdate: "name" });
-					} catch (error) {
-						console.log(error);
-					}
-				}
-			});
-			document.querySelector("#update-email").addEventListener("click", () => {
-				if (ValidateEmail(newEmailInput)) {
-					const newemail = document.querySelector("#email-input").value;
-					try {
-						updateUserData({ value: newemail, fieldToUpdate: "email" });
-					} catch (error) {
-						console.log(error);
-					}
-				}
-			});
-			newPassword.addEventListener("input", () => {
-				ValidatePassword(newPassword, "old-password-error");
-			});
-			document
-				.querySelector("#update-password")
-				.addEventListener("click", () => {
-					if (ValidatePassword(newPassword, "new-password-error")) {
-						try {
-							updateUserData({
-								value: {
-									newPassword: newPassword.value,
-									oldPassword: oldPassword.value,
-								},
-								fieldToUpdate: "password",
-							});
-						} catch (error) {
-							console.log(error);
-						}
-					}
-				});
-			document
-				.querySelector("#show-password")
-				.addEventListener("click", () =>
-					ShowOrHidePassword(document.querySelectorAll(".password-input"))
-				);
 			break;
 
 		case "#myart":
@@ -528,7 +414,50 @@ function loadPage() {
 			break;
 	}
 }
-
+if (document.querySelector(".user-form")) {
+	document.querySelector("#update-name").addEventListener("click", () => {
+		if (ValidateName(newNameInput)) {
+			const newname = document.querySelector("#name-input").value;
+			try {
+				updateUserData({ value: newname, fieldToUpdate: "name" });
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	});
+	document.querySelector("#update-email").addEventListener("click", () => {
+		console.log("emmaaaa");
+		if (ValidateEmail(newEmailInput)) {
+			const newemail = document.querySelector("#email-input").value;
+			try {
+				updateUserData({ value: newemail, fieldToUpdate: "email" });
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	});
+	newPassword.addEventListener("input", () => {
+		ValidatePassword(newPassword, "old-password-error");
+	});
+	document.querySelector("#update-password").addEventListener("click", () => {
+		if (ValidatePassword(newPassword, "new-password-error")) {
+			try {
+				updateUserData({
+					value: {
+						newPassword: newPassword.value,
+						oldPassword: oldPassword.value,
+					},
+					fieldToUpdate: "password",
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	});
+	document
+		.querySelector(".checkbox-container")
+		.addEventListener("click", ShowOrHidePassword);
+}
 function updateView(component, hash) {
 	if (hash) {
 		window.location.hash = hash;
@@ -586,8 +515,20 @@ function logout() {
 	window.open("../index.html", "_self");
 }
 
-function ShowOrHidePassword(...userPassword) {
-	userPassword.forEach((el) => {
+function artCard(data) {
+	const card = document.createElement("div");
+	card.innerHTML = `<div class="image">
+			<img src=${data.url} alt=${data.title} />
+		</div>
+		<span class="title">${data.title}</span>
+		<span class="price">N ${data.cost}</span>`;
+	return card;
+}
+function ShowOrHidePassword() {
+	const userPasswordEls = document.querySelectorAll(".password-input");
+
+	userPasswordEls.forEach((el) => {
+		console.log(el.type);
 		if (el.type === "password") {
 			el.type = "text";
 		} else {

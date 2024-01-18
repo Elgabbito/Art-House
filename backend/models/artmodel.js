@@ -43,6 +43,16 @@ async function getSingleArt(id) {
 	const bidsResult = await db.query(bidsQuery, [id]);
 	return { details: artDetailsResult.rows[0], bids: bidsResult.rows.reverse() };
 }
+async function getPurchases(userId) {
+	const query = "SELECT * FROM purchases WHERE buyer_id = $1";
+	const dbResult = await db.query(query, [userId]);
+	return dbResult.rows;
+}
+async function setPurchase(buyerId, artId) {
+	const query = ` INSERT INTO purchases (buyer_id, art_id) VALUES ($1, $2)`;
+	const dbResult = await db.query(query, [buyerId, artId]);
+	return { data: dbResult.rows[0] };
+}
 async function getFilteredArt(
 	minPrice = min,
 	maxPrice = max,
@@ -86,6 +96,8 @@ async function deleteArtListing(artId) {
 	return result.rows[0];
 }
 module.exports = {
+	getPurchases,
+	setPurchase,
 	storeArtData,
 	getArtData,
 	getArtByCategory,

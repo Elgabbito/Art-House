@@ -247,10 +247,8 @@ body {
 	font-size: 0.8rem;
 }
 /* My Art Section */
-#my-art-header {
-	margin-bottom: 3%;
-}
 .my-art {
+	padding-top: 5%;
 	padding-bottom: 5%;
 }
 .art-scroll-view {
@@ -547,4 +545,26 @@ body {
 	width: 30px;
 	height: auto;
 	margin-left: 3px;
+}
+
+@media screen and (width < 700px) {
+	#section-title {
+		font-size: 1em;
+	}
+	.profile-nav {
+		width: 20%;
+	}
+	.form-control,
+	.submit-btn {
+		font-size: 12px;
+	}
+	.passwords {
+		flex-direction: column;
+	}
+	.passwords > input {
+		width: 100%;
+	}
+	.art-container > h3 {
+		font-size: 14px;
+	}
 }
