@@ -3,7 +3,7 @@ const signupBtn = document.createElement("button");
 const loginBtn = document.createElement("button");
 const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
-const topArtCarousel = document.querySelector("#top-art");
+const mosaic = document.querySelector(".art-mosaic");
 const categoryCards = document.querySelectorAll(".category");
 const hamburger = document.querySelector(".hamburger");
 const navList = document.querySelector(".side-nav");
@@ -71,7 +71,7 @@ window.addEventListener("load", async () => {
 	}
 
 	// Append art to DOM
-	createCarousel(art.data, topArtCarousel);
+	createCarousel(art.data, mosaic);
 	// createCarousel(categoryArt.data, categoriesCarousel);
 });
 hamburger.addEventListener("click", () => {
@@ -86,7 +86,8 @@ document.querySelectorAll(".nav-link-container").forEach((element) =>
 		navList.classList.remove("active");
 	})
 );
-
+if (hamburger.classList.contains("active")) {
+}
 // Route to login page
 loginBtn.addEventListener("click", () => {
 	goToLogin();
@@ -95,6 +96,12 @@ loginBtn.addEventListener("click", () => {
 signupBtn.addEventListener("click", () => {
 	goToSignup();
 });
+document
+	.querySelector("#side-nav-login-btn")
+	.addEventListener("click", goToLogin);
+document
+	.querySelector("#side-nav-signup-btn")
+	.addEventListener("click", goToSignup);
 // Set where commision art btn takes you
 commisionBtn.addEventListener("click", () =>
 	commisionArtRouting(localStorage.getItem("role"))
@@ -178,15 +185,14 @@ function createCarousel(data, carousel) {
 }
 const createCard = (src, name, id) => {
 	const card = document.createElement("div");
-	card.classList.add("card");
+	card.classList.add("mosaic");
 	card.id = name;
 	card.addEventListener("click", () => {
 		window.open(`./pages/product.html?art=${name}&id=${id}`, "_self");
 	});
-	card.innerHTML = `<div class="image">
-                        <img id="card-img" src=${src} alt=${name} />
-                    </div>
-                    <span class="title">${name}</span>`;
+	card.innerHTML = `<img
+            src=${src} alt=${name}>
+			 <span class="title">${name}</span>`;
 	return card;
 };
 function addNotification(message, type) {
