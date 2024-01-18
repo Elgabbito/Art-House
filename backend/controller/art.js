@@ -86,7 +86,7 @@ const setArtPurchase = async (req, res) => {
 };
 
 const fetchPurchases = async (req, res) => {
-	const result = await getPurchases(req.userId);
+	const result = await getPurchases(req.params.buyerId);
 	res.send({ message: "Success", data: result, status: 200 });
 };
 module.exports = {

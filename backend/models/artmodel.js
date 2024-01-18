@@ -43,10 +43,10 @@ async function getSingleArt(id) {
 	const bidsResult = await db.query(bidsQuery, [id]);
 	return { details: artDetailsResult.rows[0], bids: bidsResult.rows.reverse() };
 }
-async function getPurchases(userId) {
+async function getPurchases(buyerId) {
 	const query = "SELECT * FROM purchases WHERE buyer_id = $1";
-	const dbResult = await db.query(query, [userId]);
-	return dbResult.rows;
+	const dbResult = await db.query(query, [buyerId]);
+	return dbResult.rows[0];
 }
 async function setPurchase(buyerId, artId) {
 	const query = ` INSERT INTO purchases (buyer_id, art_id) VALUES ($1, $2)`;

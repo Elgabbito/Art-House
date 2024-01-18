@@ -399,6 +399,9 @@ function loadPage() {
 
 		case "#myart":
 			updateView(myArtComponent);
+			// Append Art to DOM
+			const art = await;
+			art.forEach((data) => artDisplay.appendChild(createArtCard(data)));
 			break;
 
 		case "#chat":
@@ -457,6 +460,22 @@ if (document.querySelector(".user-form")) {
 	document
 		.querySelector(".checkbox-container")
 		.addEventListener("click", ShowOrHidePassword);
+}
+async function getPurchases() {
+	const userData = parseJwt();
+	const userId = userData.userId;
+	const url = `${baseServerUrl()}/art/purchases/${userId}`;
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			console.error(`HTTP Error status: ${response.status}`);
+		}
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		return error;
+	}
 }
 function updateView(component, hash) {
 	if (hash) {

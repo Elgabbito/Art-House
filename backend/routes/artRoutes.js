@@ -14,8 +14,8 @@ const {
 const upload = multer({ dest: "./uploads" });
 
 router.post("/upload", upload.single("art"), uploadArt);
-router.get("/purchases", fetchPurchases);
-router.get("/buy", setArtPurchase);
+router.post("/buy", setArtPurchase);
+router.get("/purchases/:buyerId", fetchPurchases);
 router.get("/", fetchArt);
 router.get("/categories", fetchTopArtByCategory);
 router.get("/filteredArt", fetchFilteredArt);
