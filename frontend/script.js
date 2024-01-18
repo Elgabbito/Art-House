@@ -5,6 +5,11 @@ const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
 const topArtCarousel = document.querySelector("#top-art");
 const categoryCards = document.querySelectorAll(".category");
+const hamburger = document.querySelector(".hamburger");
+const navList = document.querySelector(".side-nav");
+const navbar = document.querySelector(".nav");
+const root = document.querySelector(":root");
+
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 import { baseServerUrl } from "./baseServerUrl.mjs";
@@ -69,6 +74,18 @@ window.addEventListener("load", async () => {
 	createCarousel(art.data, topArtCarousel);
 	// createCarousel(categoryArt.data, categoriesCarousel);
 });
+hamburger.addEventListener("click", () => {
+	hamburger.classList.toggle("active");
+	navList.classList.toggle("active");
+	document.body.classList.toggle("no-scroll");
+});
+
+document.querySelectorAll(".nav-link-container").forEach((element) =>
+	element.addEventListener("click", () => {
+		hamburger.classList.remove("active");
+		navList.classList.remove("active");
+	})
+);
 
 // Route to login page
 loginBtn.addEventListener("click", () => {
@@ -205,4 +222,9 @@ function addNotification(message, type) {
 	document.getElementById("closeBtn").addEventListener("click", () => {
 		document.body.removeChild(NotiElement);
 	});
+}
+function setNavbarHeight() {
+	let height = navbar.offsetHeight + "px";
+	root.style.setProperty("--navbarHeight", height);
+	console.log(height);
 }
