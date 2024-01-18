@@ -6,7 +6,7 @@ const commisionBtn = document.querySelector("#commision-btn");
 const mosaic = document.querySelector(".art-mosaic");
 const categoryCards = document.querySelectorAll(".category");
 const hamburger = document.querySelector(".hamburger");
-const navList = document.querySelector(".side-nav");
+const sideNav = document.querySelector(".side-nav");
 const navbar = document.querySelector(".nav");
 const root = document.querySelector(":root");
 
@@ -76,18 +76,30 @@ window.addEventListener("load", async () => {
 });
 hamburger.addEventListener("click", () => {
 	hamburger.classList.toggle("active");
-	navList.classList.toggle("active");
+	sideNav.classList.toggle("active");
 	document.body.classList.toggle("no-scroll");
+	sideNav.childNodes.forEach((child) => {
+		child.addEventListener("click", () => {
+			hamburger.classList.remove("active");
+			sideNav.classList.remove("active");
+			document.body.classList.remove("no-scroll");
+		});
+	});
+	if (localStorage.getItem("token")) {
+		const sideNavBtns = document.querySelector(".side-nav-btns");
+		sideNavBtns.innerHTML = ` <div class="nav-link-container">
+      <a class="nav-link" href="./pages/userDashboard.html">Profile<span></span></a>
+    </div>`;
+	}
 });
 
 document.querySelectorAll(".nav-link-container").forEach((element) =>
 	element.addEventListener("click", () => {
 		hamburger.classList.remove("active");
-		navList.classList.remove("active");
+		sideNav.classList.remove("active");
 	})
 );
-if (hamburger.classList.contains("active")) {
-}
+
 // Route to login page
 loginBtn.addEventListener("click", () => {
 	goToLogin();
@@ -120,9 +132,9 @@ function commisionArtRouting(role) {
 		addNotification("Sign up or Login to Commision Art", "neutral");
 		return;
 	}
-	if (token && role !== "artist") {
+	if (role !== "artist") {
 		window.open("./pages/commisionart.html", "_self");
-	} else if (token && role === "artist") {
+	} else if (role === "artist") {
 		window.open("./pages/postArt.html", "_self");
 	}
 }
@@ -160,18 +172,6 @@ async function getTopArt() {
 		return error;
 	}
 }
-// async function getArtCategory() {
-// 	const url = "http://localhost:4000/art/categories";
-// 	try {
-// 		const response = await fetch(url);
-// 		const data = await response.json();
-// 		console.log(data);
-// 		return data;
-// 	} catch (error) {
-// 		console.log(error);
-// 		return error;
-// 	}
-// }
 function createCarousel(data, carousel) {
 	carousel.innerHTML = "";
 	for (let i = 0; i < data.length; i++) {
