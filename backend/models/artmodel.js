@@ -43,10 +43,23 @@ async function getSingleArt(id) {
 	const bidsResult = await db.query(bidsQuery, [id]);
 	return { details: artDetailsResult.rows[0], bids: bidsResult.rows.reverse() };
 }
-async function getPurchases(buyerId) {
+async function getPurchasedArt(buyerId) {
+	const artIds = [];
 	const query = "SELECT * FROM purchases WHERE buyer_id = $1";
 	const dbResult = await db.query(query, [buyerId]);
-	return dbResult.rows[0];
+
+	dbResult.rows.forEach((purchase) => {
+		artIds.push(purchase.art_id);
+	});
+	console.log("Number: ", artIds, "Length: ", artIds.length <= 0);
+	if (artIds.length <= 0) {
+		throw new Error("This user owns no art");
+	}
+
+	const artQuery = "SELECT * FROM art WHERE id = ANY($1::int[]);";
+	const artResult = await db.query(artQuery, [artIds]);
+
+	return artResult.rows;
 }
 async function setPurchase(buyerId, artId) {
 	const query = ` INSERT INTO purchases (buyer_id, art_id) VALUES ($1, $2)`;
@@ -96,7 +109,7 @@ async function deleteArtListing(artId) {
 	return result.rows[0];
 }
 module.exports = {
-	getPurchases,
+	getPurchasedArt,
 	setPurchase,
 	storeArtData,
 	getArtData,

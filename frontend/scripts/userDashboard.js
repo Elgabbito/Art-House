@@ -388,7 +388,7 @@ window.addEventListener("load", loadPage);
 window.addEventListener("hashchange", loadPage);
 
 // Function Declararions
-function loadPage() {
+async function loadPage() {
 	username.innerText = `Hi, ${localStorage.getItem("username") ?? "User"}`;
 
 	switch (removeSearchParams(window.location.href)) {
@@ -400,8 +400,8 @@ function loadPage() {
 		case "#myart":
 			updateView(myArtComponent);
 			// Append Art to DOM
-			const art = await;
-			art.forEach((data) => artDisplay.appendChild(createArtCard(data)));
+			const purchases = await getPurchases();
+			purchases.forEach((data) => artDisplay.appendChild(createArtCard(data)));
 			break;
 
 		case "#chat":

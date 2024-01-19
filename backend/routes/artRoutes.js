@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const {
-	fetchPurchases,
+	fetchPurchasedArt,
 	setArtPurchase,
 	uploadArt,
 	fetchArt,
@@ -15,7 +15,7 @@ const upload = multer({ dest: "./uploads" });
 
 router.post("/upload", upload.single("art"), uploadArt);
 router.post("/buy", setArtPurchase);
-router.get("/purchases/:buyerId", fetchPurchases);
+router.get("/purchases/:buyerId", fetchPurchasedArt);
 router.get("/", fetchArt);
 router.get("/categories", fetchTopArtByCategory);
 router.get("/filteredArt", fetchFilteredArt);

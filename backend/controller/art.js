@@ -5,7 +5,7 @@ const {
 	getArtByCategory,
 	getFilteredArt,
 	deleteArtListing,
-	getPurchases,
+	getPurchasedArt,
 	setPurchase,
 } = require("../models/artmodel");
 const fs = require("fs");
@@ -85,12 +85,19 @@ const setArtPurchase = async (req, res) => {
 	}
 };
 
-const fetchPurchases = async (req, res) => {
-	const result = await getPurchases(req.params.buyerId);
-	res.send({ message: "Success", data: result, status: 200 });
+const fetchPurchasedArt = async (req, res) => {
+	try {
+		const result = await getPurchasedArt(req.params.buyerId);
+
+		res.send({ message: "Success", data: result, status: 200 });
+	} catch (error) {
+		res
+			.status(500)
+			.send({ message: "Failed", data: error.message, status: 500 });
+	}
 };
 module.exports = {
-	fetchPurchases,
+	fetchPurchasedArt,
 	setArtPurchase,
 	uploadArt,
 	fetchArt,
