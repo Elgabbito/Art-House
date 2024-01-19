@@ -2,7 +2,12 @@
 <html>
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/chat.css">
     <title>Socket.io Tutorial</title>
+    <script defer type="module" src="../scripts/chat.js"></script>
 </head>
 
 <body>
@@ -10,29 +15,6 @@
     <div id="messages"></div>
     <input id="message-input" type="text" placeholder="Type your message here">
     <button id="send-button">Send</button>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        socket.on('connect', () => {
-            console.log('Connected to server');
-        });
-        socket.on('disconnect', () => {
-            console.log('Disconnected from server');
-        });
-        const messages = document.getElementById('messages');
-        const messageInput = document.getElementById('message-input');
-        const sendButton = document.getElementById('send-button');
-        sendButton.addEventListener('click', () => {
-            const message = messageInput.value;
-            socket.emit('message', message);
-            messageInput.value = '';
-        });
-        socket.on('message', (message) => {
-            const messageElement = document.createElement('div');
-            messageElement.innerText = message;
-            messages.appendChild(messageElement);
-        });
-    </script>
 </body>
 
 </html>

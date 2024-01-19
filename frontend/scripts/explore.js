@@ -16,7 +16,7 @@ const dropdownArray = document.querySelectorAll("li");
 const categories = document.querySelectorAll(".checkbox-input");
 const urlParams = new URLSearchParams(window.location.search);
 const valueArray = [];
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 
 // Check if the useris logged in
 window.addEventListener("load", async () => {
@@ -60,11 +60,7 @@ window.addEventListener("load", async () => {
 	}
 
 	// Append Art to DOM
-	art.forEach((item) =>
-		artDisplay.appendChild(
-			createArtCard(item.url, item.description, item.name, item.cost)
-		)
-	);
+	art.forEach((data) => artDisplay.appendChild(createArtCard(data)));
 	searchBar.value = urlParams.get("name");
 
 	// Set min cost on slider from URL if it is set
@@ -115,11 +111,7 @@ filterBtn.addEventListener("click", async () => {
 	console.log(art);
 
 	artDisplay.innerHTML = "";
-	art.forEach((item) =>
-		artDisplay.appendChild(
-			createArtCard(item.url, item.description, item.name, item.cost)
-		)
-	);
+	art.forEach((data) => artDisplay.appendChild(createArtCard(data)));
 });
 // Search for art by name
 searchBar.addEventListener("blur", () => {
@@ -149,12 +141,20 @@ categories.forEach((el) => {
 	});
 });
 // Create Art Card
-function createArtCard(imgSrc, imgDescription, title, cost) {
+function createArtCard(data) {
 	const card = document.createElement("div");
+	const { name, id, url, cost } = data;
+
+	card.addEventListener("click", () => {
+		window.open(
+			`${window.location.origin}/pages/product.html?art=${name}&id=${id}`,
+			"_self"
+		);
+	});
 	card.className = "art-card";
-	card.innerHTML = `<div class="card-img-container"><img class="card-img" src="${imgSrc}" alt="${imgDescription}"></div>
+	card.innerHTML = `<div class="card-img-container"><img class="card-img" src="${url}" alt="${name}"></div>
                     <div class="card-text">
-                        <h5 class="card-title">${title}</h5>
+                        <h5 class="card-title">${name}</h5>
                         <p class="cost">N${cost}</p>
                     </div>`;
 	return card;

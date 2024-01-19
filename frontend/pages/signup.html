@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="../public/savannah-favicon.svg" type="image/x-icon" />
   <link rel="stylesheet" href="../styles/loginSignup.css" />
-  <script defer type="module" src="../scripts/signupAndLogin.js"></script>
+  <script defer type="module" src="../scripts/signup.js"></script>
   <title>Savanna Showcase</title>
 </head>
 
@@ -16,7 +16,7 @@
     <h1 class="login-signup-text">Sign up</h1>
     <form method="post" class="sign-form">
       <div class="form-control signup-el">
-        <input type="text" id="name-input" onchange="ValidateName()" required />
+        <input type="text" id="name-input" required />
         <label>
           <span style="transition-delay: 0ms">U</span><span style="transition-delay: 50ms">s</span><span
             style="transition-delay: 100ms">e</span><span style="transition-delay: 150ms">r</span><span
@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-control signup-el">
-        <input type="text" id="email-input" onchange="ValidateEmail()" autocomplete="email" required />
+        <input type="text" id="email-input" autocomplete="email" required />
         <label>
           <span style="transition-delay: 0ms">E</span><span style="transition-delay: 50ms">m</span><span
             style="transition-delay: 100ms">a</span><span style="transition-delay: 150ms">i</span><span
@@ -42,7 +42,7 @@
 
       <div class="form-control signup-el" id="signup-psw">
         <button id="show-password"><img id="show-password-img" src="../images/eye-show.svg" alt=""></button>
-        <input type="password" id="password-input" oninput="ValidatePassword()" autocomplete="new-password" required />
+        <input type="password" id="password-input" autocomplete="new-password" required />
         <label>
           <span style="transition-delay: 0ms">P</span><span style="transition-delay: 50ms">a</span><span
             style="transition-delay: 100ms">s</span><span style="transition-delay: 150ms">s</span><span
@@ -77,7 +77,7 @@
       </div>
 
       <div class="submit-btn">
-        <a id="submit-link" onclick="handleSignup()">
+        <a id="submit-link">
           SIGN UP
           <span></span>
         </a>

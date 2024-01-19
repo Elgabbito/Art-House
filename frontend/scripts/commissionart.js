@@ -1,4 +1,4 @@
-const commisionBtn = document.querySelector("#commision-btn");
+const mainContainer = document.querySelector(".main-container");
 const navBtns = document.querySelector(".nav-btns");
 const artDisplay = document.querySelector(".art-display");
 const searchBar = document.querySelector("#search-by-name");
@@ -13,8 +13,20 @@ const dropdown = document.querySelector(".value-list");
 const dropdownArray = document.querySelectorAll("li");
 const categories = document.querySelectorAll(".checkbox-input");
 const urlParams = new URLSearchParams(window.location.search);
+const firebaseConfig = {
+	apiKey: "AIzaSyCyixN88gtTJod47KQcLPRqvE-fllls9wU",
+	authDomain: "savanna-showcase.firebaseapp.com",
+	projectId: "savanna-showcase",
+	storageBucket: "savanna-showcase.appspot.com",
+	messagingSenderId: "615996047741",
+	appId: "1:615996047741:web:01c55c6a966472dbdf4c14",
+	measurementId: "G-2NM3HR8JHX",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 const valueArray = [];
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 
 // Check if the useris logged in
 window.addEventListener("load", async () => {
@@ -27,7 +39,8 @@ window.addEventListener("load", async () => {
 				artist.profile_picture,
 				artist.art_types,
 				artist.name,
-				artist.rating
+				artist.rating,
+				artist.artist_id
 			)
 		)
 	);
@@ -79,7 +92,8 @@ filterBtn.addEventListener("click", async () => {
 				artist.profile_picture,
 				artist.art_types,
 				artist.name,
-				artist.rating
+				artist.rating,
+				artist.artist_id
 			)
 		)
 	);
@@ -112,8 +126,10 @@ categories.forEach((el) => {
 		}
 	});
 });
+const num = 15;
+console.log(num.toString(16));
 // Create Art Card
-function createArtistCard(imgSrc, art_types, name, rating) {
+function createArtistCard(imgSrc, art_types, name, rating, recipientId) {
 	const card = document.createElement("div");
 	const stars = document.createElement("div");
 	console.log(imgSrc);
@@ -132,7 +148,15 @@ function createArtistCard(imgSrc, art_types, name, rating) {
 	}
 
 	card.addEventListener("click", () => {
-		window.open("../pages/chat.html");
+		const roomId = parseJwt().userId.toString(16) + recipientId.toString(16);
+		console.log(roomId);
+		const data = {
+			roomId: roomId,
+			senderId: parseJwt().userId,
+			recipientId: recipientId,
+		};
+		console.log(data);
+		createChatRoom(data.roomId, data.senderId, data.recipientId);
 	});
 	card.className = "art-card";
 	card.innerHTML = `<div class="card-img-container"><img class="card-img" src="${imgSrc}" alt="${""}"></div>
@@ -156,6 +180,30 @@ async function getArt() {
 	}
 }
 console.log(urlParams.toString());
+
+async function createChatRoom(roomId, senderId, recipientId) {
+	try {
+		const response = await fetch(`${baseServerUrl()}/chat/createRoom`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				roomId: roomId,
+				senderId: senderId,
+				recipientId: recipientId,
+			}),
+		});
+		const data = await response.json();
+		if (data.success) {
+			window.open(`../pages/chats.html?roomId=${roomId}`);
+		}
+		console.log(data);
+	} catch (error) {
+		addNotification("Sorry an error occurred", false);
+		console.log(error);
+	}
+}
 
 async function getFilteredArt() {
 	console.log(window.location.search);
@@ -261,7 +309,7 @@ var ZBRangeSlider = function (id) {
 	var selectedTouch = null;
 	var initialValue = lineSpan.offsetWidth - normalizeFact;
 
-	// set defualt values
+	// set default values
 	self.setMinValue(defaultMinValue);
 	self.setMaxValue(defaultMaxValue);
 
@@ -603,7 +651,6 @@ function addNotification(message, type) {
 	NotiElement.style.paddingRight = "20px";
 	NotiElement.style.borderRadius = "5px";
 	NotiElement.style.border = "1px solid black";
-	NotiElement.style.cursor = "pointer";
 	NotiElement.style.backgroundColor =
 		type === "good" ? "rgb(26, 255, 60)" : type === "bad" ? "red" : "#1F88D9";
 	NotiElement.style.color =
@@ -614,11 +661,7 @@ function addNotification(message, type) {
 
 	NotiElement.innerHTML = ` <span>${message}.</span><div id='closeBtn'>X</div>`;
 	document.body.appendChild(NotiElement);
-	//keep it always at the bottom corner of the window
-	document.addEventListener("scroll", () => {
-		let btmPos = -window.scrollY + 10;
-		NotiElement.style.bottom = btmPos + "px";
-	});
+
 	// Remove popup
 	// By timer
 	setTimeout(() => document.body.removeChild(NotiElement), 5000);
@@ -626,4 +669,21 @@ function addNotification(message, type) {
 	document.getElementById("closeBtn").addEventListener("click", () => {
 		document.body.removeChild(NotiElement);
 	});
+}
+
+function displayLoading() {
+	const loadingContainer = document.createElement("div");
+
+	loadingContainer.className = "loading-container";
+	loadingContainer.style.position = "absolute";
+	loadingContainer.style.top = "0";
+	loadingContainer.style.left = "0";
+	loadingContainer.style.width = "100%";
+	loadingContainer.style.height = "100%";
+	loadingContainer.style.display = "flex";
+	loadingContainer.style.justifyContent = "center";
+	loadingContainer.style.alignItems = "center";
+	loadingContainer.innerHTML = `<div class="loader"></div>`;
+
+	mainContainer.appendChild(loadingContainer);
 }

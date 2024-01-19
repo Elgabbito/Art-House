@@ -5,6 +5,8 @@ const {
 	getArtByCategory,
 	getFilteredArt,
 	deleteArtListing,
+	getPurchasedArt,
+	setPurchase,
 } = require("../models/artmodel");
 const fs = require("fs");
 const uploadImage = require("../cloudinary/index");
@@ -71,7 +73,32 @@ async function deleteArt(req, res) {
 		return res.status(500).json({ message: "Internal Server Error" });
 	}
 }
+const setArtPurchase = async (req, res) => {
+	try {
+		const { buyerId, artId } = req.body;
+		const result = await setPurchase(buyerId, artId);
+
+		res.send({ message: "Success", data: result, status: 200 });
+	} catch (error) {
+		res.send(error);
+		console.log(error);
+	}
+};
+
+const fetchPurchasedArt = async (req, res) => {
+	try {
+		const result = await getPurchasedArt(req.params.buyerId);
+
+		res.send({ message: "Success", data: result, status: 200 });
+	} catch (error) {
+		res
+			.status(500)
+			.send({ message: "Failed", data: error.message, status: 500 });
+	}
+};
 module.exports = {
+	fetchPurchasedArt,
+	setArtPurchase,
 	uploadArt,
 	fetchArt,
 	fetchTopArtByCategory,

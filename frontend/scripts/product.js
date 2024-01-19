@@ -14,7 +14,7 @@ const purchaseTitle = document.querySelector("#purchase-title");
 const imageContainer = document.querySelector("#image-container");
 const purchaseDetails = document.querySelector(".purchase-details");
 const bidsCommentsTitle = document.querySelector("#bids-comments-title");
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 
 // Event Listeners
 // Check if the user is logged in

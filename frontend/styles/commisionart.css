@@ -222,12 +222,11 @@ body {
 	box-shadow: 5px 5px 0px black;
 }
 
-.input-container:hover>.search-icon {
+.input-container:hover > .search-icon {
 	animation: anim 1s linear infinite;
 }
 
 @keyframes anim {
-
 	0%,
 	100% {
 		transform: translateY(calc(-50% - 5px)) scale(1);
@@ -261,7 +260,7 @@ body {
 	width: 25%;
 }
 
-.filter-section>h3 {
+.filter-section > h3 {
 	margin-bottom: 5%;
 }
 
@@ -345,7 +344,7 @@ body {
 	flex-wrap: wrap;
 }
 
-.prices-result>span {
+.prices-result > span {
 	letter-spacing: 2px;
 	white-space: nowrap;
 }
@@ -503,7 +502,7 @@ body {
 }
 
 /* When the checkbox is checked, add a blue background */
-.checkbox-input:checked~.checkmark {
+.checkbox-input:checked ~ .checkmark {
 	background-color: #5ee429;
 }
 
@@ -515,7 +514,7 @@ body {
 }
 
 /* Show the checkmark when checked */
-.checkbox-input:checked~.checkmark:after {
+.checkbox-input:checked ~ .checkmark:after {
 	display: block;
 }
 
@@ -561,6 +560,9 @@ body {
 	max-width: 200px;
 }
 
+.art-card:hover {
+	cursor: pointer;
+}
 .card-img {
 	width: 100%;
 	height: 100%;
@@ -697,7 +699,8 @@ footer {
 }
 
 /* Mobile Devices */
-@media only screen and (max-width: 480px) {}
+@media only screen and (max-width: 480px) {
+}
 
 /* Tablets */
 @media only screen and (max-width: 768px) {
@@ -728,6 +731,13 @@ footer {
 	.footer-center div a {
 		font-size: 1vw;
 	}
+}
+#stickyNotification #closeBtn {
+	padding: 5px;
+}
+#stickyNotification #closeBtn:hover {
+	color: white;
+	cursor: pointer;
 }
 
 /* Mobile Devices */

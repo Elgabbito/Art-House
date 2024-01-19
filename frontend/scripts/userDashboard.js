@@ -1,6 +1,8 @@
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
+import { parseJwt } from "./utils.js";
 const main = document.querySelector(".profile-info");
 const username = document.querySelector("#username");
+const chatBtn = document.querySelector("#chats");
 const myArtBtn = document.querySelector("#my-art");
 const logoutBtn = document.querySelector("#logout-btn");
 const settingsBtn = document.querySelector("#settings");
@@ -9,10 +11,10 @@ const newEmailInput = document.querySelector("#email-input");
 const editProfileBtn = document.querySelector("#edit-profile");
 const newPassword = document.querySelector("#new-password-input");
 const oldPassword = document.querySelector("#old-password-input");
-const deleteAccountBtn = document.querySelector("#delete-account");
 
 // Components
-const myArtComponent = `<h2 id="my-art-header">My Art</h2>
+const myArtComponent = document.createElement("div");
+myArtComponent.innerHTML = `<h2 id="section-title">My Art</h2>
           <div class="my-art">
             <div class="art-container">
               <h3>Purchased</h3>
@@ -25,7 +27,7 @@ const myArtComponent = `<h2 id="my-art-header">My Art</h2>
               <span class="title">The River's Witness</span>
               <span class="price">N 100,000</span>
                         </a>
-                        <div class="card">
+                <div class="card">
               <div class="image">
                 <img src="../images/African-Landscape.jpg" alt="" />
               </div>
@@ -143,42 +145,268 @@ const myArtComponent = `<h2 id="my-art-header">My Art</h2>
             </div>
           </div>
         </div>`;
-const SettingComponent = `<section>
-          <h2>Settings</h2>
+
+const chatComponent = document.createElement("section");
+const messages = document.createElement("div");
+messages.className = "messages";
+messages.innerHTML = `<div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+        <div class="my-msg-container">
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Jane Cooper</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="my-msg">Hi Kepler I'd like you to make a painting for me</div>
+          </div>
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+        </div>
+
+        <div class="their-msg-container">
+          <div class="profile-picture">
+            <img src="../images/profile-fallback.svg" alt="Profile Picture" />
+          </div>
+          <div class="msg-info">
+            <div class="msg-top">
+              <span>Kepler Hanson</span><span class="timestamp">12:30PM</span>
+            </div>
+            <div class="their-msg">Hi Jane, what kind of painting are you looking for?</div>
+          </div>
+        </div>
+`;
+chatComponent.className = "chat";
+chatComponent.id = "chat-container";
+chatComponent.appendChild(messages);
+
+const SettingComponent = document.createElement("section");
+SettingComponent.innerHTML = ` <h2 id="section-title">Settings</h2>
           <div class="profile-data">
             <h1 class="settings-header">
               Sorry this page is currently under construction check in a little
               later
             </h1>
-          </div>
-        </section>`;
-const deleteAccountComponent = `<h2>Delete My Account</h2>
-        <div class="delete-container">
-          <p>Are you sure you want to leave</p>
-          <div class="delete-btns">
-            <button>TAKE ME BACK</button><button>I WANT TO LEAVE</button>
-          </div>
-        </div>`;
+          </div>`;
 
 // Event listeners
 editProfileBtn.addEventListener("click", () =>
 	window.open("../pages/userDashboard.html", "_self")
 );
 myArtBtn.addEventListener("click", () => updateView(myArtComponent, "myart"));
+chatBtn.addEventListener("click", () => {
+	updateView(chatComponent.outerHTML, "chat");
+	scrollToBottom(".profile-info");
+});
 settingsBtn.addEventListener("click", () => {
 	updateView(SettingComponent, "setting");
 });
 logoutBtn.addEventListener("click", logout);
-window.addEventListener("load", () => {
+window.addEventListener("load", loadPage);
+window.addEventListener("hashchange", loadPage);
+
+// Function Declararions
+async function loadPage() {
 	username.innerText = `Hi, ${localStorage.getItem("username") ?? "User"}`;
-	newNameInput.placeholder = localStorage.getItem("username") ?? "User";
-	switch (window.location.hash) {
-		case "#editProfile":
+
+	switch (removeSearchParams(window.location.href)) {
+		case "#editProfile" || "":
 			window.open("../pages/userDashboard.html", "_self");
+			newNameInput.placeholder = localStorage.getItem("username") ?? "User";
 			break;
 
 		case "#myart":
 			updateView(myArtComponent);
+			// Append Art to DOM
+			const purchases = await getPurchases();
+			purchases.forEach((data) => artDisplay.appendChild(createArtCard(data)));
+			break;
+
+		case "#chat":
+			updateView(chatComponent);
+			scrollToBottom(".profile-info");
 			break;
 
 		case "#setting":
@@ -188,71 +416,91 @@ window.addEventListener("load", () => {
 		default:
 			break;
 	}
-});
-document.querySelector("#update-name").addEventListener("click", () => {
-	if (ValidateName(newNameInput)) {
-		const newname = document.querySelector("#name-input").value;
-		try {
-			updateUserData({ value: newname, fieldToUpdate: "name" });
-		} catch (error) {
-			console.log(error);
+}
+if (document.querySelector(".user-form")) {
+	document.querySelector("#update-name").addEventListener("click", () => {
+		if (ValidateName(newNameInput)) {
+			const newname = document.querySelector("#name-input").value;
+			try {
+				updateUserData({ value: newname, fieldToUpdate: "name" });
+			} catch (error) {
+				console.log(error);
+			}
 		}
-	}
-});
-document.querySelector("#update-email").addEventListener("click", () => {
-	if (ValidateEmail(newEmailInput)) {
-		const newemail = document.querySelector("#email-input").value;
-		try {
-			updateUserData({ value: newemail, fieldToUpdate: "email" });
-		} catch (error) {
-			console.log(error);
+	});
+	document.querySelector("#update-email").addEventListener("click", () => {
+		console.log("emmaaaa");
+		if (ValidateEmail(newEmailInput)) {
+			const newemail = document.querySelector("#email-input").value;
+			try {
+				updateUserData({ value: newemail, fieldToUpdate: "email" });
+			} catch (error) {
+				console.log(error);
+			}
 		}
-	}
-});
-newPassword.addEventListener("input", () => {
-	console.log("Typing...");
-	ValidatePassword(newPassword, "old-password-error");
-});
-document.querySelector("#update-password").addEventListener("click", () => {
-	if (ValidatePassword(newPassword, "new-password-error")) {
-		try {
-			updateUserData({
-				value: {
-					newPassword: newPassword.value,
-					oldPassword: oldPassword.value,
-				},
-				fieldToUpdate: "password",
-			});
-		} catch (error) {
-			console.log(error);
+	});
+	newPassword.addEventListener("input", () => {
+		ValidatePassword(newPassword, "old-password-error");
+	});
+	document.querySelector("#update-password").addEventListener("click", () => {
+		if (ValidatePassword(newPassword, "new-password-error")) {
+			try {
+				updateUserData({
+					value: {
+						newPassword: newPassword.value,
+						oldPassword: oldPassword.value,
+					},
+					fieldToUpdate: "password",
+				});
+			} catch (error) {
+				console.log(error);
+			}
 		}
+	});
+	document
+		.querySelector(".checkbox-container")
+		.addEventListener("click", ShowOrHidePassword);
+}
+async function getPurchases() {
+	const userData = parseJwt();
+	const userId = userData.userId;
+	const url = `${baseServerUrl()}/art/purchases/${userId}`;
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			console.error(`HTTP Error status: ${response.status}`);
+		}
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		return error;
 	}
-});
-document
-	.querySelector("#show-password")
-	.addEventListener("click", () =>
-		ShowOrHidePassword(document.querySelectorAll(".password-input"))
-	);
-// deleteAccountBtn.addEventListener("click", () =>
-//   updateView(deleteAccountComponent)
-// );
-// Function Declararions
+}
 function updateView(component, hash) {
 	if (hash) {
 		window.location.hash = hash;
 	}
 	main.innerHTML = "";
-	main.innerHTML = component;
+	main.appendChild(component);
 }
-function parseJwt() {
-	const token = localStorage.getItem("token");
-	if (!token) {
-		return;
+
+function removeSearchParams(url) {
+	const urlObj = new URL(url);
+
+	return urlObj.hash.split("?")[0];
+}
+
+function scrollToBottom(elementIdentifier) {
+	const element = document.querySelector(elementIdentifier);
+
+	if (element) {
+		element.scrollTop = element.scrollHeight;
+	} else {
+		console.error(`Element with id '${elementIdentifier}' not found.`);
 	}
-	const base64Url = token.split(".")[1];
-	const base64 = base64Url.replace("-", "+").replace("_", "/");
-	return JSON.parse(window.atob(base64));
 }
+
 async function updateUserData(data) {
 	// Get userId
 	const userData = parseJwt();
@@ -279,13 +527,27 @@ async function updateUserData(data) {
 		throw error;
 	}
 }
+
 function logout() {
 	console.log("Cleared");
 	localStorage.clear();
 	window.open("../index.html", "_self");
 }
-function ShowOrHidePassword(...userPassword) {
-	userPassword.forEach((el) => {
+
+function artCard(data) {
+	const card = document.createElement("div");
+	card.innerHTML = `<div class="image">
+			<img src=${data.url} alt=${data.title} />
+		</div>
+		<span class="title">${data.title}</span>
+		<span class="price">N ${data.cost}</span>`;
+	return card;
+}
+function ShowOrHidePassword() {
+	const userPasswordEls = document.querySelectorAll(".password-input");
+
+	userPasswordEls.forEach((el) => {
+		console.log(el.type);
 		if (el.type === "password") {
 			el.type = "text";
 		} else {
@@ -293,6 +555,7 @@ function ShowOrHidePassword(...userPassword) {
 		}
 	});
 }
+
 function ValidateName(username) {
 	// console.log(username.value.length);
 	if (username.value === "") {

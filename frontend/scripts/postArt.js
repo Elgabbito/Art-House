@@ -8,7 +8,7 @@ const title = document.querySelector("#title-input");
 const cost = document.querySelector("#cost-input");
 const type = document.querySelector("#img-type");
 const valueArray = [];
-import { baseServerUrl } from "./baseServerUrl.mjs";
+import { baseServerUrl } from "../baseServerUrl.mjs";
 
 // Upload Data
 document.querySelector(".art-form").addEventListener("submit", async (e) => {

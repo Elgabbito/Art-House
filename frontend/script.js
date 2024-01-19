@@ -1,13 +1,19 @@
 const route = document.getElementById("route");
-const loginBtn = document.getElementById("login-btn");
-const signupBtn = document.getElementById("signup-btn");
+const signupBtn = document.createElement("button");
+const loginBtn = document.createElement("button");
 const navBtns = document.querySelector(".nav-btns");
 const commisionBtn = document.querySelector("#commision-btn");
-const topArtCarousel = document.querySelector("#top-art");
-const categoriesCarousel = document.querySelector("#categories");
+const mosaic = document.querySelector(".art-mosaic");
+const categoryCards = document.querySelectorAll(".category");
+const hamburger = document.querySelector(".hamburger");
+const sideNav = document.querySelector(".side-nav");
+const navbar = document.querySelector(".nav");
+const root = document.querySelector(":root");
+
 const cards = document.querySelectorAll(".card");
 const basePath = "./index.html";
 import { baseServerUrl } from "./baseServerUrl.mjs";
+import { parseJwt } from "./scripts/utils.js";
 
 // Event Listeners
 // Check if the user is logged in
@@ -29,8 +35,16 @@ window.addEventListener("load", async () => {
             />
           </a>
         </div>`;
-	const loginSignupBtns = `<button class="nav-btn" id="login-btn" onclick="goToLogin()">Login</button>
-        <button class="nav-btn" id="signup-btn" onclick="goToSignup()">Sign up</button>`;
+
+	loginBtn.onclick = goToLogin;
+	loginBtn.className = "nav-btn";
+	loginBtn.innerText = "Login";
+	loginBtn.id = "login-btn";
+
+	signupBtn.addEventListener("click", goToSignup);
+	signupBtn.className = "nav-btn";
+	signupBtn.innerText = "Sign Up";
+	signupBtn.id = "signup-btn";
 
 	commisionBtn.innerText = firstBtn;
 	// commisionBtn.addEventListener("click");
@@ -40,7 +54,8 @@ window.addEventListener("load", async () => {
 
 	if (!tokenData) {
 		navBtns.innerHTML = "";
-		navBtns.innerHTML = loginSignupBtns;
+		navBtns.appendChild(loginBtn);
+		navBtns.appendChild(signupBtn);
 		navBtns.style.marginLeft = "0";
 	}
 	// console.log(tokenData);
@@ -56,9 +71,34 @@ window.addEventListener("load", async () => {
 	}
 
 	// Append art to DOM
-	createCarousel(art.data, topArtCarousel);
+	createCarousel(art.data, mosaic);
 	// createCarousel(categoryArt.data, categoriesCarousel);
 });
+hamburger.addEventListener("click", () => {
+	hamburger.classList.toggle("active");
+	sideNav.classList.toggle("active");
+	document.body.classList.toggle("no-scroll");
+	sideNav.childNodes.forEach((child) => {
+		child.addEventListener("click", () => {
+			hamburger.classList.remove("active");
+			sideNav.classList.remove("active");
+			document.body.classList.remove("no-scroll");
+		});
+	});
+	if (localStorage.getItem("token")) {
+		const sideNavBtns = document.querySelector(".side-nav-btns");
+		sideNavBtns.innerHTML = ` <div class="nav-link-container">
+      <a class="nav-link" href="./pages/userDashboard.html">Profile<span></span></a>
+    </div>`;
+	}
+});
+
+document.querySelectorAll(".nav-link-container").forEach((element) =>
+	element.addEventListener("click", () => {
+		hamburger.classList.remove("active");
+		sideNav.classList.remove("active");
+	})
+);
 
 // Route to login page
 loginBtn.addEventListener("click", () => {
@@ -68,21 +108,18 @@ loginBtn.addEventListener("click", () => {
 signupBtn.addEventListener("click", () => {
 	goToSignup();
 });
+document
+	.querySelector("#side-nav-login-btn")
+	.addEventListener("click", goToLogin);
+document
+	.querySelector("#side-nav-signup-btn")
+	.addEventListener("click", goToSignup);
 // Set where commision art btn takes you
 commisionBtn.addEventListener("click", () =>
 	commisionArtRouting(localStorage.getItem("role"))
 );
 
 // Function Declarations
-function parseJwt() {
-	const token = localStorage.getItem("token");
-	if (!token) {
-		return;
-	}
-	const base64Url = token.split(".")[1];
-	const base64 = base64Url.replace("-", "+").replace("_", "/");
-	return JSON.parse(window.atob(base64));
-}
 function goToLogin() {
 	window.open("./pages/login.html", "_self");
 }
@@ -95,30 +132,39 @@ function commisionArtRouting(role) {
 		addNotification("Sign up or Login to Commision Art", "neutral");
 		return;
 	}
-	if (token && role !== "artist") {
+	if (role !== "artist") {
 		window.open("./pages/commisionart.html", "_self");
-	} else if (token && role === "artist") {
+	} else if (role === "artist") {
 		window.open("./pages/postArt.html", "_self");
 	}
 }
+// Add event listener to each category card
+categoryCards.forEach((card) => {
+	card.addEventListener("click", () => {
+		if (card.id === "photo-category") {
+			window.open("./pages/explore.html?category=photograph", "_self");
+			return;
+		}
+		if (card.id === "sculpture-category") {
+			window.open("./pages/explore.html?category=sculpture", "_self");
+			return;
+		}
+		if (card.id === "painting-category") {
+			window.open("./pages/explore.html?category=painting", "_self");
+			return;
+		}
+		if (card.id === "drawing-category") {
+			window.open("./pages/explore.html?category=drawing", "_self");
+			return;
+		}
+	});
+});
 async function getTopArt() {
 	const url = `${baseServerUrl()}/art/`;
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
 
-		console.log(data);
-		return data;
-	} catch (error) {
-		console.log(error);
-		return error;
-	}
-}
-async function getArtCategory() {
-	const url = "http://localhost:4000/art/categories";
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
 		console.log(data);
 		return data;
 	} catch (error) {
@@ -139,15 +185,14 @@ function createCarousel(data, carousel) {
 }
 const createCard = (src, name, id) => {
 	const card = document.createElement("div");
-	card.classList.add("card");
+	card.classList.add("mosaic");
 	card.id = name;
 	card.addEventListener("click", () => {
 		window.open(`./pages/product.html?art=${name}&id=${id}`, "_self");
 	});
-	card.innerHTML = `<div class="image">
-                        <img id="card-img" src=${src} alt=${name} />
-                    </div>
-                    <span class="title">${name}</span>`;
+	card.innerHTML = `<img
+            src=${src} alt=${name}>
+			 <span class="title">${name}</span>`;
 	return card;
 };
 function addNotification(message, type) {
@@ -175,11 +220,7 @@ function addNotification(message, type) {
 
 	NotiElement.innerHTML = ` <span>${message}.</span><div id='closeBtn'>X</div>`;
 	document.body.appendChild(NotiElement);
-	//keep it always at the bottom corner of the window
-	document.addEventListener("scroll", () => {
-		let btmPos = -window.scrollY + 10;
-		NotiElement.style.bottom = btmPos + "px";
-	});
+
 	// Remove popup
 	// By timer
 	setTimeout(() => document.body.removeChild(NotiElement), 5000);
@@ -187,4 +228,9 @@ function addNotification(message, type) {
 	document.getElementById("closeBtn").addEventListener("click", () => {
 		document.body.removeChild(NotiElement);
 	});
+}
+function setNavbarHeight() {
+	let height = navbar.offsetHeight + "px";
+	root.style.setProperty("--navbarHeight", height);
+	console.log(height);
 }
