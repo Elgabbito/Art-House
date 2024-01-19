@@ -113,6 +113,19 @@ filterBtn.addEventListener("click", async () => {
 	artDisplay.innerHTML = "";
 	art.forEach((data) => artDisplay.appendChild(createArtCard(data)));
 });
+// Search by filter on load
+window.addEventListener("load", async () => {
+	const art = await getFilteredArt();
+
+	if (art === "Empty") {
+		artDisplay.innerHTML = `<div class="no-art">Sorry No art works fit your search</div>`;
+		console.log("empty");
+		return;
+	}
+
+	artDisplay.innerHTML = "";
+	art.forEach((data) => artDisplay.appendChild(createArtCard(data)));
+});
 // Search for art by name
 searchBar.addEventListener("blur", () => {
 	searchBar.placeholder = searchBar.value;
@@ -176,11 +189,18 @@ console.log(urlParams.toString());
 async function getFilteredArt() {
 	console.log(window.location.search);
 	const url = `${baseServerUrl()}/art/filteredArt?${urlParams.toString()}`;
+	console.log(urlParams.toString());
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
 		console.log(data);
-		return data;
+		if (!urlParams.toString()) {
+			return;
+		}
+		if (JSON.stringify(data).length > 2) {
+			return data;
+		}
+		return "Empty";
 	} catch (error) {
 		console.log(error);
 		return error;

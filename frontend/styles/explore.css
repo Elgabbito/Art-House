@@ -580,3 +580,11 @@ footer {
 .footer-center div a:hover {
 	color: #fae6c7;
 }
+.no-art {
+	color: #fae6c7;
+	text-align: center;
+	width: 100%;
+	height: min-content;
+	padding: 2em;
+	background-color: #1c1c1c;
+}

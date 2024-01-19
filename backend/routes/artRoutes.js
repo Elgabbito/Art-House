@@ -19,6 +19,6 @@ router.get("/purchases/:buyerId", fetchPurchasedArt);
 router.get("/", fetchArt);
 router.get("/categories", fetchTopArtByCategory);
 router.get("/filteredArt", fetchFilteredArt);
-router.get("/singleArt/", fetchSingleArt);
+router.get("/singleArt/:id", fetchSingleArt);
 router.delete("/delete", deleteArt);
 module.exports = router;

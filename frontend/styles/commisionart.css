@@ -573,7 +573,12 @@ body {
 	background-color: #fafcfd;
 	letter-spacing: 2px;
 }
-
+.cost {
+	display: flex;
+	word-break: normal;
+	word-spacing: 5px;
+	word-wrap: wrap;
+}
 .checked {
 	color: orange;
 }

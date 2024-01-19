@@ -11,6 +11,7 @@ const passwordInput = document.getElementById("password-input");
 const showPasswordEl = document.getElementById("show-password-img");
 const showPasswordBtn = document.getElementById("show-password");
 const signupBtn = document.getElementById("submit-link");
+import { baseServerUrl } from "../baseServerUrl.mjs";
 const userSignupData = {
 	name: "",
 	email: "",
@@ -36,7 +37,7 @@ if (signupBtn) {
 	signupBtn.addEventListener("click", handleSignup);
 }
 // Username validation
-export function ValidateName(nameInput) {
+export function ValidateName() {
 	// console.log(username.value.length);
 	if (nameInput.value === "") {
 		nameInput.classList.toggle("error");
@@ -208,3 +209,38 @@ async function signup(data) {
 		throw error;
 	}
 }
+function addNotification(message, type) {
+	//create notification
+	const NotiElement = document.createElement("div");
+	NotiElement.id = "stickyNotification";
+	NotiElement.style.display = "flex";
+	NotiElement.style.gap = "1em";
+	NotiElement.style.alignItems = "center";
+	NotiElement.style.position = "absolute";
+	NotiElement.style.width = "max-content";
+	NotiElement.style.height = "max-content";
+	NotiElement.style.padding = "10px";
+	NotiElement.style.paddingLeft = "20px";
+	NotiElement.style.paddingRight = "20px";
+	NotiElement.style.borderRadius = "5px";
+	NotiElement.style.border = "1px solid black";
+	NotiElement.style.backgroundColor =
+		type === "good" ? "rgb(26, 255, 60)" : type === "bad" ? "red" : "#1F88D9";
+	NotiElement.style.color =
+		type === "good" ? "#302c1b" : type === "bad" ? "#fae6c7" : "#fae6c7";
+	NotiElement.style.left = "50%";
+	NotiElement.style.top = "0";
+	NotiElement.style.transform = "translate(-50%, 50%)";
+
+	NotiElement.innerHTML = ` <span>${message}.</span><div id='closeBtn'>X</div>`;
+	document.body.appendChild(NotiElement);
+
+	// Remove popup
+	// By timer
+	setTimeout(() => document.body.removeChild(NotiElement), 5000);
+	// By button click
+	document.getElementById("closeBtn").addEventListener("click", () => {
+		document.body.removeChild(NotiElement);
+	});
+}
+//

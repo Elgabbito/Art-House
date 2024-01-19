@@ -59,8 +59,12 @@ const fetchFilteredArt = async (req, res) => {
 const fetchSingleArt = async (req, res) => {
 	const { id } = req.query;
 	console.log(req.query);
-	const result = await getSingleArt(id);
-	res.send(result);
+	try {
+		const result = await getSingleArt(id);
+		res.status(200).send(result);
+	} catch (error) {
+		res.status(500).send(error);
+	}
 };
 
 async function deleteArt(req, res) {
