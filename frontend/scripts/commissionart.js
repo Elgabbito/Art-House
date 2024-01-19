@@ -126,8 +126,7 @@ categories.forEach((el) => {
 		}
 	});
 });
-const num = 15;
-console.log(num.toString(16));
+
 // Create Art Card
 function createArtistCard(imgSrc, art_types, name, rating, recipientId) {
 	const card = document.createElement("div");
@@ -158,6 +157,10 @@ function createArtistCard(imgSrc, art_types, name, rating, recipientId) {
 		console.log(data);
 		createChatRoom(data.roomId, data.senderId, data.recipientId);
 	});
+	// art_types.foreach((type) => {
+	// 	console.log(type);
+	// });
+	console.log(art_types);
 	card.className = "art-card";
 	card.innerHTML = `<div class="card-img-container"><img class="card-img" src="${imgSrc}" alt="${""}"></div>
                     <div class="card-text">
@@ -179,7 +182,6 @@ async function getArt() {
 		return error;
 	}
 }
-console.log(urlParams.toString());
 
 async function createChatRoom(roomId, senderId, recipientId) {
 	try {

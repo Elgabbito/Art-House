@@ -189,10 +189,14 @@ console.log(urlParams.toString());
 async function getFilteredArt() {
 	console.log(window.location.search);
 	const url = `${baseServerUrl()}/art/filteredArt?${urlParams.toString()}`;
+	console.log(urlParams.toString());
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
 		console.log(data);
+		if (!urlParams.toString()) {
+			return;
+		}
 		if (JSON.stringify(data).length > 2) {
 			return data;
 		}

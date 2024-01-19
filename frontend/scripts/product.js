@@ -84,7 +84,16 @@ window.addEventListener("load", async () => {
 	}
 });
 
-buyNowBtn.addEventListener("submit", payWithPaystack, false);
+buyNowBtn.addEventListener("click", async () => {
+	const { bids } = await getSingleArt();
+	let highestBId = 0;
+	bids.forEach(({ amount }) => {
+		if (amount > highestBId) {
+			highestBId = amount;
+		}
+	});
+	window.open("../pages/paystack.html");
+});
 
 // Function Declarations
 function payWithPaystack(e) {
