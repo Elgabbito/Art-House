@@ -15,6 +15,7 @@ const corsOptions = {
 		"http://127.0.0.1:5500",
 		"http://127.0.0.1:5501",
 		"https://savanna-showcase.netlify.app",
+		"https://savanna-showcase.com.ng"
 	],
 	methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 };
