@@ -115,6 +115,9 @@ filterBtn.addEventListener("click", async () => {
 });
 // Search by filter on load
 window.addEventListener("load", async () => {
+	if (!urlParams.toString()) {
+		return;
+	}
 	const art = await getFilteredArt();
 
 	if (art === "Empty") {
@@ -193,10 +196,7 @@ async function getFilteredArt() {
 	try {
 		const response = await fetch(url);
 		const data = await response.json();
-		console.log(data);
-		if (!urlParams.toString()) {
-			return;
-		}
+
 		if (JSON.stringify(data).length > 2) {
 			return data;
 		}
